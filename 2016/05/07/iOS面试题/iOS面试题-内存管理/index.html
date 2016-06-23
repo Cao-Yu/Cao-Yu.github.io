@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>iOS面试题-内存管理 | 曹宇的技术博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="简述
+管理的对象是堆区产生的对象，而不是基本数据类型。
+内存管理的核心概念就是引用计数器，当引用计数为 0 的时候，就会被系统回收。
+
+什么是ARC？ARC 是 Auto Reference Counting的缩写，即自动引用计数，由编译器在代码合适的位置中自动添加retain/Release/Autorelease/dealloc方法从而进行内存管理。
+循环引用的产生原因以及解决方法
+A 对象引">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS面试题-内存管理">
+<meta property="og:url" content="http://yoursite.com/2016/05/07/iOS面试题/iOS面试题-内存管理/index.html">
+<meta property="og:site_name" content="曹宇的技术博客">
+<meta property="og:description" content="简述
+管理的对象是堆区产生的对象，而不是基本数据类型。
+内存管理的核心概念就是引用计数器，当引用计数为 0 的时候，就会被系统回收。
+
+什么是ARC？ARC 是 Auto Reference Counting的缩写，即自动引用计数，由编译器在代码合适的位置中自动添加retain/Release/Autorelease/dealloc方法从而进行内存管理。
+循环引用的产生原因以及解决方法
+A 对象引">
+<meta property="og:image" content="http://cc.cocimg.com/api/uploads/20160322/1458636240331049.png">
+<meta property="og:image" content="http://cc.cocimg.com/api/uploads/20160322/1458636212752528.png">
+<meta property="og:updated_time" content="2016-05-21T11:19:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS面试题-内存管理">
+<meta name="twitter:description" content="简述
+管理的对象是堆区产生的对象，而不是基本数据类型。
+内存管理的核心概念就是引用计数器，当引用计数为 0 的时候，就会被系统回收。
+
+什么是ARC？ARC 是 Auto Reference Counting的缩写，即自动引用计数，由编译器在代码合适的位置中自动添加retain/Release/Autorelease/dealloc方法从而进行内存管理。
+循环引用的产生原因以及解决方法
+A 对象引">
+<meta name="twitter:image" content="http://cc.cocimg.com/api/uploads/20160322/1458636240331049.png">
+  
+    <link rel="alternate" href="/atom.xml" title="曹宇的技术博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">曹宇的技术博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-iOS面试题/iOS面试题-内存管理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/07/iOS面试题/iOS面试题-内存管理/" class="article-date">
+  <time datetime="2016-05-07T04:49:25.000Z" itemprop="datePublished">2016-05-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS面试/">iOS面试</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS面试题-内存管理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h1><ul>
+<li>管理的对象是堆区产生的对象，而不是基本数据类型。</li>
+<li>内存管理的核心概念就是引用计数器，当引用计数为 0 的时候，就会被系统回收。</li>
+</ul>
+<h1 id="什么是ARC？"><a href="#什么是ARC？" class="headerlink" title="什么是ARC？"></a>什么是ARC？</h1><p>ARC 是 Auto Reference Counting的缩写，即自动引用计数，由编译器在代码合适的位置中自动添加retain/Release/Autorelease/dealloc方法从而进行内存管理。</p>
+<h1 id="循环引用的产生原因以及解决方法"><a href="#循环引用的产生原因以及解决方法" class="headerlink" title="循环引用的产生原因以及解决方法"></a>循环引用的产生原因以及解决方法</h1><p><img src="http://cc.cocimg.com/api/uploads/20160322/1458636240331049.png" alt=""></p>
+<p>A 对象引用 B 对象作为属性，而B属性又饮用 A对象作为属性。两个对象互相持有对象，所以引用计数一直都是1。</p>
+<p>多个对象间依然会存在循环引用问题，形成一个环，不容易察觉：</p>
+<p><img src="http://cc.cocimg.com/api/uploads/20160322/1458636212752528.png" alt=""></p>
+<p>A 对象引用 B 对象，B 对象引用 C 对象，C 对象引用 D 对象，D 对象引用 A 对象。</p>
+<p>解决办法就是在可能出现循环引用的地方，主动断开一个环节，回收对象。</p>
+<p>或者使用<strong>弱引用</strong>。</p>
+<h1 id="强引用和弱引用"><a href="#强引用和弱引用" class="headerlink" title="强引用和弱引用"></a>强引用和弱引用</h1><ul>
+<li><p>强引用：当前对象被其他对象引用时，会执行<code>retain</code>操作，引用计数器+1。当<code>retainCount=0</code>时，该对象才会被销毁。因为我们要进行对象的内存管理，所以这是默认的引用方式。（默认是强引用）</p>
+</li>
+<li><p>弱引用：当前对象的生命周期不被是否由其他对象引用限制，它本该什么时候销毁就什么时候被销毁。即使它的引用没断，但是当它的生存周期到了时就会被销毁。</p>
+</li>
+</ul>
+<p>在定义属性时，若声明为<code>retain</code>类型的，则就是强引用；若声明为<code>assign</code>类型的，则就是弱引用。后来内存管理都由ARC来完成后，若是强引用，则就声明为<code>strong</code>；若是弱引用，则就声明为<code>weak</code>。</p>
+<p><code>weak</code>严格的说应当叫“ 归零弱引用 ”，即当对象被销毁后，会自动的把它的指针置为<code>nil</code>，这样可以防止野指针错误。而<code>assign</code>销毁对象后不会把该对象的指针置<code>nil</code>，对象已经被销毁，但指针还在痴痴的指向它，这就成了野指针，这是比较危险的。</p>
+<h1 id="copy与引用的区别"><a href="#copy与引用的区别" class="headerlink" title="copy与引用的区别"></a>copy与引用的区别</h1><ul>
+<li>copy 是在堆中完全复制一个对象，并且创建一个新的指针。也就是<code>深拷贝</code></li>
+<li>引用就是用一个新的指针仍然指向同一个对象而已。也就是<code>浅拷贝</code></li>
+</ul>
+<h1 id="简述UITableView的复用机制"><a href="#简述UITableView的复用机制" class="headerlink" title="简述UITableView的复用机制"></a>简述UITableView的复用机制</h1><ul>
+<li>首先，加载占满整个屏幕高度的 cell (通常多一个或者两个)</li>
+<li>每当有 cell 滑出屏幕，便将该 cell 移到资源池(resource pool)当中</li>
+<li>有 cell 画出屏幕，就意味着有 cell 将要滑进屏幕。在 cell 将要滑进屏幕时，首先去资源池当中去寻找</li>
+<li>如果没有找到，返回nil，并且重新创建一个cell。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/07/iOS面试题/iOS面试题-内存管理/" data-id="cips6ylwh0003qruhufoma06m" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/05/07/干货/iOS干货/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          iOS干货
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/07/iOS面试题/iOS面试题-多线程/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">iOS面试题－多线程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS开发/">iOS开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS面试/">iOS面试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/干货/">干货</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构学习笔记/">数据结构学习笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/UI/">UI</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/UI/" style="font-size: 10px;">UI</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/06/04/iOS开发/UI/iOS开发-UICollectionView/">iOS开发-UICollectionView</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/13/数据结构学习笔记/数据结构学习笔记 - 二叉树/">数据结构学习笔记-二叉树</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/07/干货/iOS干货/">iOS干货</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/07/iOS面试题/iOS面试题-内存管理/">iOS面试题-内存管理</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/07/iOS面试题/iOS面试题-多线程/">iOS面试题－多线程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 曹宇<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

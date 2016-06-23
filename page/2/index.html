@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>曹宇的技术博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="曹宇的技术博客">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:site_name" content="曹宇的技术博客">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="曹宇的技术博客">
+<meta name="twitter:description">
+  
+    <link rel="alternate" href="/atom.xml" title="曹宇的技术博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">曹宇的技术博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-数据结构学习笔记/数据结构学习笔记 - 线性表" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/27/数据结构学习笔记/数据结构学习笔记 - 线性表/" class="article-date">
+  <time datetime="2016-04-27T01:14:25.000Z" itemprop="datePublished">2016-04-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/数据结构学习笔记/">数据结构学习笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/27/数据结构学习笔记/数据结构学习笔记 - 线性表/">数据结构学习笔记-线性表</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="线性表的定义"><a href="#线性表的定义" class="headerlink" title="线性表的定义"></a>线性表的定义</h1><p><strong>线性表是零个或多个数据元素的有限序列</strong>。</p>
+<p>从定义中可以发现以下两个特点：</p>
+<ul>
+<li>有序性：元素之间有顺序，第一个元素没有前驱，第二个元素没有后继。</li>
+<li>有限性：在计算机处理的数据当中，都是有限的。</li>
+</ul>
+<p>线性表从存储结构来分类，可以分为<strong>顺序存储结构</strong>和<strong>链式存储结构</strong>。</p>
+<h1 id="线性表的抽象数据结构"><a href="#线性表的抽象数据结构" class="headerlink" title="线性表的抽象数据结构"></a>线性表的抽象数据结构</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ADT 线性表(list)</span><br><span class="line">Data</span><br><span class="line">Operation</span><br><span class="line">	initList(list)							：初始化</span><br><span class="line">	isEmpty(list) -&gt; Bool					：是否为空</span><br><span class="line">	clean(list)								：清空</span><br><span class="line">	getElement(list, i) -&gt; list[i]			：返回 list 中第 i 个元素</span><br><span class="line">	locateElement(list, element) -&gt; i		：返回 list 中与给定元素 element 相等的索引</span><br><span class="line">	insert(list, i, element) -&gt; Bool		：第 i 个位置插入元素 element，返回布尔值</span><br><span class="line">	delete(list, i, element) -&gt; element	：删除第i个位置的元素，并返回该元素</span><br><span class="line">	length(list) -&gt; length					：返回该线性表长度</span><br><span class="line">endADT</span><br></pre></td></tr></table></figure>
+<h1 id="线性表的顺序存储结构"><a href="#线性表的顺序存储结构" class="headerlink" title="线性表的顺序存储结构"></a>线性表的顺序存储结构</h1><p>顺序存储结构指的是<strong>用一段地址连续的存储单元一次存储线性表的数据元素</strong>。使用一维数组来实现，需要给定最大元素数量。</p>
+<p>需要指明的是，线性表的数据长度小于等于线性表的存储所在数组的长度。因为数组的长度通通常是固定的，而数据长度可以动态的改变。</p>
+<h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><ul>
+<li>判断线性表是否为空，给定索引是否超过线性表长度，返回异常</li>
+<li>按照索引返回数据元素</li>
+</ul>
+<h2 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h2><ul>
+<li>判断插入位置是否在线性表索引当中</li>
+<li>如果数组已满，抛出异常或者动态增加容量</li>
+<li>从最后一个位置开始，到插入位置，整体向后移一个单位位置。</li>
+<li>插入</li>
+<li>长度 +1</li>
+</ul>
+<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><ul>
+<li>删除位置不在索引范围当中</li>
+<li>取出删除元素</li>
+<li>从最后一个元素到删除位置，这个难题向前移动一个单位位置</li>
+<li>表的长度 -1</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在顺序存储结构中，查询元素和添加新元素的操作，都可以直接通过索引计算出内存地址，所以时间复杂度为O(1)。而插入和删除操作都需要将一部分元素整体移动，所以在最坏情况下，时间复杂度为O(n)。</p>
+<p>这说明，线性表的顺序存储结构适用于<strong>多存取，少改动</strong>的情况。</p>
+<h1 id="线性表的链式存储结构"><a href="#线性表的链式存储结构" class="headerlink" title="线性表的链式存储结构"></a>线性表的链式存储结构</h1><p>线性表的链式存储结构通常指的是链表。它的出现很好的解决了顺序存储结构的缺点，更有效率的进行插入和删除。</p>
+<h2 id="单链表"><a href="#单链表" class="headerlink" title="单链表"></a>单链表</h2><p>单链表的每一个节点都包含数据域和指向下一个节点的指针。</p>
+<h2 id="双链表"><a href="#双链表" class="headerlink" title="双链表"></a>双链表</h2><p>双向链表的每个节点包含两个指针和一个数据域，这样可以加快查找速度，从而提高插入、删除的效率。</p>
+<h2 id="静态链表"><a href="#静态链表" class="headerlink" title="静态链表"></a>静态链表</h2><p>静态链表的存在，是为了使不具有指针的编程语言实现链表。</p>
+<p>静态链表的本质就是用数组来实现链表，数组中的每个元素都有数据域和下一个元素的数组下标。这样的话，在插入和删除数据元素时，不需要整体移动数组，从而提高效率。</p>
+<h2 id="循环链表"><a href="#循环链表" class="headerlink" title="循环链表"></a>循环链表</h2><p>循环链表存在的意义在于快速查找尾节点。</p>
+<p>循环链表就是把最后一个节点的指针指向头节点。也就是说，头节点被两个指针同时指着。</p>
+<h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><p>仅能在表尾插入或删除数据的线性表称为栈(Stack)。</p>
+<p>存取遵循LIFO原则，就是后进先出。</p>
+<p>栈的抽象数据类型中，只有一个指针用于指向栈顶的数据。</p>
+<h1 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h1><p>只允许在一端插入、一端删除的线性表称为队列(Queen)</p>
+<h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><p>由零个或多个字符组成的有限序列。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/27/数据结构学习笔记/数据结构学习笔记 - 线性表/" data-id="cips6ylx6000kqruh4fmzzlb3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-iOS开发/UI/iOS开发-UITextView" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/24/iOS开发/UI/iOS开发-UITextView/" class="article-date">
+  <time datetime="2016-04-24T06:56:25.000Z" itemprop="datePublished">2016-04-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS开发/">iOS开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/24/iOS开发/UI/iOS开发-UITextView/">iOS开发-UITextView</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>UITextView 是 iOS 中的文本输入、显示控件。与 UITextField 不同的是，UITextView 是多行的文本域，支持滚动，多用于显示长篇内容。而 UITextField 是文本框，多用于输入用户名、密码等。</p>
+<p>值得一提的是，UITextView 是 UIScrollView 的子类，具有滚动视图的行为和属性。</p>
+<p><strong>如果要在 UITextView 中输入文字，需要先设置 editable 为 true ，然后再将 textView 设置为第一响应者。</strong></p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p><code>let textView = UITextView(frame:view.frame)</code></p>
+<h1 id="常用属性"><a href="#常用属性" class="headerlink" title="常用属性"></a>常用属性</h1><p><strong>对齐方式：</strong></p>
+<p><code>textView.contentMode = .Topleft</code></p>
+<p><strong>内容：</strong></p>
+<p><code>textView.text = &quot;bla bla bla ...&quot;</code></p>
+<p><strong>字体：</strong></p>
+<p><code>textView.font = UIFont(name: &quot;.SFUIText-Medium&quot;, size: 24)</code></p>
+<p>name 属性以字符串的方式选择 iOS 字体，第二个参数为大小。</p>
+<p><strong>文本框：</strong></p>
+<p><code>textView.layer.borderWidth = 1</code></p>
+<p><strong>添加链接：</strong></p>
+<p><code>textView.dataDetectorTypes = UIDataDetectorTypes.None //都不加链接</code></p>
+<p>属性可以替换为</p>
+<p><code>UIDataDetectorTypes.PhoneNumber</code> 只有电话加链接</p>
+<p><code>UIDataDetectorTypes.Link</code> 只有网址加链接</p>
+<p><code>UIDataDetectorTypes.All</code> 电话和网址都加</p>
+<p><strong>选择内容后的菜单：</strong></p>
+<p>选择文本之后，可以选择复制、粘贴、分享等系统功能。</p>
+<p><img src="/img/7.png" alt=""></p>
+<p>首先，需要添加相关的执行函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func weiXin()&#123;</span><br><span class="line">       //跳转到微信</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>然后再添加 menuItem ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let weixin = UIMenuItem(title: &quot;微信&quot;, action: &quot;weiXin&quot;)</span><br><span class="line">let menu = UIMenuController()</span><br><span class="line">menu.menuItems = [weixin]</span><br></pre></td></tr></table></figure>
+<p>可以添加多个功能选项，添加到 menuItems 数组。</p>
+<p><strong>是否显示滚动条：</strong></p>
+<p><code>textView.showsVerticalScrollIndicator = true</code></p>
+<p><strong>是否可以滚动：</strong></p>
+<p><code>textView.scrollEnabled = true</code></p>
+<p>当然，滚动的前提是内容的面积要大于 textView 视图的面积。</p>
+<p><strong>是否可以编辑：</strong></p>
+<p><code>textView.editable = true</code></p>
+<p>在将 editable 设置为 true 之后，还要将将 textView 设置为第一响应者才能对其编辑。</p>
+<p><strong>滑动时隐藏键盘：</strong></p>
+<p><code>textView.keyboardDismissMode = .OnDrag</code></p>
+<p>也可以换成其他值，监测 textView 的不同操作以隐藏键盘</p>
+<h1 id="防止键盘遮挡内容"><a href="#防止键盘遮挡内容" class="headerlink" title="防止键盘遮挡内容"></a>防止键盘遮挡内容</h1><p>如果我们的 UITextView 几乎占满了整个屏幕，那么当键盘出现的时候就会遮挡位于底部的内容。通常，解决方案有两种：</p>
+<ul>
+<li>当键盘出现时，在文字的底部流出足够的空行，以显示键盘</li>
+<li>当键盘出现时，压缩 textView 的高度以容纳底部的键盘</li>
+</ul>
+<p>第一种方式受到文字大小的限制，而且需要额外的空间，还有可能找不到光标的位置。所以我们介绍相对来讲更为精髓的第二种方式：</p>
+<h2 id="第一步：添加委托"><a href="#第一步：添加委托" class="headerlink" title="第一步：添加委托"></a>第一步：添加委托</h2><p>使 UITextView 所在的 UIViewController 遵从 UITextViewDelegate 协议：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">class MyViewController: UIViewController, UITextViewDelegate &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>为 textView 指定委托为当前的 UIViewController：</p>
+<p><code>textView.delegate = self</code></p>
+<h2 id="第二步：实现协议中的监听方法"><a href="#第二步：实现协议中的监听方法" class="headerlink" title="第二步：实现协议中的监听方法"></a>第二步：实现协议中的监听方法</h2><p>英文键盘的高度是 216，所以把 textView 的高度减去216。</p>
+<p>当开始进行编辑的时候，<code>textViewDidBeginEditing</code> 方法会被执行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">func textViewDidBeginEditing(textView: UITextView) &#123;</span><br><span class="line">       // 获取压缩后的高度</span><br><span class="line">       let h = view.frame.height - 216</span><br><span class="line">       // 定义一个新的矩形，具有压缩后的高度</span><br><span class="line">       let rect = CGRect(origin: textView.frame.origin, size: CGSize(width: 						textView.frame.width, height: h))</span><br><span class="line">       // 赋值给 textView</span><br><span class="line">       textView.frame = rect</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>下面的代码让 textView 在滚动的时候隐藏，并且恢复 textView 原来的高度。<code>scrollViewWillBeginDragging</code> 方法会在 textView 刚被滑动且手没离开的时候执行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">func scrollViewWillBeginDragging(scrollView: UIScrollView) &#123;</span><br><span class="line">	textView.resignFirstResponder()</span><br><span class="line">    textView.frame = view.frame</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上代码中，textView 的 <code>resignFirstResponder()</code> 方法会使 textView 丧失第一响应者的身份，从而不具有键盘的使用权。</p>
+<p>如此这般，便可以防止键盘遮挡内容了。</p>
+<h1 id="限制字数"><a href="#限制字数" class="headerlink" title="限制字数"></a>限制字数</h1><h2 id="第一步：添加委托-1"><a href="#第一步：添加委托-1" class="headerlink" title="第一步：添加委托"></a>第一步：添加委托</h2><p>前已言之</p>
+<h2 id="第二步：实现协议中的监听方法-1"><a href="#第二步：实现协议中的监听方法-1" class="headerlink" title="第二步：实现协议中的监听方法"></a>第二步：实现协议中的监听方法</h2><p><strong>对于 UITextField 来说：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">func textField(textField: UITextField, </span><br><span class="line">				shouldChangeCharactersInRange range: NSRange, </span><br><span class="line">				replacementString string: String) -&gt; Bool &#123;</span><br><span class="line">       guard let oldText = textField.text else &#123;return true&#125;</span><br><span class="line">      	let newLength = oldText.characters.count + string.characters.count</span><br><span class="line">       return newLength &lt;= 17</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>textView: 当前 UITextView 对象</p>
+<p>range:    将要被替换的文本的范围</p>
+<p>string:     将要替换为的文本</p>
+<p>17 是我们定义的最大输入限制字数</p>
+<p><strong>对于 UITextView 来说</strong>，该协议的监听方法的内容基本一致。可能还需要限制 UITextView 的输入行数：</p>
+<p><code>textView.textContainer.maximumNumberOfLines = 10</code></p>
+<p>省略方式：</p>
+<p><code>textView.textContainer.lineBreakMode = NSLineBreakByTruncatingTail</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/24/iOS开发/UI/iOS开发-UITextView/" data-id="cips6yly4001bqruh72ml56tu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UI/">UI</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-数据结构学习笔记/数据结构学习笔记-算法的度量" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/23/数据结构学习笔记/数据结构学习笔记-算法的度量/" class="article-date">
+  <time datetime="2016-04-23T02:08:25.000Z" itemprop="datePublished">2016-04-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/数据结构学习笔记/">数据结构学习笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/23/数据结构学习笔记/数据结构学习笔记-算法的度量/">数据结构学习笔记-算法的度量</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="时间复杂度的定义"><a href="#时间复杂度的定义" class="headerlink" title="时间复杂度的定义"></a>时间复杂度的定义</h1><p>在进行算法的分析时，算法的总执行时间 T(n) 是关于问题规模 n 的函数。记作 T(n) = O(f(n))。也就是我们常说的大 O 表示法。</p>
+<p><strong>在这里我们计算的时间复杂度，是对于最坏情况的考察</strong>，因为这代表着系统的鲁棒性有保证。平均情况的时间复杂度是对运算时间的一个期望，并不能表示最坏情况。</p>
+<h1 id="时间复杂度的计算"><a href="#时间复杂度的计算" class="headerlink" title="时间复杂度的计算"></a>时间复杂度的计算</h1><p>时间复杂度的计算，大体上遵从以下规律，实际分析当中需要具体分析。</p>
+<blockquote>
+<ul>
+<li>用常数 1 取代所有相加的常数</li>
+<li>只保留高阶项</li>
+<li>把最高阶项的常数置为1</li>
+</ul>
+</blockquote>
+<h2 id="常数阶"><a href="#常数阶" class="headerlink" title="常数阶"></a>常数阶</h2><p>例如这条语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var i = 3 * n</span><br><span class="line">i = i / (100 + n)</span><br><span class="line">print(i)</span><br></pre></td></tr></table></figure>
+<p>在此算法当中，一共有三条语句。无论 n 的值多大，此算法只执行这三条语句。所以执行次数为 f(n) = 3。所以按照规则，把 3 改为 1。所以此算法的时间复杂度为 O(1)。另外，如果此算法中含有 10 条这种执行一次的语句，时间复杂度依然为 O(1)。</p>
+<p>这种执行次数与 n 的大小无关的算法的时间复杂度为 O(1)，也就是常数阶。</p>
+<p>对于分支结构，无论判断语句的结果是真是假，执行次数都是恒定的。因此时间复杂度也是 O(1)。</p>
+<h2 id="线性阶"><a href="#线性阶" class="headerlink" title="线性阶"></a>线性阶</h2><p>算法的时间复杂度的分析难点主要在于线性阶的计算，而不单单是常数阶那么简单。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for var i = 0; i &lt; n; i += 1 &#123;</span><br><span class="line">    print(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上这段代码，打印输出语句的执行次数取决于 n，所以时间复杂度为 O(n)。</p>
+<h2 id="对数阶"><a href="#对数阶" class="headerlink" title="对数阶"></a>对数阶</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var count = 1</span><br><span class="line">while count &lt; n &#123;</span><br><span class="line">    count *= 2</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上这段代码，while 中的语句的执行次数不是简单的 n 的倍数。而是随着 n 的增长，执行次数逐渐收敛。所以时间复杂度为 O(log$$n$$)。</p>
+<h2 id="平方阶"><a href="#平方阶" class="headerlink" title="平方阶"></a>平方阶</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for var i = 0; i &lt; n; i += 1 &#123;</span><br><span class="line">    for var j = 0; j &lt; n; j += 1 &#123;</span><br><span class="line">        print(j)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>嵌套循环是典型的平方阶复杂度，我们应该由内而外的分析。内层循环执行 n 次，外层循环也执行 n 次，所以时间复杂度为 O(n^2）。</p>
+<p>下面增加一点难度：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for var i = i; i &lt; n; i += 1 &#123;</span><br><span class="line">    for var j = i; j &lt; n; j += 1 &#123;</span><br><span class="line">        print(j)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>内层循环的执行次数随着 i 的增加而减少，所以执行次数为等差数列：</p>
+<p><code>n + (n - 1) + (n - 2) + (n - 3) ... = (n * (n + 1)) / 2</code></p>
+<p>化简为多项式形式：<code>n^2 / 2 + n/2</code>，所以按照规则，只保留最高阶项，然后再去掉常数 <code>1/2</code>。 所以结果仍然是 O(n^2)。</p>
+<p>看到这里可能会感觉奇怪，为什么以上两个算法的打印语句的执行次数明显不一样，但时间复杂度却一样呢？事实上，时间复杂度的目的就是为了描述算法执行时间的数量级与 n 的关系，只是个粗略的估计。并且时间复杂度的估量是在假设 n 足够大的情况下，用极限的概念来理解的。</p>
+<h1 id="空间复杂度的计算"><a href="#空间复杂度的计算" class="headerlink" title="空间复杂度的计算"></a>空间复杂度的计算</h1><p>一个算法的优劣，不仅要考量时间复杂度，还要考虑对硬件存储空间的要求。</p>
+<p>空间复杂度 S(n) = O(f(n))，其中 n 是问题的规模，f(n) 存储空间关于 n 的函数。</p>
+<p>空间复杂度主要取决于执行算饭所需的存储空间。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/23/数据结构学习笔记/数据结构学习笔记-算法的度量/" data-id="cips6ylx1000fqruh7psxlw65" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-iOS开发/UI/iOS开发-事件传递响应链" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/23/iOS开发/UI/iOS开发-事件传递响应链/" class="article-date">
+  <time datetime="2016-04-23T02:08:25.000Z" itemprop="datePublished">2016-04-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS开发/">iOS开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/23/iOS开发/UI/iOS开发-事件传递响应链/">iOS开发-事件传递以及响应链</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="什么是事件传递？"><a href="#什么是事件传递？" class="headerlink" title="什么是事件传递？"></a>什么是事件传递？</h1><p>事件传递说白了就是iOS应用程序对用户操作进行逐级、有序处理的过程，这个过程会由UIWindow开始逐级向子视图进行检查。</p>
+<p><strong>第一步：捕捉用户操作</strong></p>
+<p>当用户触摸屏幕触发一个触摸事件(Touch Event)时，UIKit 会创建一个包含事件信息的 UIEvent 对象。然后把这个UIEvent对象放到到事件队列当中等待处理。对于触摸事件来说，这个 UIEvent对象是一系列触摸操作的集合。</p>
+<p>单例的UIApplication对象会从事件队列(Event Queue)的顶部取出这个UIEvent对象。然后，这个对象会首先被送到当前应用的UIWindow对象，这个UIWindow对象会带着需要处理的UIEvent对象进行一个叫做hit-testing的过程。这个过程说白了就是寻找用户点击的位置到底是属于哪个View。</p>
+<p><strong>第二步：通过hit-testing寻找触摸目标</strong></p>
+<p>hitTest方法首先会掉用pointInside方法来判断触摸的位置是否在被检查的View中，如果是，那么pointInside方法返回True，然后继续使用hitTest方法检查该View的所有子视图。如果触摸位置不在被检查的View中，那么pointInside方法返回false，因而hitTest方法会返回nil。这样的话，不再检查该View的子类。这就意味着，<strong>如果要让某个View的事件被触发，必须保证该View在它的父视图当中</strong>。</p>
+<p>下面使用一个苹果文档中提供的例子来说明：</p>
+<p><img src="https://developer.apple.com/library/ios/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/hit_testing_2x.png" alt="Hit-testing"></p>
+<p>如果用户触摸View E，首先，检查View A，用户的操作处于View A，所以下一步检查View A的子类View B和View C。显然，触摸点不在View B中，所以开始检查View C中的两个View。最后，View E被判定为被用户点击的视图。</p>
+<h1 id="什么是响应链？"><a href="#什么是响应链？" class="headerlink" title="什么是响应链？"></a>什么是响应链？</h1><p>响应链是一系列连在一起的响应者对象，开始于第一响应者(First Respondor)，结束于当前应用程序对象(UIApplication)。响应者对象就是能处理事件的对象，响应者对象的基类是UIResponder，所有响应者都是这个类的子类：</p>
+<p><img src="/img/6.png" alt=""></p>
+<p>如果想要让某一View成为第一响应者，需要满足两个条件：重写继承自UIResponder的<code>canBecomeFirstResponder</code>方法并返回true，并且接收一个来自<code>becomeFirstResponder</code>方法的message。UIKit自动的将UITextfield和UITextView这两个控件设置为当用户点击时自动成为第一响应者，而其他的控件用户就需要自己设置<code>becomeFirstResponder</code>了。</p>
+<p>当我们经过上一步的hitTest方法检查出被点击的视图后，如果该视图不能处理该事件，那么就会使用<code>nextResponder</code>方法将事件传递给响应链的下一个响应者对象，直到被处理或者没有下一个响应者。如果连UIApplication都处理不了事件，那么该事件将会被销毁。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/23/iOS开发/UI/iOS开发-事件传递响应链/" data-id="cips6ylxv0011qruhw0bzcih8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UI/">UI</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-iOS开发/UI/iOS开发-使用UIGestureRecognizer为控件添加触发事件" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/18/iOS开发/UI/iOS开发-使用UIGestureRecognizer为控件添加触发事件/" class="article-date">
+  <time datetime="2016-04-18T07:30:09.000Z" itemprop="datePublished">2016-04-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS开发/">iOS开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/18/iOS开发/UI/iOS开发-使用UIGestureRecognizer为控件添加触发事件/">iOS开发-使用UIGestureRecognizer为控件添加触发事件</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>UIGestureRecognizer 是一个抽象类，用来识别用户对控件的操作。同过创建它的不同子类的对象来识别不同的手势。如：</p>
+<ul>
+<li>UITapGestureRecognizer       用来识别轻点手势</li>
+<li>UISwipeGestureRecognizer     用来识别滑动手势</li>
+<li>UILongPressGestureRecognizer 用来识别长按手势</li>
+</ul>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p><strong>第一步，创建一个 UIGestureRecognizer</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let gestureRecognizer = UITapGestureRecognizer(target: self, </span><br><span class="line">	action: #selector(SomeViewController.someEvent(_:)))</span><br></pre></td></tr></table></figure>
+<p>以上代码创建了一个 UITapGestureRecognizer， 用来识别用户的轻点手势。初始化函数被传入两个参数，target 是该响应事件的接收者，通常是 ViewController；第二个是 action， 用来定义事件的执行内容。其中 <code>#selector(SomeViewController.someEvent(_:))</code> 是在 Swift 中定义的新的 selector 声明方法，参数是通过类名定位到一个函数。</p>
+<p><strong>第二步，定义一个函数，用来响应事件</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func someEvent(sender: UITapGestureRecognizer) &#123;</span><br><span class="line">       // 事件</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p><code>sender</code> 的类型要和 <code>gestureRecognizer</code> 的类型匹配 。现在只要探测到用户的轻点手势，就会执行 <code>someEvent()</code> 函数。</p>
+<p><strong>第三步，为指定控件添加 UIGestureRecognizer</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let someView = UIView()</span><br><span class="line">someView.addGestureRecognizer(gestureRecognizer)</span><br></pre></td></tr></table></figure>
+<p>一个简单的手势识别器就定义完成了。</p>
+<h1 id="添加委托"><a href="#添加委托" class="headerlink" title="添加委托"></a>添加委托</h1><p>我们可以为 UIGestureRecognizer 添加委托，以实现对手势的监听、筛选甚至传递参数。</p>
+<p><strong>首先，将 UIGestureREcognizer 所在的 UIViewController 实现 UIGestureRecognizerDelegate 协议</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class SomeViewController: UIViewController, UIGestureRecognizerDelegate &#123;</span><br></pre></td></tr></table></figure>
+<p><strong>在 SomeViewController 类中实现 UIGestureRecognizerDelegate 协议的方法</strong></p>
+<p>UIGestureRecognizerDelegate 中有很多用来控制手势识别的方法，例如：</p>
+<ul>
+<li>gestureRecognizerShouldBegin()</li>
+<li>gestureRecognizer()</li>
+</ul>
+<p>第一个方法返回一个布尔值，用来表示该手势识别是否应该被执行。第二个方法包含了许多同名重载方法，根据第二个参数的不同，具有不同的控制内容。我们可以根据需要来实现各种方法。如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -&gt; Bool &#123;</span><br><span class="line">           return true</span><br><span class="line">   	&#125;</span><br></pre></td></tr></table></figure>
+<p>该方法接收一个 UITouch 类型的参数，可以针对 UITouch 对象的属性进行判断，如位置、次数、力度等等。返回 True 表示可以接收触摸操作，反之则忽略触摸操作。 </p>
+<h1 id="多视图手势识别"><a href="#多视图手势识别" class="headerlink" title="多视图手势识别"></a>多视图手势识别</h1><p>通常，我们的界面不仅仅是一两个控件这么简单的。我们通常需要借助于视图的继承关系来进行代码级的布局，所以这种层叠的视图关系在应用中是很常见的。如：</p>
+<p><img src="/img/1.png" alt=""></p>
+<p>上图中蓝色的 <code>UIView2</code> 是红色的 <code>UIView1</code> 的子类，也就是说 <code>uiView1.addSubview(uiView2)</code> 。那么如果我们想要为 <code>UIView2</code> 添加手势识别的话, 就只有<code>UIView2</code> 在 <code>UIView1</code> 的内部的部分才会被探测到。如：</p>
+<p><img src="/img/2.png" alt=""></p>
+<p>只有图中绿色的交叉部分才会被探测到。iOS系统检测到手指触摸操作时会将其打包成一个 <code>UIEvent</code> 对象，并放入当前活动 <code>Application</code> 的事件队列，单例的UIApplication会从事件队列中取出触摸事件并传递给单例的 <code>UIWindow</code> 来处理，<code>UIWindow</code> 对象首先会使用<code>hitTest:withEvent:</code>方法寻找此次操作初始点所在的视图。该方法将由<code>UIWindow</code> 开始逐级向子视图遍历，直到有子视图返回非空对象或者全部遍历完毕，所以当判断到父视图的时候，并没有与触摸点契合，遍历所有的视图后仍然没有返回非空对象，所以并无任何响应。如果我们反过来，只为父视图 <code>UIView1</code> 添加手势识别器的话，那么点击绿色的交叉区域不会有任何效果。因为子视图视图在父视图的层级关系之上，用户点击的是 <code>UIView2</code> 而不是 <code>UIView1</code>。如果想要在点击交叉区域的时候触发 <code>UIView1</code> 的点击事件，则需要将子视图置于下方：<code>uiView1.sendSubviewToBack(uiView2)</code>。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/18/iOS开发/UI/iOS开发-使用UIGestureRecognizer为控件添加触发事件/" data-id="cips6yly10017qruhfqmk4vvc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UI/">UI</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-iOS开发/UI/iOS开发-使用xcode视图调试工具" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/18/iOS开发/UI/iOS开发-使用xcode视图调试工具/" class="article-date">
+  <time datetime="2016-04-18T07:30:09.000Z" itemprop="datePublished">2016-04-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS开发/">iOS开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/18/iOS开发/UI/iOS开发-使用xcode视图调试工具/">iOS开发-使用xcode视图调试工具</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在开发应用程序时，经常会面对复杂的视图层级结构。光凭借逻辑来分析不如使用工具来的直观、清晰。目前较为常用的调试工具有：</p>
+<ul>
+<li>在GitHub上开源的<a href="https://github.com/tapthaker/DebugView" target="_blank" rel="external">DebugView</a></li>
+<li><a href="http://revealapp.com" target="_blank" rel="external">Reveal</a>视图调试软件</li>
+<li>Xcode自带的视图调试工具</li>
+</ul>
+<p>Reveal相对来讲较为重量级，功能强大并且收费。而DebugView需要使用CocoaPod，比较注重尺寸的标注。下面我们来介绍Xcode中字带的视图调试工具：</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>首先运行项目，然后点击下面调试工具栏的按钮：</p>
+<p><img src="/img/3.png" alt=""></p>
+<p>或者在顶部菜单中点击Debug &gt; View Debugging &gt; Capture View Hierarchy 来启动视图调试。</p>
+<p>进入调试界面后，底部多了一个工具栏：</p>
+<p><img src="/img/4.png" alt=""></p>
+<p>1: 调整视图之间的间距</p>
+<p>2: 显示未被显示的内容</p>
+<p>3: 显示约束(Constraint)</p>
+<p>4: 筛选显示内容</p>
+<p>5: 重置视图</p>
+<p>6: 缩小</p>
+<p>7: 适应屏幕</p>
+<p>8: 放大</p>
+<p>9: 根据加载顺序调整显示的内容</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/18/iOS开发/UI/iOS开发-使用xcode视图调试工具/" data-id="cips6yly5001fqruht9xf8sua" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UI/">UI</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-iOS开发/UI/iOS开发-UILabel" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/09/iOS开发/UI/iOS开发-UILabel/" class="article-date">
+  <time datetime="2016-04-09T05:10:22.000Z" itemprop="datePublished">2016-04-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS开发/">iOS开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/09/iOS开发/UI/iOS开发-UILabel/">iOS开发-UILabel</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let label = UILabel(frame: CGRect)</span><br><span class="line">label.text = &quot;内容&quot;</span><br></pre></td></tr></table></figure>
+<h1 id="常用属性"><a href="#常用属性" class="headerlink" title="常用属性"></a>常用属性</h1><p><strong>颜色</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 设定蓝色字</span><br><span class="line">label.textColor = UIColor.blueColor()</span><br></pre></td></tr></table></figure>
+<p><strong>对齐方式</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 居中</span><br><span class="line">label.textAlignment = NSTextAlignment.Center</span><br></pre></td></tr></table></figure>
+<p><strong>阴影</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 红色阴影</span><br><span class="line">label.shadowColor = UIColor.redColor()</span><br></pre></td></tr></table></figure>
+<p><strong>字体</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// iOS中使用的字体 San Francisco</span><br><span class="line">label.font = UIFont(name:&quot;.SFUIText-Medium&quot;, size:24)</span><br></pre></td></tr></table></figure>
+<p><strong>省略方式</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 在NSLineBreakMode中还有省略中部、省略头部等等属性</span><br><span class="line">label.lineBreakMode = NSLineBreakMode.ByTruncatingTail</span><br></pre></td></tr></table></figure>
+<p><strong>多行显示</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 设置可以显示3行</span><br><span class="line">label.numberOfLines = 3</span><br></pre></td></tr></table></figure>
+<p><strong>富文本</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 第 0 到第 6 个字符设置特定字体</span><br><span class="line">label.addAttribute(NSFontAttributeName, value: UIFont(name: &quot;HelveticaNeue-		Bold&quot;, size: 16)!, range: NSMakeRange(0, 6))</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/09/iOS开发/UI/iOS开发-UILabel/" data-id="cips6ylxr000yqruhcpmlnhqb" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UI/">UI</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-iOS开发/UI/iOS开发-UINavigationController" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/09/iOS开发/UI/iOS开发-UINavigationController/" class="article-date">
+  <time datetime="2016-04-09T05:10:22.000Z" itemprop="datePublished">2016-04-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS开发/">iOS开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/09/iOS开发/UI/iOS开发-UINavigationController/">iOS开发-UINavigationController</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>iOS 中的 UINavigationController 是十分常用的视图，几乎可以在每一个 App 中看到。<br>UINavigationController ，使用<strong>栈(Stack)</strong>的结构来实现，这样便于管理视图之间的层级关系。初始界面为栈底，之后每切换到一个新的界面，就将新的界面置于栈顶，也就是我们常说的<strong>压栈(Push)</strong>。每次返回之前的界面，就把当前界面从栈中取出，也就是<strong>出栈(Pop)</strong>。</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="第一种方式：在-Storyboard-中添加"><a href="#第一种方式：在-Storyboard-中添加" class="headerlink" title="第一种方式：在 Storyboard 中添加"></a>第一种方式：在 Storyboard 中添加</h2><p><strong>第一步：将 UINavigationController 拖拽进 Storyboard 中</strong></p>
+<p><img src="/img/5.png" alt=""></p>
+<p>可以看到，系统默认给出了 UINavigationController 以及一个 UITableView。左侧的 NavigationController 只是个控制器视图，并没有什么内容要显示；而右侧的 View 才是我们的栈底，是根视图(Root View)。</p>
+<p>如果 UITableView 不是你需要的，可以将它删除，自行拖拽添加一个 UIViewController， 然后右键单击左侧的 NavigationController， 拖拽到新建的 View 中，选择 Push。这样便建立了根视图与视图控制器的连接。之后再添加新的视图的话，只需要把新建的视图关联到位于栈顶的视图就可以了。</p>
+<p><strong>第二步：设置跳转和返回按钮</strong></p>
+<p>在 Storyboard 中选中 UINavigationBar ，也就是导航栏，在右侧的属性选择器中设置 <code>Tittle</code> 和 <code>Back Button</code> 属性。从而可以自动的为导航栏添加标题和按钮以及跳转关系。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/09/iOS开发/UI/iOS开发-UINavigationController/" data-id="cips6ylxx0012qruh405rez0x" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UI/">UI</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-iOS开发/UI/iOS开发-UIScrollView" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/09/iOS开发/UI/iOS开发-UIScrollView/" class="article-date">
+  <time datetime="2016-04-09T05:10:22.000Z" itemprop="datePublished">2016-04-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS开发/">iOS开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/09/iOS开发/UI/iOS开发-UIScrollView/">iOS开发-UIScrollView</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let scrollView = UIScrollView(frame: CGRect)</span><br></pre></td></tr></table></figure>
+<p>通常使用当前视图的 <code>view.bounds</code> 属性作为参数传递给 <code>init()</code> 方法。也可以指定一个矩形，指定坐标和长宽：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let scrollView = UIScrollView(frame: CGRect(x: CGFloat, y: TCGFloat, width: 		CGFloat, height: CGFloat))</span><br></pre></td></tr></table></figure>
+<h1 id="常用属性"><a href="#常用属性" class="headerlink" title="常用属性"></a>常用属性</h1><p><code>scrollEnabled</code>: 控制是否可以滚动。</p>
+<p><code>tracking</code> and <code>dragging</code>： 响应用户的触摸和滑动。</p>
+<p><code>contentSize</code>： 设置内容的长和宽，传入 CGSize 作为参数。</p>
+<h1 id="故障排除"><a href="#故障排除" class="headerlink" title="故障排除"></a>故障排除</h1><h2 id="故障：无法滚动"><a href="#故障：无法滚动" class="headerlink" title="故障：无法滚动"></a>故障：无法滚动</h2><p>当我们使用 UIScrollView 控件时，会出现有显示内容，但是无法滚动的情况。</p>
+<p><strong>解决方法</strong></p>
+<p>第一步：确定 UIScrollView 对象的 contentSize 属性是否大于父视图</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 设置 contentSize 属性为指定宽高</span><br><span class="line">scrollView.contentSize = CGSizeMake(width, height)</span><br></pre></td></tr></table></figure>
+<p>第二步：检查设置 contentSize 的语句在哪个方法中</p>
+<p>上面的语句不能放在 viewDidLoad() 方法当里，在 iOS 8 以上可以放在 viewDidAppear() 方法中。而在 iOS 7 ，可以参考<a href="http://www.cocoachina.com/bbs/read.php?tid-205386-page-1.html" target="_blank" rel="external">iOS7 下 UIScrollView 无法滑动</a> 中提到的方法，放在 viewDidLayoutSubviews() 方法中。</p>
+<p><strong>原理</strong></p>
+<p>iOS 的view加载过程会执行很多方法，当 view 加载完毕后，会先执行 <code>viewDidLoad()</code> 方法，然后在开启 Auto Layout 的情况下，会根据自动布局再一次计算 Constraint ，在计算完毕后会执行 <code>viewDidLayoutSubviews()</code> 方法。而最后才会执行 <code>viewDidAppear()</code> 方法。所以我们在 view 即将显示的时候设置 scrollView 的 <code>contentSize</code> 属性就可以啦。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/09/iOS开发/UI/iOS开发-UIScrollView/" data-id="cips6ylxy0014qruhoqczkwc5" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UI/">UI</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS开发/">iOS开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS面试/">iOS面试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/干货/">干货</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构学习笔记/">数据结构学习笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/UI/">UI</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/UI/" style="font-size: 10px;">UI</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/06/04/iOS开发/UI/iOS开发-UICollectionView/">iOS开发-UICollectionView</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/13/数据结构学习笔记/数据结构学习笔记 - 二叉树/">数据结构学习笔记-二叉树</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/07/干货/iOS干货/">iOS干货</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/07/iOS面试题/iOS面试题-内存管理/">iOS面试题-内存管理</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/07/iOS面试题/iOS面试题-多线程/">iOS面试题－多线程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 曹宇<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

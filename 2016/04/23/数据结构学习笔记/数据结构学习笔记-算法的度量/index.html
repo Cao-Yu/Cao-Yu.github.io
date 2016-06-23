@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>数据结构学习笔记-算法的度量 | 曹宇的技术博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="时间复杂度的定义在进行算法的分析时，算法的总执行时间 T(n) 是关于问题规模 n 的函数。记作 T(n) = O(f(n))。也就是我们常说的大 O 表示法。
+在这里我们计算的时间复杂度，是对于最坏情况的考察，因为这代表着系统的鲁棒性有保证。平均情况的时间复杂度是对运算时间的一个期望，并不能表示最坏情况。
+时间复杂度的计算时间复杂度的计算，大体上遵从以下规律，实际分析当中需要具体分析。
+
+
+用常">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构学习笔记-算法的度量">
+<meta property="og:url" content="http://yoursite.com/2016/04/23/数据结构学习笔记/数据结构学习笔记-算法的度量/index.html">
+<meta property="og:site_name" content="曹宇的技术博客">
+<meta property="og:description" content="时间复杂度的定义在进行算法的分析时，算法的总执行时间 T(n) 是关于问题规模 n 的函数。记作 T(n) = O(f(n))。也就是我们常说的大 O 表示法。
+在这里我们计算的时间复杂度，是对于最坏情况的考察，因为这代表着系统的鲁棒性有保证。平均情况的时间复杂度是对运算时间的一个期望，并不能表示最坏情况。
+时间复杂度的计算时间复杂度的计算，大体上遵从以下规律，实际分析当中需要具体分析。
+
+
+用常">
+<meta property="og:updated_time" content="2016-04-24T07:32:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构学习笔记-算法的度量">
+<meta name="twitter:description" content="时间复杂度的定义在进行算法的分析时，算法的总执行时间 T(n) 是关于问题规模 n 的函数。记作 T(n) = O(f(n))。也就是我们常说的大 O 表示法。
+在这里我们计算的时间复杂度，是对于最坏情况的考察，因为这代表着系统的鲁棒性有保证。平均情况的时间复杂度是对运算时间的一个期望，并不能表示最坏情况。
+时间复杂度的计算时间复杂度的计算，大体上遵从以下规律，实际分析当中需要具体分析。
+
+
+用常">
+  
+    <link rel="alternate" href="/atom.xml" title="曹宇的技术博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">曹宇的技术博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-数据结构学习笔记/数据结构学习笔记-算法的度量" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/23/数据结构学习笔记/数据结构学习笔记-算法的度量/" class="article-date">
+  <time datetime="2016-04-23T02:08:25.000Z" itemprop="datePublished">2016-04-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/数据结构学习笔记/">数据结构学习笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数据结构学习笔记-算法的度量
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="时间复杂度的定义"><a href="#时间复杂度的定义" class="headerlink" title="时间复杂度的定义"></a>时间复杂度的定义</h1><p>在进行算法的分析时，算法的总执行时间 T(n) 是关于问题规模 n 的函数。记作 T(n) = O(f(n))。也就是我们常说的大 O 表示法。</p>
+<p><strong>在这里我们计算的时间复杂度，是对于最坏情况的考察</strong>，因为这代表着系统的鲁棒性有保证。平均情况的时间复杂度是对运算时间的一个期望，并不能表示最坏情况。</p>
+<h1 id="时间复杂度的计算"><a href="#时间复杂度的计算" class="headerlink" title="时间复杂度的计算"></a>时间复杂度的计算</h1><p>时间复杂度的计算，大体上遵从以下规律，实际分析当中需要具体分析。</p>
+<blockquote>
+<ul>
+<li>用常数 1 取代所有相加的常数</li>
+<li>只保留高阶项</li>
+<li>把最高阶项的常数置为1</li>
+</ul>
+</blockquote>
+<h2 id="常数阶"><a href="#常数阶" class="headerlink" title="常数阶"></a>常数阶</h2><p>例如这条语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var i = 3 * n</span><br><span class="line">i = i / (100 + n)</span><br><span class="line">print(i)</span><br></pre></td></tr></table></figure>
+<p>在此算法当中，一共有三条语句。无论 n 的值多大，此算法只执行这三条语句。所以执行次数为 f(n) = 3。所以按照规则，把 3 改为 1。所以此算法的时间复杂度为 O(1)。另外，如果此算法中含有 10 条这种执行一次的语句，时间复杂度依然为 O(1)。</p>
+<p>这种执行次数与 n 的大小无关的算法的时间复杂度为 O(1)，也就是常数阶。</p>
+<p>对于分支结构，无论判断语句的结果是真是假，执行次数都是恒定的。因此时间复杂度也是 O(1)。</p>
+<h2 id="线性阶"><a href="#线性阶" class="headerlink" title="线性阶"></a>线性阶</h2><p>算法的时间复杂度的分析难点主要在于线性阶的计算，而不单单是常数阶那么简单。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for var i = 0; i &lt; n; i += 1 &#123;</span><br><span class="line">    print(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上这段代码，打印输出语句的执行次数取决于 n，所以时间复杂度为 O(n)。</p>
+<h2 id="对数阶"><a href="#对数阶" class="headerlink" title="对数阶"></a>对数阶</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var count = 1</span><br><span class="line">while count &lt; n &#123;</span><br><span class="line">    count *= 2</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上这段代码，while 中的语句的执行次数不是简单的 n 的倍数。而是随着 n 的增长，执行次数逐渐收敛。所以时间复杂度为 O(log$$n$$)。</p>
+<h2 id="平方阶"><a href="#平方阶" class="headerlink" title="平方阶"></a>平方阶</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for var i = 0; i &lt; n; i += 1 &#123;</span><br><span class="line">    for var j = 0; j &lt; n; j += 1 &#123;</span><br><span class="line">        print(j)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>嵌套循环是典型的平方阶复杂度，我们应该由内而外的分析。内层循环执行 n 次，外层循环也执行 n 次，所以时间复杂度为 O(n^2）。</p>
+<p>下面增加一点难度：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for var i = i; i &lt; n; i += 1 &#123;</span><br><span class="line">    for var j = i; j &lt; n; j += 1 &#123;</span><br><span class="line">        print(j)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>内层循环的执行次数随着 i 的增加而减少，所以执行次数为等差数列：</p>
+<p><code>n + (n - 1) + (n - 2) + (n - 3) ... = (n * (n + 1)) / 2</code></p>
+<p>化简为多项式形式：<code>n^2 / 2 + n/2</code>，所以按照规则，只保留最高阶项，然后再去掉常数 <code>1/2</code>。 所以结果仍然是 O(n^2)。</p>
+<p>看到这里可能会感觉奇怪，为什么以上两个算法的打印语句的执行次数明显不一样，但时间复杂度却一样呢？事实上，时间复杂度的目的就是为了描述算法执行时间的数量级与 n 的关系，只是个粗略的估计。并且时间复杂度的估量是在假设 n 足够大的情况下，用极限的概念来理解的。</p>
+<h1 id="空间复杂度的计算"><a href="#空间复杂度的计算" class="headerlink" title="空间复杂度的计算"></a>空间复杂度的计算</h1><p>一个算法的优劣，不仅要考量时间复杂度，还要考虑对硬件存储空间的要求。</p>
+<p>空间复杂度 S(n) = O(f(n))，其中 n 是问题的规模，f(n) 存储空间关于 n 的函数。</p>
+<p>空间复杂度主要取决于执行算饭所需的存储空间。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/23/数据结构学习笔记/数据结构学习笔记-算法的度量/" data-id="cips6ylx1000fqruh7psxlw65" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/24/iOS开发/UI/iOS开发-UITextView/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          iOS开发-UITextView
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/23/iOS开发/UI/iOS开发-事件传递响应链/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">iOS开发-事件传递以及响应链</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS开发/">iOS开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS面试/">iOS面试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/干货/">干货</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构学习笔记/">数据结构学习笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/UI/">UI</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/UI/" style="font-size: 10px;">UI</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/06/04/iOS开发/UI/iOS开发-UICollectionView/">iOS开发-UICollectionView</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/13/数据结构学习笔记/数据结构学习笔记 - 二叉树/">数据结构学习笔记-二叉树</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/07/干货/iOS干货/">iOS干货</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/07/iOS面试题/iOS面试题-内存管理/">iOS面试题-内存管理</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/07/iOS面试题/iOS面试题-多线程/">iOS面试题－多线程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 曹宇<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

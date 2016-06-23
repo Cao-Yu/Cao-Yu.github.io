@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>iOS开发-UICollectionView | 曹宇的技术博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="UICollectionView 是强力版的 UITableView，它的亮点在于可以将数据元素按照我们自定义的方式来呈现出来，甚至连布局都可以是动态的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS开发-UICollectionView">
+<meta property="og:url" content="http://yoursite.com/2016/06/04/iOS开发/UI/iOS开发-UICollectionView/index.html">
+<meta property="og:site_name" content="曹宇的技术博客">
+<meta property="og:description" content="UICollectionView 是强力版的 UITableView，它的亮点在于可以将数据元素按照我们自定义的方式来呈现出来，甚至连布局都可以是动态的。">
+<meta property="og:updated_time" content="2016-06-23T10:23:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS开发-UICollectionView">
+<meta name="twitter:description" content="UICollectionView 是强力版的 UITableView，它的亮点在于可以将数据元素按照我们自定义的方式来呈现出来，甚至连布局都可以是动态的。">
+  
+    <link rel="alternate" href="/atom.xml" title="曹宇的技术博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">曹宇的技术博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-iOS开发/UI/iOS开发-UICollectionView" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/06/04/iOS开发/UI/iOS开发-UICollectionView/" class="article-date">
+  <time datetime="2016-06-04T15:06:05.000Z" itemprop="datePublished">2016-06-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS开发/">iOS开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS开发-UICollectionView
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>UICollectionView 是强力版的 UITableView，它的亮点在于可以将数据元素按照我们自定义的方式来呈现出来，甚至连布局都可以是动态的。</p>
+<a id="more"></a>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="第一步：创建一个自定义的cell"><a href="#第一步：创建一个自定义的cell" class="headerlink" title="第一步：创建一个自定义的cell"></a>第一步：创建一个自定义的cell</h2><p>创建一个 Cocoa Touch 类，继承 UICollectionViewCell。 我们用这个类来管理自定义的显示单位，这里使用一个文字标签和一个图片作为样例，构造函数略，别忘了加上一些 constrain。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class MyCell: UICollectionViewCell &#123;</span><br><span class="line"></span><br><span class="line">	var label: UILabel!</span><br><span class="line">	var imageView: UIImageView!</span><br><span class="line">	</span><br><span class="line">	override init(frame: CGRect)&#123;</span><br><span class="line">		// initialization</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="第二步：在-ViewController-中实现协议"><a href="#第二步：在-ViewController-中实现协议" class="headerlink" title="第二步：在 ViewController 中实现协议"></a>第二步：在 ViewController 中实现协议</h2><p>Swift 语言面向协议编程，CollectionView 具有的强大功能都是通过实现各种功能协议来完成的，这也是 iOS 程序的主流设计框架。</p>
+<p>千里之行，始于足下。第二步我们首先来实现一个具备最基本功能的 CollectionView:</p>
+<p>首先要在 ViewController 中实现 UICollectionViewDataSource 协议，来为集合视图提供数据。并且创建一个 UICollectionView 实例。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class MyViewController: UIViewController, UICollectionViewDataSource&#123;</span><br><span class="line">	override func viewDidLoad() &#123;</span><br><span class="line">       	super.viewDidLoad()</span><br><span class="line">       	// 创建一个布局方式</span><br><span class="line">       	let collectionLayout = UICollectionViewFlowLayout()</span><br><span class="line">       	// 为布局方式设置滚动方向</span><br><span class="line">       	collectionLayout.scrollDirection = .Horizontal</span><br><span class="line">       	// 创建一个 UICollectionView 实例</span><br><span class="line">       	var collectionView = UICollectionView(frame: view.frame, collectionViewLayout: collectionLayout)</span><br><span class="line">       	// 为 CollectionView 设置 cell 的类，并且指定 Identifier</span><br><span class="line">       	collectionView.registerClass(MyCell.self, forCellWithReuseIdentifier: &quot;MyCell&quot;)</span><br><span class="line">       	// 设置 Controller 为数据源</span><br><span class="line">       	collectionView.dataSource = self</span><br><span class="line">       ｝</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>UICollectionView 的创建必须依赖于一个布局对象，可选的值有流线型布局和转场式布局，典型的转场式布局就是翻页效果或者轮播效果。</p>
+<h2 id="第三步：实现协议中的方法"><a href="#第三步：实现协议中的方法" class="headerlink" title="第三步：实现协议中的方法"></a>第三步：实现协议中的方法</h2><p>在 UICollectionViewDataSource 协议中有两个必须实现的方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -&gt; Int &#123;</span><br><span class="line">       return 6 // 需要显示的数量</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>此方法中返回一个 Int 类型值，用来限制单元格的数量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">func collectionView(collectionView: UICollectionView, 		cellForItemAtIndexPath indexPath: NSIndexPath) -&gt; UICollectionViewCell &#123;</span><br><span class="line"></span><br><span class="line">       let cell = collectionView.dequeueReusableCellWithReuseIdentifier(</span><br><span class="line">           &quot;MyCell&quot;, forIndexPath: indexPath) as! MyCell</span><br><span class="line">           </span><br><span class="line">           cell.backgroundColor = UIColor.blueColor()</span><br><span class="line">           cell.label.text = &quot;BlaBlaBla&quot;</span><br><span class="line">           cell.imageView.image = UIImage()  // some image</span><br><span class="line">  </span><br><span class="line">       return cell</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>此方法旨在根据指定的 Identifier 来创建可以复用的 cell，cell 的初始化方法会在这里被执行。对 cell 中的一些属性进行设置，而不是在 cell 的构造器中。</p>
+<p>此时，一个基本的 CollectionView 就成型了。</p>
+<h2 id="第四步：提供数据"><a href="#第四步：提供数据" class="headerlink" title="第四步：提供数据"></a>第四步：提供数据</h2><p>首先创建两个数组为 CollectionView 提供数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let names = [&quot;Jack&quot;, &quot;Jobs&quot;, &quot;Joy&quot;, &quot;Ray&quot;]</span><br><span class="line">let images = [UIImage(name: &quot;1.png&quot;), UIImage(name: &quot;2.png&quot;), UIImage(name: 		&quot;3.png&quot;), UIImage(name: &quot;4.png&quot;)]</span><br></pre></td></tr></table></figure>
+<p>然后我们只需要在第三步中的 cell 复用方法里为每个 cell 设置数据源就可以了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">func collectionView(collectionView: UICollectionView, </span><br><span class="line">	cellForItemAtIndexPath indexPath: NSIndexPath) -&gt; UICollectionViewCell &#123;</span><br><span class="line">       let cell = collectionView.dequeueReusableCellWithReuseIdentifier(</span><br><span class="line">           &quot;MyCell&quot;, forIndexPath: indexPath) as! MyCell</span><br><span class="line">       </span><br><span class="line">           cell.backgroundColor = UIColor.blueColor()</span><br><span class="line">           cell.label.text = names[indexPath.item]</span><br><span class="line">           cell.imageView.image = images[indexPath.item]</span><br><span class="line">  </span><br><span class="line">       return cell</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>indexPath.item 相当于 cell 的索引。</p>
+<h1 id="设置单元格大小"><a href="#设置单元格大小" class="headerlink" title="设置单元格大小"></a>设置单元格大小</h1><p>CollectionView 的功能基本都要靠实现协议来实现，首先要实现 UICollectionViewDelegateFlowLayout 协议中的方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class MyViewController: UIViewController, UICollectionViewDataSource, </span><br><span class="line">	UICollectionViewDelegateFlowLayout &#123; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后实现一个设置单元格大小的方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">func collectionView(collectionView: UICollectionView, </span><br><span class="line">	layout collectionViewLayout: UICollectionViewLayout, </span><br><span class="line">	sizeForItemAtIndexPath indexPath: NSIndexPath) -&gt; CGSize &#123;</span><br><span class="line">       return CGSizeMake(80, 80)</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>这样，一个简单的 CollectionView 就完成啦。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/06/04/iOS开发/UI/iOS开发-UICollectionView/" data-id="cips6ylxp000xqruh941xpdrj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UI/">UI</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/05/13/数据结构学习笔记/数据结构学习笔记 - 二叉树/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">数据结构学习笔记-二叉树</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS开发/">iOS开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS面试/">iOS面试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/干货/">干货</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构学习笔记/">数据结构学习笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/UI/">UI</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/UI/" style="font-size: 10px;">UI</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/06/04/iOS开发/UI/iOS开发-UICollectionView/">iOS开发-UICollectionView</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/13/数据结构学习笔记/数据结构学习笔记 - 二叉树/">数据结构学习笔记-二叉树</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/07/干货/iOS干货/">iOS干货</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/07/iOS面试题/iOS面试题-内存管理/">iOS面试题-内存管理</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/07/iOS面试题/iOS面试题-多线程/">iOS面试题－多线程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 曹宇<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

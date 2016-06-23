@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>iOS开发-UINavigationController | 曹宇的技术博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="iOS 中的 UINavigationController 是十分常用的视图，几乎可以在每一个 App 中看到。UINavigationController ，使用栈(Stack)的结构来实现，这样便于管理视图之间的层级关系。初始界面为栈底，之后每切换到一个新的界面，就将新的界面置于栈顶，也就是我们常说的压栈(Push)。每次返回之前的界面，就把当前界面从栈中取出，也就是出栈(Pop)。
+使用第一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS开发-UINavigationController">
+<meta property="og:url" content="http://yoursite.com/2016/04/09/iOS开发/UI/iOS开发-UINavigationController/index.html">
+<meta property="og:site_name" content="曹宇的技术博客">
+<meta property="og:description" content="iOS 中的 UINavigationController 是十分常用的视图，几乎可以在每一个 App 中看到。UINavigationController ，使用栈(Stack)的结构来实现，这样便于管理视图之间的层级关系。初始界面为栈底，之后每切换到一个新的界面，就将新的界面置于栈顶，也就是我们常说的压栈(Push)。每次返回之前的界面，就把当前界面从栈中取出，也就是出栈(Pop)。
+使用第一">
+<meta property="og:image" content="http://yoursite.com/img/5.png">
+<meta property="og:updated_time" content="2016-04-24T08:33:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS开发-UINavigationController">
+<meta name="twitter:description" content="iOS 中的 UINavigationController 是十分常用的视图，几乎可以在每一个 App 中看到。UINavigationController ，使用栈(Stack)的结构来实现，这样便于管理视图之间的层级关系。初始界面为栈底，之后每切换到一个新的界面，就将新的界面置于栈顶，也就是我们常说的压栈(Push)。每次返回之前的界面，就把当前界面从栈中取出，也就是出栈(Pop)。
+使用第一">
+<meta name="twitter:image" content="http://yoursite.com/img/5.png">
+  
+    <link rel="alternate" href="/atom.xml" title="曹宇的技术博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">曹宇的技术博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-iOS开发/UI/iOS开发-UINavigationController" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/09/iOS开发/UI/iOS开发-UINavigationController/" class="article-date">
+  <time datetime="2016-04-09T05:10:22.000Z" itemprop="datePublished">2016-04-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS开发/">iOS开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS开发-UINavigationController
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>iOS 中的 UINavigationController 是十分常用的视图，几乎可以在每一个 App 中看到。<br>UINavigationController ，使用<strong>栈(Stack)</strong>的结构来实现，这样便于管理视图之间的层级关系。初始界面为栈底，之后每切换到一个新的界面，就将新的界面置于栈顶，也就是我们常说的<strong>压栈(Push)</strong>。每次返回之前的界面，就把当前界面从栈中取出，也就是<strong>出栈(Pop)</strong>。</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="第一种方式：在-Storyboard-中添加"><a href="#第一种方式：在-Storyboard-中添加" class="headerlink" title="第一种方式：在 Storyboard 中添加"></a>第一种方式：在 Storyboard 中添加</h2><p><strong>第一步：将 UINavigationController 拖拽进 Storyboard 中</strong></p>
+<p><img src="/img/5.png" alt=""></p>
+<p>可以看到，系统默认给出了 UINavigationController 以及一个 UITableView。左侧的 NavigationController 只是个控制器视图，并没有什么内容要显示；而右侧的 View 才是我们的栈底，是根视图(Root View)。</p>
+<p>如果 UITableView 不是你需要的，可以将它删除，自行拖拽添加一个 UIViewController， 然后右键单击左侧的 NavigationController， 拖拽到新建的 View 中，选择 Push。这样便建立了根视图与视图控制器的连接。之后再添加新的视图的话，只需要把新建的视图关联到位于栈顶的视图就可以了。</p>
+<p><strong>第二步：设置跳转和返回按钮</strong></p>
+<p>在 Storyboard 中选中 UINavigationBar ，也就是导航栏，在右侧的属性选择器中设置 <code>Tittle</code> 和 <code>Back Button</code> 属性。从而可以自动的为导航栏添加标题和按钮以及跳转关系。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/09/iOS开发/UI/iOS开发-UINavigationController/" data-id="cips6ylxx0012qruh405rez0x" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UI/">UI</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/09/iOS开发/UI/iOS开发-UILabel/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          iOS开发-UILabel
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/09/iOS开发/UI/iOS开发-UIScrollView/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">iOS开发-UIScrollView</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS开发/">iOS开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS面试/">iOS面试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/干货/">干货</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构学习笔记/">数据结构学习笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/UI/">UI</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/UI/" style="font-size: 10px;">UI</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/06/04/iOS开发/UI/iOS开发-UICollectionView/">iOS开发-UICollectionView</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/13/数据结构学习笔记/数据结构学习笔记 - 二叉树/">数据结构学习笔记-二叉树</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/07/干货/iOS干货/">iOS干货</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/07/iOS面试题/iOS面试题-内存管理/">iOS面试题-内存管理</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/07/iOS面试题/iOS面试题-多线程/">iOS面试题－多线程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 曹宇<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

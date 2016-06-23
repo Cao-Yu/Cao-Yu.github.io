@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>数据结构学习笔记-二叉树 | 曹宇的技术博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="二叉树的定义二叉树是零个或多个节点的有限集合。
+二叉树的特点特殊的二叉树
+斜二叉树：所有节点只有左节点的叫左斜二叉树，反之是右斜二叉树。
+满二叉树：所有具有孩子的节点，都有左右两个孩子的二叉树。
+完全二叉树：按照层序编号后，编号与满二叉树完全一致的二叉树。
+
+说白了，完全二叉树就是心里默默的给二叉树从左到右编号，如果没出现空位置，就是完全二叉树。完全二叉树具有向左集中的特点，如果某一个节点只有一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构学习笔记-二叉树">
+<meta property="og:url" content="http://yoursite.com/2016/05/13/数据结构学习笔记/数据结构学习笔记 - 二叉树/index.html">
+<meta property="og:site_name" content="曹宇的技术博客">
+<meta property="og:description" content="二叉树的定义二叉树是零个或多个节点的有限集合。
+二叉树的特点特殊的二叉树
+斜二叉树：所有节点只有左节点的叫左斜二叉树，反之是右斜二叉树。
+满二叉树：所有具有孩子的节点，都有左右两个孩子的二叉树。
+完全二叉树：按照层序编号后，编号与满二叉树完全一致的二叉树。
+
+说白了，完全二叉树就是心里默默的给二叉树从左到右编号，如果没出现空位置，就是完全二叉树。完全二叉树具有向左集中的特点，如果某一个节点只有一个">
+<meta property="og:updated_time" content="2016-05-14T02:18:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构学习笔记-二叉树">
+<meta name="twitter:description" content="二叉树的定义二叉树是零个或多个节点的有限集合。
+二叉树的特点特殊的二叉树
+斜二叉树：所有节点只有左节点的叫左斜二叉树，反之是右斜二叉树。
+满二叉树：所有具有孩子的节点，都有左右两个孩子的二叉树。
+完全二叉树：按照层序编号后，编号与满二叉树完全一致的二叉树。
+
+说白了，完全二叉树就是心里默默的给二叉树从左到右编号，如果没出现空位置，就是完全二叉树。完全二叉树具有向左集中的特点，如果某一个节点只有一个">
+  
+    <link rel="alternate" href="/atom.xml" title="曹宇的技术博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">曹宇的技术博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-数据结构学习笔记/数据结构学习笔记 - 二叉树" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/13/数据结构学习笔记/数据结构学习笔记 - 二叉树/" class="article-date">
+  <time datetime="2016-05-13T02:06:21.000Z" itemprop="datePublished">2016-05-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/数据结构学习笔记/">数据结构学习笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数据结构学习笔记-二叉树
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="二叉树的定义"><a href="#二叉树的定义" class="headerlink" title="二叉树的定义"></a>二叉树的定义</h1><p><strong>二叉树是零个或多个节点的有限集合。</strong></p>
+<h1 id="二叉树的特点"><a href="#二叉树的特点" class="headerlink" title="二叉树的特点"></a>二叉树的特点</h1><h2 id="特殊的二叉树"><a href="#特殊的二叉树" class="headerlink" title="特殊的二叉树"></a>特殊的二叉树</h2><ul>
+<li>斜二叉树：所有节点只有左节点的叫左斜二叉树，反之是右斜二叉树。</li>
+<li>满二叉树：所有具有孩子的节点，都有左右两个孩子的二叉树。</li>
+<li>完全二叉树：按照层序编号后，编号与满二叉树完全一致的二叉树。</li>
+</ul>
+<p>说白了，完全二叉树就是心里默默的给二叉树从左到右编号，如果没出现空位置，就是完全二叉树。完全二叉树具有向左集中的特点，如果某一个节点只有一个儿子，肯定是左儿子。</p>
+<h2 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h2><ul>
+<li>第 i 层最多有 2 的 i － 1 次方个节点</li>
+<li>深度为 k 的二叉树，最多有 2 的 k 次方 - 1 的节点数</li>
+<li>具有 n 个节点的二叉树的深度为 log n + 1</li>
+</ul>
+<h1 id="二叉树的存储"><a href="#二叉树的存储" class="headerlink" title="二叉树的存储"></a>二叉树的存储</h1><ul>
+<li>顺序存储结构，使用数组来实现，每三个数据元素代表一个节点</li>
+<li>链式存储结构，使用链表来实现，叫做二叉链表。每个节点都有一个数据域和两个指针域。</li>
+</ul>
+<h1 id="二叉树的遍历"><a href="#二叉树的遍历" class="headerlink" title="二叉树的遍历"></a>二叉树的遍历</h1><p>二叉树的遍历，基本上都要借助递归来实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">func preOrderTraverse(Node node)&#123;</span><br><span class="line">	if node == null&#123;</span><br><span class="line">		return</span><br><span class="line">	&#125;</span><br><span class="line">	// 首先获得此节点的数据</span><br><span class="line">	print(node)</span><br><span class="line">	// 递归获得此节点的左儿子的数据</span><br><span class="line">	preOrderTraverse(node.left)</span><br><span class="line">	// 最后递归调用此节点的右儿子的数据</span><br><span class="line">	preOrderTraverse(node.right)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>二叉树的遍历分为<strong>宽度优先</strong>和<strong>深度优先</strong>。宽度优先就是层序遍历。</p>
+<p>二叉树的深度优先遍历大体上分为：</p>
+<ul>
+<li>前序遍历 : node -&gt; left -&gt; right</li>
+<li>中序遍历 : left -&gt; node -&gt; right</li>
+<li>后续遍历 : left -&gt; right -&gt; node</li>
+<li>层序遍历 : 每层从左到右</li>
+</ul>
+<p>上边的代码就是典型的前序遍历，也就是把此节点的数据的获取放在两个儿子的前边。中序遍历和后续遍历的代码实现就是调换这三步的顺序。但是系统具体的操作是依靠栈的数据结构来实现的。</p>
+<p>很多面试题都是已知两种功能遍历顺序来求二叉树的。规律是：<strong>必须已知二叉树的中序遍历结果</strong>，然后再已知前序或者后序遍历结果其中之一，便可以求得二叉树。</p>
+<h1 id="搜索二叉树-BST"><a href="#搜索二叉树-BST" class="headerlink" title="搜索二叉树(BST)"></a>搜索二叉树(BST)</h1><p>任何一个节点的左孩子都比右孩子的值小，这样的二叉树称为搜索二叉树。</p>
+<h2 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">func insert(Node node, AnyObject x)&#123;</span><br><span class="line">	if node == null&#123;</span><br><span class="line">		return</span><br><span class="line">	&#125;</span><br><span class="line">	// 如果比当前节点的数值大，往右边加。反之左边。</span><br><span class="line">	if x - node.data &gt; 0 &#123;</span><br><span class="line">		insert(node.right, x)</span><br><span class="line">	&#125; else if x - node.data &lt; 0 &#123;</span><br><span class="line">		insert(node.left, x)</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		// do nothing</span><br><span class="line">	&#125;</span><br><span class="line">	return node</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">func remove(Node node, AnyObject x)&#123;</span><br><span class="line">	if node == null&#123;</span><br><span class="line">		return</span><br><span class="line">	&#125;	</span><br><span class="line">	if x - node.data &gt; 0 &#123;</span><br><span class="line">		remove(node.right, x)</span><br><span class="line">	&#125; else if x - node.data &lt; 0 &#123;</span><br><span class="line">		remove(node.left, x)</span><br><span class="line">	&#125; else node.left == null &#123;</span><br><span class="line">		// 直接把右孩子挂到当前节点</span><br><span class="line">		node = node.right</span><br><span class="line">	&#125; else node.right == null &#123;</span><br><span class="line">		// 直接把左孩子挂到当前节点</span><br><span class="line">		node = node.left</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		// 寻找当前节点的右孩子中的最小值的节点，并且删除这个节点</span><br><span class="line">		node.data = findMinAndDelete(node.right).data</span><br><span class="line">	&#125;</span><br><span class="line">	return node</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h1><p>堆的全称叫做<strong>二叉堆(Binary Heap)</strong>。它是一种特殊的二叉树，需要满足以下两个条件：</p>
+<ul>
+<li>结构特性：堆必须是一颗完全二叉树。</li>
+<li>堆序特性：堆的任意节点都必须小于该节点的所有后裔。</li>
+</ul>
+<p>满足以上两个条件的二叉树，称为堆(Heap)。 </p>
+<p>注意，堆不需要具有二叉查找树(BST)的左儿子必须小于右儿子的特性。且对于已知的一组数据来说，堆不是唯一的。</p>
+<h2 id="堆的性质"><a href="#堆的性质" class="headerlink" title="堆的性质"></a>堆的性质</h2><p>堆这种严苛的结构和顺序特性，是为了让堆具有易于查找的性质。</p>
+<p>若任意节点的位置索引是 i：</p>
+<ul>
+<li>父节点的索引是 i / 2</li>
+<li>左子节点的位置索引是 2i</li>
+<li>右子节点的位置索引是  2i＋ 1</li>
+</ul>
+<p>因此堆可以很容易的使用一个数组来实现。</p>
+<h2 id="堆的插入"><a href="#堆的插入" class="headerlink" title="堆的插入"></a>堆的插入</h2><p>堆的插入需要保持堆的两大特性。这里使用到一个<strong>上滤</strong>策略：</p>
+<ul>
+<li>首先在堆的下一个空位置创建一个空穴</li>
+<li>如果待插入元素的数值大于该空穴的父节点，则将空穴与父节点进行交换，以保证堆序性。</li>
+<li>迭代第二步直到位置合理</li>
+<li>将待插入元素的数据赋值给空穴</li>
+</ul>
+<h2 id="堆的删除"><a href="#堆的删除" class="headerlink" title="堆的删除"></a>堆的删除</h2><p>堆的删除通常要查询到堆的最小值并且删除，由于堆的最小值就是跟节点，所以重点就在于如何在删除跟节点后重新组合后裔。</p>
+<p>堆的删除依然需要保持堆的两大特性。这里使用到一个<strong>下滤</strong>策略：</p>
+<ul>
+<li>首先在堆的跟节点创建一个空穴</li>
+<li>将该节点的较小的儿子与空穴交换</li>
+<li>迭代第二步直到空穴处于最底层</li>
+<li>将原堆中最后一个节点赋值给空穴</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/13/数据结构学习笔记/数据结构学习笔记 - 二叉树/" data-id="cips6ylx3000hqruhpbr7brls" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/06/04/iOS开发/UI/iOS开发-UICollectionView/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          iOS开发-UICollectionView
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/07/干货/iOS干货/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">iOS干货</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS开发/">iOS开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS面试/">iOS面试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/干货/">干货</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构学习笔记/">数据结构学习笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/UI/">UI</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/UI/" style="font-size: 10px;">UI</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/06/04/iOS开发/UI/iOS开发-UICollectionView/">iOS开发-UICollectionView</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/13/数据结构学习笔记/数据结构学习笔记 - 二叉树/">数据结构学习笔记-二叉树</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/07/干货/iOS干货/">iOS干货</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/07/iOS面试题/iOS面试题-内存管理/">iOS面试题-内存管理</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/07/iOS面试题/iOS面试题-多线程/">iOS面试题－多线程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 曹宇<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

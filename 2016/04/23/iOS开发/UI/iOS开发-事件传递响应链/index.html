@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>iOS开发-事件传递以及响应链 | 曹宇的技术博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="什么是事件传递？事件传递说白了就是iOS应用程序对用户操作进行逐级、有序处理的过程，这个过程会由UIWindow开始逐级向子视图进行检查。
+第一步：捕捉用户操作
+当用户触摸屏幕触发一个触摸事件(Touch Event)时，UIKit 会创建一个包含事件信息的 UIEvent 对象。然后把这个UIEvent对象放到到事件队列当中等待处理。对于触摸事件来说，这个 UIEvent对象是一系列触摸操作的集">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS开发-事件传递以及响应链">
+<meta property="og:url" content="http://yoursite.com/2016/04/23/iOS开发/UI/iOS开发-事件传递响应链/index.html">
+<meta property="og:site_name" content="曹宇的技术博客">
+<meta property="og:description" content="什么是事件传递？事件传递说白了就是iOS应用程序对用户操作进行逐级、有序处理的过程，这个过程会由UIWindow开始逐级向子视图进行检查。
+第一步：捕捉用户操作
+当用户触摸屏幕触发一个触摸事件(Touch Event)时，UIKit 会创建一个包含事件信息的 UIEvent 对象。然后把这个UIEvent对象放到到事件队列当中等待处理。对于触摸事件来说，这个 UIEvent对象是一系列触摸操作的集">
+<meta property="og:image" content="https://developer.apple.com/library/ios/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/hit_testing_2x.png">
+<meta property="og:image" content="http://yoursite.com/img/6.png">
+<meta property="og:updated_time" content="2016-04-24T07:29:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS开发-事件传递以及响应链">
+<meta name="twitter:description" content="什么是事件传递？事件传递说白了就是iOS应用程序对用户操作进行逐级、有序处理的过程，这个过程会由UIWindow开始逐级向子视图进行检查。
+第一步：捕捉用户操作
+当用户触摸屏幕触发一个触摸事件(Touch Event)时，UIKit 会创建一个包含事件信息的 UIEvent 对象。然后把这个UIEvent对象放到到事件队列当中等待处理。对于触摸事件来说，这个 UIEvent对象是一系列触摸操作的集">
+<meta name="twitter:image" content="https://developer.apple.com/library/ios/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/hit_testing_2x.png">
+  
+    <link rel="alternate" href="/atom.xml" title="曹宇的技术博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">曹宇的技术博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-iOS开发/UI/iOS开发-事件传递响应链" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/23/iOS开发/UI/iOS开发-事件传递响应链/" class="article-date">
+  <time datetime="2016-04-23T02:08:25.000Z" itemprop="datePublished">2016-04-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS开发/">iOS开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS开发-事件传递以及响应链
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="什么是事件传递？"><a href="#什么是事件传递？" class="headerlink" title="什么是事件传递？"></a>什么是事件传递？</h1><p>事件传递说白了就是iOS应用程序对用户操作进行逐级、有序处理的过程，这个过程会由UIWindow开始逐级向子视图进行检查。</p>
+<p><strong>第一步：捕捉用户操作</strong></p>
+<p>当用户触摸屏幕触发一个触摸事件(Touch Event)时，UIKit 会创建一个包含事件信息的 UIEvent 对象。然后把这个UIEvent对象放到到事件队列当中等待处理。对于触摸事件来说，这个 UIEvent对象是一系列触摸操作的集合。</p>
+<p>单例的UIApplication对象会从事件队列(Event Queue)的顶部取出这个UIEvent对象。然后，这个对象会首先被送到当前应用的UIWindow对象，这个UIWindow对象会带着需要处理的UIEvent对象进行一个叫做hit-testing的过程。这个过程说白了就是寻找用户点击的位置到底是属于哪个View。</p>
+<p><strong>第二步：通过hit-testing寻找触摸目标</strong></p>
+<p>hitTest方法首先会掉用pointInside方法来判断触摸的位置是否在被检查的View中，如果是，那么pointInside方法返回True，然后继续使用hitTest方法检查该View的所有子视图。如果触摸位置不在被检查的View中，那么pointInside方法返回false，因而hitTest方法会返回nil。这样的话，不再检查该View的子类。这就意味着，<strong>如果要让某个View的事件被触发，必须保证该View在它的父视图当中</strong>。</p>
+<p>下面使用一个苹果文档中提供的例子来说明：</p>
+<p><img src="https://developer.apple.com/library/ios/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/hit_testing_2x.png" alt="Hit-testing"></p>
+<p>如果用户触摸View E，首先，检查View A，用户的操作处于View A，所以下一步检查View A的子类View B和View C。显然，触摸点不在View B中，所以开始检查View C中的两个View。最后，View E被判定为被用户点击的视图。</p>
+<h1 id="什么是响应链？"><a href="#什么是响应链？" class="headerlink" title="什么是响应链？"></a>什么是响应链？</h1><p>响应链是一系列连在一起的响应者对象，开始于第一响应者(First Respondor)，结束于当前应用程序对象(UIApplication)。响应者对象就是能处理事件的对象，响应者对象的基类是UIResponder，所有响应者都是这个类的子类：</p>
+<p><img src="/img/6.png" alt=""></p>
+<p>如果想要让某一View成为第一响应者，需要满足两个条件：重写继承自UIResponder的<code>canBecomeFirstResponder</code>方法并返回true，并且接收一个来自<code>becomeFirstResponder</code>方法的message。UIKit自动的将UITextfield和UITextView这两个控件设置为当用户点击时自动成为第一响应者，而其他的控件用户就需要自己设置<code>becomeFirstResponder</code>了。</p>
+<p>当我们经过上一步的hitTest方法检查出被点击的视图后，如果该视图不能处理该事件，那么就会使用<code>nextResponder</code>方法将事件传递给响应链的下一个响应者对象，直到被处理或者没有下一个响应者。如果连UIApplication都处理不了事件，那么该事件将会被销毁。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/23/iOS开发/UI/iOS开发-事件传递响应链/" data-id="cips6ylxv0011qruhw0bzcih8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UI/">UI</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/23/数据结构学习笔记/数据结构学习笔记-算法的度量/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          数据结构学习笔记-算法的度量
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/18/iOS开发/UI/iOS开发-使用UIGestureRecognizer为控件添加触发事件/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">iOS开发-使用UIGestureRecognizer为控件添加触发事件</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS开发/">iOS开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS面试/">iOS面试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/干货/">干货</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构学习笔记/">数据结构学习笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/UI/">UI</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/UI/" style="font-size: 10px;">UI</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/06/04/iOS开发/UI/iOS开发-UICollectionView/">iOS开发-UICollectionView</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/13/数据结构学习笔记/数据结构学习笔记 - 二叉树/">数据结构学习笔记-二叉树</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/07/干货/iOS干货/">iOS干货</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/07/iOS面试题/iOS面试题-内存管理/">iOS面试题-内存管理</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/07/iOS面试题/iOS面试题-多线程/">iOS面试题－多线程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 曹宇<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

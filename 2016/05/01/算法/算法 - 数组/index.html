@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>算法-数组 | 曹宇的技术博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Move Zeroes原题地址：Move Zeroes
+问题描述：移除数组中的零，并且保持元素的顺序，且不能建立新的数组。
+My Solution12345678910111213func moveZeroes(inout nums: [Int]) &amp;#123;   	var j = 0   	for k in 0 ..&amp;lt; nums.count &amp;#123;       	if nums[k">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法-数组">
+<meta property="og:url" content="http://yoursite.com/2016/05/01/算法/算法 - 数组/index.html">
+<meta property="og:site_name" content="曹宇的技术博客">
+<meta property="og:description" content="Move Zeroes原题地址：Move Zeroes
+问题描述：移除数组中的零，并且保持元素的顺序，且不能建立新的数组。
+My Solution12345678910111213func moveZeroes(inout nums: [Int]) &amp;#123;   	var j = 0   	for k in 0 ..&amp;lt; nums.count &amp;#123;       	if nums[k">
+<meta property="og:updated_time" content="2016-05-21T01:50:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="算法-数组">
+<meta name="twitter:description" content="Move Zeroes原题地址：Move Zeroes
+问题描述：移除数组中的零，并且保持元素的顺序，且不能建立新的数组。
+My Solution12345678910111213func moveZeroes(inout nums: [Int]) &amp;#123;   	var j = 0   	for k in 0 ..&amp;lt; nums.count &amp;#123;       	if nums[k">
+  
+    <link rel="alternate" href="/atom.xml" title="曹宇的技术博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">曹宇的技术博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-算法/算法 - 数组" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/01/算法/算法 - 数组/" class="article-date">
+  <time datetime="2016-05-01T05:06:25.000Z" itemprop="datePublished">2016-05-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/算法/">算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      算法-数组
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Move-Zeroes"><a href="#Move-Zeroes" class="headerlink" title="Move Zeroes"></a>Move Zeroes</h1><p>原题地址：<a href="https://leetcode.com/problems/move-zeroes/" target="_blank" rel="external">Move Zeroes</a></p>
+<p>问题描述：移除数组中的零，并且保持元素的顺序，且不能建立新的数组。</p>
+<h2 id="My-Solution"><a href="#My-Solution" class="headerlink" title="My Solution"></a>My Solution</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">func moveZeroes(inout nums: [Int]) &#123;</span><br><span class="line">   	var j = 0</span><br><span class="line">   	for k in 0 ..&lt; nums.count &#123;</span><br><span class="line">       	if nums[k] == 0 &#123;</span><br><span class="line">           	j = k</span><br><span class="line">           	while nums[j] == 0 &amp;&amp; j != nums.count - 1 &#123;</span><br><span class="line">               	j += 1</span><br><span class="line">           	&#125;</span><br><span class="line">           	nums[k] = nums[j]</span><br><span class="line">           	nums[j] = 0</span><br><span class="line">       	&#125;</span><br><span class="line">   	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>遍历数组，当元素为零时，查找下一个非零元素，交换元素并且更新指针。</p>
+<h2 id="Better-Solution"><a href="#Better-Solution" class="headerlink" title="Better Solution"></a>Better Solution</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">func moveZeroes(inout nums: [Int]) &#123;</span><br><span class="line">   	var p = 0</span><br><span class="line">   	for k in 0 ..&lt; nums.count &#123;</span><br><span class="line">       	if (nums[k] != 0) &#123;</span><br><span class="line">       		(nums[k], nums[p]) = (nums[p], nums[k])</span><br><span class="line">       		p += 1</span><br><span class="line">       	&#125;</span><br><span class="line">   	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>遍历数组，如果元素不为零，与 p 所指元素交换。</p>
+<p>此法用索引 p 来标记数组的有效元素，如果有元素不为零，则赋值给有效位置。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我的思路还算可以接受，但是代码过于冗杂。而且内嵌了 while 循环，增加了计算量。Better Solution 中的方法虽然每次遍历非零元素都要与自己交换一次，但是省去了判断 0 的个数和内层循环，尤其是省去了判断末尾还有没有零这个操作。</p>
+<h1 id="Rotate-Array"><a href="#Rotate-Array" class="headerlink" title="Rotate Array"></a>Rotate Array</h1><p>原题地址：<a href="https://leetcode.com/problems/rotate-array/" target="_blank" rel="external">Rotate Array</a></p>
+<p>问题描述：给定数组和一个索引，将数组分成两份，交换位置。</p>
+<h2 id="My-Solution-1"><a href="#My-Solution-1" class="headerlink" title="My Solution"></a>My Solution</h2><p>不提也罢</p>
+<h2 id="Better-Solution-1"><a href="#Better-Solution-1" class="headerlink" title="Better Solution"></a>Better Solution</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    // 巧妙的方法，首先将整个数组调个儿，然后将前半段调个儿，再调后边。</span><br><span class="line">    func rotate(inout nums: [Int], _ k: Int) &#123;</span><br><span class="line">        let kk = k % nums.count</span><br><span class="line">        swap(&amp;nums, start: 0, end: nums.count)</span><br><span class="line">        swap(&amp;nums, start: 0, end: kk)</span><br><span class="line">        swap(&amp;nums, start: kk, end: nums.count)</span><br><span class="line">    &#125;</span><br><span class="line">    func swap(inout nums: [Int], start: Int,end: Int) &#123;</span><br><span class="line">        var t: Int</span><br><span class="line">        var s = start</span><br><span class="line">        var e = end</span><br><span class="line">        while s &lt; e &#123;</span><br><span class="line">            t = nums[s]</span><br><span class="line">            nums[s] = nums[e - 1]</span><br><span class="line">            nums[e - 1] = t</span><br><span class="line">            s += 1</span><br><span class="line">            e -= 1</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>先定义一个空间复杂度为 O(1) 的 swap 函数，用于水平翻转给定范围的数组。</p>
+<p>第一步先将整个数组水平翻转，然后再分别翻转前段儿和后端儿。</p>
+<h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2><p>看似复杂的问题，背后的规律可能很简单。遇到问题首先视图分析出问题背后的规律。</p>
+<h1 id="Remove-Element"><a href="#Remove-Element" class="headerlink" title="Remove Element"></a>Remove Element</h1><p>原题地址：<a href="https://leetcode.com/problems/remove-element/" target="_blank" rel="external">Rotate Array</a></p>
+<p>问题描述：给定一个数组和一个值，将数组中所有与该值相等的元素删去并且返回新数组的长度，可以乱序。</p>
+<h2 id="My-Solution-2"><a href="#My-Solution-2" class="headerlink" title="My Solution"></a>My Solution</h2><p>不提也罢</p>
+<h2 id="Better-Solution-2"><a href="#Better-Solution-2" class="headerlink" title="Better Solution"></a>Better Solution</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    func removeElement(inout nums: [Int], _ val: Int) -&gt; Int &#123;</span><br><span class="line">        var i = 0</span><br><span class="line">        var l = nums.count - 1</span><br><span class="line">        while i &lt;= l &#123;</span><br><span class="line">            if val == nums[i] &#123;</span><br><span class="line">                (nums[i], nums[l]) = (nums[l], nums[i])</span><br><span class="line">                l -= 1</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                i += 1</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return l + 1</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>定义两个指针，从头开始遍历数组。如果与给定元素想等，则交换并且右指针左移。如果元素不等，左指针右移。</p>
+<h2 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h2><p>首先，在不明确执行次数的情况下，while 循环比 for 循环更简单。</p>
+<p>其次，要善于利用已知条件，题中明确可以乱序，所以首先考虑交换元素。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/01/算法/算法 - 数组/" data-id="cips6ylx7000mqruhhbo1jfmw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/05/07/iOS面试题/iOS面试题-UI/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          iOS面试题-UI
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/27/数据结构学习笔记/数据结构学习笔记 - 线性表/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">数据结构学习笔记-线性表</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS开发/">iOS开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS面试/">iOS面试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/干货/">干货</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构学习笔记/">数据结构学习笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/UI/">UI</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/UI/" style="font-size: 10px;">UI</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/06/04/iOS开发/UI/iOS开发-UICollectionView/">iOS开发-UICollectionView</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/13/数据结构学习笔记/数据结构学习笔记 - 二叉树/">数据结构学习笔记-二叉树</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/07/干货/iOS干货/">iOS干货</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/07/iOS面试题/iOS面试题-内存管理/">iOS面试题-内存管理</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/07/iOS面试题/iOS面试题-多线程/">iOS面试题－多线程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 曹宇<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
