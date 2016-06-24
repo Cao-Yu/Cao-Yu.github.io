@@ -343,17 +343,17 @@ UILongPressGestureRecognizer 用来识别长按手势
 <li>UILongPressGestureRecognizer 用来识别长按手势</li>
 </ul>
 <h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p><strong>第一步，创建一个 UIGestureRecognizer</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let gestureRecognizer = UITapGestureRecognizer(target: self, </span><br><span class="line">	action: #selector(SomeViewController.someEvent(_:)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let gestureRecognizer = UITapGestureRecognizer(<span class="name">target</span>: self, </span><br><span class="line">	action: #selector(<span class="name">SomeViewController</span>.someEvent(<span class="name">_</span>:)))</span><br></pre></td></tr></table></figure>
 <p>以上代码创建了一个 UITapGestureRecognizer， 用来识别用户的轻点手势。初始化函数被传入两个参数，target 是该响应事件的接收者，通常是 ViewController；第二个是 action， 用来定义事件的执行内容。其中 <code>#selector(SomeViewController.someEvent(_:))</code> 是在 Swift 中定义的新的 selector 声明方法，参数是通过类名定位到一个函数。</p>
 <p><strong>第二步，定义一个函数，用来响应事件</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func someEvent(sender: UITapGestureRecognizer) &#123;</span><br><span class="line">       // 事件</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">someEvent</span><span class="params">(sender: UITapGestureRecognizer)</span></span> &#123;</span><br><span class="line">       <span class="comment">// 事件</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <p><code>sender</code> 的类型要和 <code>gestureRecognizer</code> 的类型匹配 。现在只要探测到用户的轻点手势，就会执行 <code>someEvent()</code> 函数。</p>
 <p><strong>第三步，为指定控件添加 UIGestureRecognizer</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let someView = UIView()</span><br><span class="line">someView.addGestureRecognizer(gestureRecognizer)</span><br></pre></td></tr></table></figure>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">someView</span> = UIView()</span><br><span class="line">someView.addGestureRecognizer(gestureRecognizer)</span><br></pre></td></tr></table></figure>
 <p>一个简单的手势识别器就定义完成了。</p>
 <h1 id="添加委托"><a href="#添加委托" class="headerlink" title="添加委托"></a>添加委托</h1><p>我们可以为 UIGestureRecognizer 添加委托，以实现对手势的监听、筛选甚至传递参数。</p>
 <p><strong>首先，将 UIGestureREcognizer 所在的 UIViewController 实现 UIGestureRecognizerDelegate 协议</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class SomeViewController: UIViewController, UIGestureRecognizerDelegate &#123;</span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeViewController</span>: <span class="type">UIViewController</span>, <span class="type">UIGestureRecognizerDelegate &#123;</span></span></span><br></pre></td></tr></table></figure>
 <p><strong>在 SomeViewController 类中实现 UIGestureRecognizerDelegate 协议的方法</strong></p>
 <p>UIGestureRecognizerDelegate 中有很多用来控制手势识别的方法，例如：</p>
 <ul>
@@ -361,7 +361,7 @@ UILongPressGestureRecognizer 用来识别长按手势
 <li>gestureRecognizer()</li>
 </ul>
 <p>第一个方法返回一个布尔值，用来表示该手势识别是否应该被执行。第二个方法包含了许多同名重载方法，根据第二个参数的不同，具有不同的控制内容。我们可以根据需要来实现各种方法。如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -&gt; Bool &#123;</span><br><span class="line">           return true</span><br><span class="line">   	&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">gestureRecognizer</span><span class="params">(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch)</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">   	&#125;</span><br></pre></td></tr></table></figure>
 <p>该方法接收一个 UITouch 类型的参数，可以针对 UITouch 对象的属性进行判断，如位置、次数、力度等等。返回 True 表示可以接收触摸操作，反之则忽略触摸操作。 </p>
 <h1 id="多视图手势识别"><a href="#多视图手势识别" class="headerlink" title="多视图手势识别"></a>多视图手势识别</h1><p>通常，我们的界面不仅仅是一两个控件这么简单的。我们通常需要借助于视图的继承关系来进行代码级的布局，所以这种层叠的视图关系在应用中是很常见的。如：</p>
 <p><img src="/img/1.png" alt=""></p>
@@ -403,16 +403,16 @@ UILongPressGestureRecognizer 用来识别长按手势
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/18/iOS开发/UI/iOS开发-使用xcode视图调试工具/" rel="next" title="iOS开发-使用xcode视图调试工具">
-                <i class="fa fa-chevron-left"></i> iOS开发-使用xcode视图调试工具
+              <a href="/2016/04/09/iOS开发/UI/iOS开发-UILabel/" rel="next" title="iOS开发-UILabel">
+                <i class="fa fa-chevron-left"></i> iOS开发-UILabel
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/04/23/数据结构学习笔记/数据结构学习笔记-算法的度量/" rel="prev" title="数据结构学习笔记-算法的度量">
-                数据结构学习笔记-算法的度量 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/04/18/iOS开发/UI/iOS开发-使用xcode视图调试工具/" rel="prev" title="iOS开发-使用xcode视图调试工具">
+                iOS开发-使用xcode视图调试工具 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

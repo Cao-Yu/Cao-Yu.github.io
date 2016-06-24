@@ -453,7 +453,7 @@
 <li>链式存储结构，使用链表来实现，叫做二叉链表。每个节点都有一个数据域和两个指针域。</li>
 </ul>
 <h1 id="二叉树的遍历"><a href="#二叉树的遍历" class="headerlink" title="二叉树的遍历"></a>二叉树的遍历</h1><p>二叉树的遍历，基本上都要借助递归来实现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">func preOrderTraverse(Node node)&#123;</span><br><span class="line">	if node == null&#123;</span><br><span class="line">		return</span><br><span class="line">	&#125;</span><br><span class="line">	// 首先获得此节点的数据</span><br><span class="line">	print(node)</span><br><span class="line">	// 递归获得此节点的左儿子的数据</span><br><span class="line">	preOrderTraverse(node.left)</span><br><span class="line">	// 最后递归调用此节点的右儿子的数据</span><br><span class="line">	preOrderTraverse(node.right)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">func preOrderTraverse(<span class="keyword">Node</span> <span class="title">node</span>)&#123;</span><br><span class="line">	if <span class="keyword">node</span> <span class="title">== null</span>&#123;</span><br><span class="line">		return</span><br><span class="line">	&#125;</span><br><span class="line">	// 首先获得此节点的数据</span><br><span class="line">	print(<span class="keyword">node</span><span class="title">)</span><br><span class="line">	// 递归获得此节点的左儿子的数据</span><br><span class="line">	preOrderTraverse</span>(<span class="keyword">node</span>.<span class="title">left</span>)</span><br><span class="line">	// 最后递归调用此节点的右儿子的数据</span><br><span class="line">	preOrderTraverse(<span class="keyword">node</span>.<span class="title">right</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>二叉树的遍历分为<strong>宽度优先</strong>和<strong>深度优先</strong>。宽度优先就是层序遍历。</p>
 <p>二叉树的深度优先遍历大体上分为：</p>
 <ul>
@@ -465,8 +465,8 @@
 <p>上边的代码就是典型的前序遍历，也就是把此节点的数据的获取放在两个儿子的前边。中序遍历和后续遍历的代码实现就是调换这三步的顺序。但是系统具体的操作是依靠栈的数据结构来实现的。</p>
 <p>很多面试题都是已知两种功能遍历顺序来求二叉树的。规律是：<strong>必须已知二叉树的中序遍历结果</strong>，然后再已知前序或者后序遍历结果其中之一，便可以求得二叉树。</p>
 <h1 id="搜索二叉树-BST"><a href="#搜索二叉树-BST" class="headerlink" title="搜索二叉树(BST)"></a>搜索二叉树(BST)</h1><p>任何一个节点的左孩子都比右孩子的值小，这样的二叉树称为搜索二叉树。</p>
-<h2 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">func insert(Node node, AnyObject x)&#123;</span><br><span class="line">	if node == null&#123;</span><br><span class="line">		return</span><br><span class="line">	&#125;</span><br><span class="line">	// 如果比当前节点的数值大，往右边加。反之左边。</span><br><span class="line">	if x - node.data &gt; 0 &#123;</span><br><span class="line">		insert(node.right, x)</span><br><span class="line">	&#125; else if x - node.data &lt; 0 &#123;</span><br><span class="line">		insert(node.left, x)</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		// do nothing</span><br><span class="line">	&#125;</span><br><span class="line">	return node</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">func remove(Node node, AnyObject x)&#123;</span><br><span class="line">	if node == null&#123;</span><br><span class="line">		return</span><br><span class="line">	&#125;	</span><br><span class="line">	if x - node.data &gt; 0 &#123;</span><br><span class="line">		remove(node.right, x)</span><br><span class="line">	&#125; else if x - node.data &lt; 0 &#123;</span><br><span class="line">		remove(node.left, x)</span><br><span class="line">	&#125; else node.left == null &#123;</span><br><span class="line">		// 直接把右孩子挂到当前节点</span><br><span class="line">		node = node.right</span><br><span class="line">	&#125; else node.right == null &#123;</span><br><span class="line">		// 直接把左孩子挂到当前节点</span><br><span class="line">		node = node.left</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		// 寻找当前节点的右孩子中的最小值的节点，并且删除这个节点</span><br><span class="line">		node.data = findMinAndDelete(node.right).data</span><br><span class="line">	&#125;</span><br><span class="line">	return node</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h2><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">func insert(<span class="keyword">Node</span> <span class="title">node</span>, AnyObject x)&#123;</span><br><span class="line">	if <span class="keyword">node</span> <span class="title">== null</span>&#123;</span><br><span class="line">		return</span><br><span class="line">	&#125;</span><br><span class="line">	// 如果比当前节点的数值大，往右边加。反之左边。</span><br><span class="line">	if x - <span class="keyword">node</span>.<span class="title">data</span> &gt; <span class="number">0</span> &#123;</span><br><span class="line">		insert(<span class="keyword">node</span>.<span class="title">right</span>, x)</span><br><span class="line">	&#125; else if x - <span class="keyword">node</span>.<span class="title">data</span> <span class="tag">&lt; 0 &#123;</span><br><span class="line">		insert(node.left, x)</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		// do nothing</span><br><span class="line">	&#125;</span><br><span class="line">	return node</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">remove</span><span class="params">(Node node, AnyObject x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> node == null&#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="keyword">if</span> x - node.data &gt; <span class="number">0</span> &#123;</span><br><span class="line">		remove(node.<span class="keyword">right</span>, x)</span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> x - node.data &lt; <span class="number">0</span> &#123;</span><br><span class="line">		remove(node.<span class="keyword">left</span>, x)</span><br><span class="line">	&#125; <span class="keyword">else</span> node.<span class="keyword">left</span> == null &#123;</span><br><span class="line">		<span class="comment">// 直接把右孩子挂到当前节点</span></span><br><span class="line">		node = node.<span class="keyword">right</span></span><br><span class="line">	&#125; <span class="keyword">else</span> node.<span class="keyword">right</span> == null &#123;</span><br><span class="line">		<span class="comment">// 直接把左孩子挂到当前节点</span></span><br><span class="line">		node = node.<span class="keyword">left</span></span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="comment">// 寻找当前节点的右孩子中的最小值的节点，并且删除这个节点</span></span><br><span class="line">		node.data = findMinAndDelete(node.<span class="keyword">right</span>).data</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> node</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h1><p>堆的全称叫做<strong>二叉堆(Binary Heap)</strong>。它是一种特殊的二叉树，需要满足以下两个条件：</p>
 <ul>
 <li>结构特性：堆必须是一颗完全二叉树。</li>
@@ -658,8 +658,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/05/07/iOS面试题/iOS面试题-第三方库/" itemprop="url">
-                  iOS面试题-第三方库
+                <a class="post-title-link" href="/2016/05/07/iOS面试题/iOS面试题-UI/" itemprop="url">
+                  iOS面试题-UI
                 </a>
               
             
@@ -721,24 +721,29 @@
       
         
           
-            <h1 id="第三方库"><a href="#第三方库" class="headerlink" title="第三方库"></a>第三方库</h1><hr>
-<ul>
-<li><p><a href="https://github.com/AFNetworking/AFNetworking" target="_blank" rel="external">AFNETWORKING</a></p>
+            <h1 id="UI-篇"><a href="#UI-篇" class="headerlink" title="UI 篇"></a>UI 篇</h1><hr>
+<h2 id="UIView-和-CALayer-的区别和联系"><a href="#UIView-和-CALayer-的区别和联系" class="headerlink" title="UIView 和 CALayer 的区别和联系"></a>UIView 和 CALayer 的区别和联系</h2><ul>
+<li><p>UIView 都是 UIResponder 的子类，所以可以响应事件。而 CALayer 直接继承 NSObject，并没有处理事件的接口。</p>
 </li>
-<li><p><a href="https://github.com/rs/SDWebImage" target="_blank" rel="external">SDWEBIMAGE</a></p>
+<li><p>UIView 是 CALayer 的CALayerDelegate。</p>
 </li>
-<li><p><a href="https://github.com/ccgus/fmdb" target="_blank" rel="external">FMDB</a></p>
+<li><p>每个 UIView 内部都有一个 CALayer 在背后提供内容的绘制和显示，并且 UIView 的尺寸样式都由内部的 Layer 所提供。两者都有树状层级结构，layer 内部有 SubLayers，View 内部有 SubViews.但是 Layer 比 View 多了个AnchorPoint。</p>
+</li>
+<li><p>CALayer 是默认修改属性支持隐式动画，0.25s默认时长。在给 UIView 的 Layer 做动画的时候，View 作为 Layer 的代理，Layer 通过 actionForLayer:forKey:向 View请求相应的 action。</p>
 </li>
 </ul>
-<p>列举一下你常用的第三方库<br>Xcode插件</p>
-<p>Alcatraz：Xcode 插件管理工具<br>ColorSense-for-Xcode：代码生成颜色预览，可视化编辑<br>KSImageNamed-Xcode：引入图片自动提示，预览<br>VVDocumenter-Xcode：规范化注释<br>项目中常用的第三方库</p>
-<p>AFNetworking：网络库，通常会在AFN上面再封装一层，主要封装接口逻辑<br>SDWebImage：下载网络图片，定时清除缓存<br>Reachability：网络状态判断，AFN已经有这个功能<br>WebViewJavaScriptBridge：Webview和cocoa之间消息传递<br>fmdb：SQLite的封装，简单易用<br>DTCoreText：CoreText库，支持HTML<br>KissXML：XML解析，支持读取和修改，基于libxml<br>ZXingObjC：二维码，支持编码解码<br>GTMBase64：base64编解码<br>GPIImage：图像处理<br>JSONKit：json解析，性能最好<br>Mansonry：辅助自动布局<br>MJRefresh：上拉加载，下拉刷新<br>MBProgressHUD：进度图，加载效果提示</p>
-<h1 id="APP发布的上架流程"><a href="#APP发布的上架流程" class="headerlink" title="APP发布的上架流程"></a>APP发布的上架流程</h1><ul>
-<li>登录应用发布网站添加应用信息</li>
-<li>下载安装发布证书</li>
-<li>选择发布证书，使用Archive编译发布包，用Xcode将代码（发布包）上传到服务器</li>
-<li>等待审核通过</li>
-<li>生成IPA：菜单栏-&gt;Product-&gt;Archive</li>
+<p><a href="http://www.cocoachina.com/ios/20150828/13244.html" target="_blank" rel="external">参考</a></p>
+<h2 id="UIView-事件传递响应链"><a href="#UIView-事件传递响应链" class="headerlink" title="UIView 事件传递响应链"></a>UIView 事件传递响应链</h2><p><a href="http://blog.csdn.net/chenruizhi/article/details/25319465" target="_blank" rel="external">参考</a></p>
+<p><a href="http://cao-yu.github.io/2016/04/23/iOS开发/UI/iOS开发-事件传递响应链/" target="_blank" rel="external">我的答案</a></p>
+<h2 id="UIImageView-的圆角设置"><a href="#UIImageView-的圆角设置" class="headerlink" title="UIImageView 的圆角设置"></a>UIImageView 的圆角设置</h2><p>一种是在layer 设置圆角弧度。<br>一种是UIBezierPath 曲线的方式。都是layer 上的解决方案<br>tableView的显示效率问题。</p>
+<p>UIImageView 的圆角通过直接截取图片实现，其它视图的圆角可以通过 Core Graphics 画出圆角矩形实现。</p>
+<p>实现圆角cornerRadius要比mask高效很多。</p>
+<p>以下是用 UIBezierPath 曲线的方式来实现圆角：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIImageView</span> *imageView = [[<span class="built_in">UIImageView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">100</span>)];  </span><br><span class="line">imageView.center = <span class="built_in">CGPointMake</span>(<span class="number">200</span>, <span class="number">300</span>);  </span><br><span class="line"><span class="built_in">UIImage</span> *anotherImage = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"image"</span>];  </span><br><span class="line"><span class="built_in">UIGraphicsBeginImageContextWithOptions</span>(imageView.bounds.size, <span class="literal">NO</span>, <span class="number">1.0</span>);  </span><br><span class="line">[[<span class="built_in">UIBezierPath</span> bezierPathWithRoundedRect:imageView.bounds</span><br><span class="line">                       cornerRadius:<span class="number">50</span>] addClip];</span><br><span class="line">[anotherImage drawInRect:imageView.bounds];</span><br><span class="line">imageView.image = <span class="built_in">UIGraphicsGetImageFromCurrentImageContext</span>();  </span><br><span class="line"><span class="built_in">UIGraphicsEndImageContext</span>();  </span><br><span class="line">[<span class="keyword">self</span>.view addSubview:imageView];</span><br></pre></td></tr></table></figure>
+<h2 id="pushViewController-和-presentViewController有什么区别？"><a href="#pushViewController-和-presentViewController有什么区别？" class="headerlink" title="pushViewController 和 presentViewController有什么区别？"></a>pushViewController 和 presentViewController有什么区别？</h2><ul>
+<li>两者都是在多个试图控制器间跳转的函数</li>
+<li>presentViewController提供的是一个模态视图控制器</li>
+<li>pushViewController提供一个栈控制器数组，push/pop</li>
 </ul>
 
           
@@ -867,120 +872,6 @@
 <li><p><a href="http://blog.csdn.net/lishuangzhe7047/article/details/8491269" target="_blank" rel="external">工厂模式</a></p>
 </li>
 </ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/07/iOS面试题/iOS面试题-多线程/" itemprop="url">
-                  iOS面试题－多线程
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-07T12:49:25+08:00" content="2016-05-07">
-              2016-05-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS面试/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS面试</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="网络图片重复下载问题"><a href="#网络图片重复下载问题" class="headerlink" title="网络图片重复下载问题"></a>网络图片重复下载问题</h1><p>使用字典，以图片的 URL 作为 key，每次下载的时候判断有无相同key。</p>
-<h1 id="原子属性"><a href="#原子属性" class="headerlink" title="原子属性"></a>原子属性</h1><p>原子属性采用<strong>多读单写</strong>机制的多线程策略。</p>
 
           
         
@@ -1293,8 +1184,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/05/07/iOS面试题/iOS面试题-UI/" itemprop="url">
-                  iOS面试题-UI
+                <a class="post-title-link" href="/2016/05/07/iOS面试题/iOS面试题-多线程/" itemprop="url">
+                  iOS面试题－多线程
                 </a>
               
             
@@ -1356,29 +1247,138 @@
       
         
           
-            <h1 id="UI-篇"><a href="#UI-篇" class="headerlink" title="UI 篇"></a>UI 篇</h1><hr>
-<h2 id="UIView-和-CALayer-的区别和联系"><a href="#UIView-和-CALayer-的区别和联系" class="headerlink" title="UIView 和 CALayer 的区别和联系"></a>UIView 和 CALayer 的区别和联系</h2><ul>
-<li><p>UIView 都是 UIResponder 的子类，所以可以响应事件。而 CALayer 直接继承 NSObject，并没有处理事件的接口。</p>
+            <h1 id="网络图片重复下载问题"><a href="#网络图片重复下载问题" class="headerlink" title="网络图片重复下载问题"></a>网络图片重复下载问题</h1><p>使用字典，以图片的 URL 作为 key，每次下载的时候判断有无相同key。</p>
+<h1 id="原子属性"><a href="#原子属性" class="headerlink" title="原子属性"></a>原子属性</h1><p>原子属性采用<strong>多读单写</strong>机制的多线程策略。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/07/iOS面试题/iOS面试题-第三方库/" itemprop="url">
+                  iOS面试题-第三方库
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-07T12:49:25+08:00" content="2016-05-07">
+              2016-05-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS面试/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS面试</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="第三方库"><a href="#第三方库" class="headerlink" title="第三方库"></a>第三方库</h1><hr>
+<ul>
+<li><p><a href="https://github.com/AFNetworking/AFNetworking" target="_blank" rel="external">AFNETWORKING</a></p>
 </li>
-<li><p>UIView 是 CALayer 的CALayerDelegate。</p>
+<li><p><a href="https://github.com/rs/SDWebImage" target="_blank" rel="external">SDWEBIMAGE</a></p>
 </li>
-<li><p>每个 UIView 内部都有一个 CALayer 在背后提供内容的绘制和显示，并且 UIView 的尺寸样式都由内部的 Layer 所提供。两者都有树状层级结构，layer 内部有 SubLayers，View 内部有 SubViews.但是 Layer 比 View 多了个AnchorPoint。</p>
-</li>
-<li><p>CALayer 是默认修改属性支持隐式动画，0.25s默认时长。在给 UIView 的 Layer 做动画的时候，View 作为 Layer 的代理，Layer 通过 actionForLayer:forKey:向 View请求相应的 action。</p>
+<li><p><a href="https://github.com/ccgus/fmdb" target="_blank" rel="external">FMDB</a></p>
 </li>
 </ul>
-<p><a href="http://www.cocoachina.com/ios/20150828/13244.html" target="_blank" rel="external">参考</a></p>
-<h2 id="UIView-事件传递响应链"><a href="#UIView-事件传递响应链" class="headerlink" title="UIView 事件传递响应链"></a>UIView 事件传递响应链</h2><p><a href="http://blog.csdn.net/chenruizhi/article/details/25319465" target="_blank" rel="external">参考</a></p>
-<p><a href="http://cao-yu.github.io/2016/04/23/iOS开发/UI/iOS开发-事件传递响应链/" target="_blank" rel="external">我的答案</a></p>
-<h2 id="UIImageView-的圆角设置"><a href="#UIImageView-的圆角设置" class="headerlink" title="UIImageView 的圆角设置"></a>UIImageView 的圆角设置</h2><p>一种是在layer 设置圆角弧度。<br>一种是UIBezierPath 曲线的方式。都是layer 上的解决方案<br>tableView的显示效率问题。</p>
-<p>UIImageView 的圆角通过直接截取图片实现，其它视图的圆角可以通过 Core Graphics 画出圆角矩形实现。</p>
-<p>实现圆角cornerRadius要比mask高效很多。</p>
-<p>以下是用 UIBezierPath 曲线的方式来实现圆角：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];  </span><br><span class="line">imageView.center = CGPointMake(200, 300);  </span><br><span class="line">UIImage *anotherImage = [UIImage imageNamed:@&quot;image&quot;];  </span><br><span class="line">UIGraphicsBeginImageContextWithOptions(imageView.bounds.size, NO, 1.0);  </span><br><span class="line">[[UIBezierPath bezierPathWithRoundedRect:imageView.bounds</span><br><span class="line">                       cornerRadius:50] addClip];</span><br><span class="line">[anotherImage drawInRect:imageView.bounds];</span><br><span class="line">imageView.image = UIGraphicsGetImageFromCurrentImageContext();  </span><br><span class="line">UIGraphicsEndImageContext();  </span><br><span class="line">[self.view addSubview:imageView];</span><br></pre></td></tr></table></figure>
-<h2 id="pushViewController-和-presentViewController有什么区别？"><a href="#pushViewController-和-presentViewController有什么区别？" class="headerlink" title="pushViewController 和 presentViewController有什么区别？"></a>pushViewController 和 presentViewController有什么区别？</h2><ul>
-<li>两者都是在多个试图控制器间跳转的函数</li>
-<li>presentViewController提供的是一个模态视图控制器</li>
-<li>pushViewController提供一个栈控制器数组，push/pop</li>
+<p>列举一下你常用的第三方库<br>Xcode插件</p>
+<p>Alcatraz：Xcode 插件管理工具<br>ColorSense-for-Xcode：代码生成颜色预览，可视化编辑<br>KSImageNamed-Xcode：引入图片自动提示，预览<br>VVDocumenter-Xcode：规范化注释<br>项目中常用的第三方库</p>
+<p>AFNetworking：网络库，通常会在AFN上面再封装一层，主要封装接口逻辑<br>SDWebImage：下载网络图片，定时清除缓存<br>Reachability：网络状态判断，AFN已经有这个功能<br>WebViewJavaScriptBridge：Webview和cocoa之间消息传递<br>fmdb：SQLite的封装，简单易用<br>DTCoreText：CoreText库，支持HTML<br>KissXML：XML解析，支持读取和修改，基于libxml<br>ZXingObjC：二维码，支持编码解码<br>GTMBase64：base64编解码<br>GPIImage：图像处理<br>JSONKit：json解析，性能最好<br>Mansonry：辅助自动布局<br>MJRefresh：上拉加载，下拉刷新<br>MBProgressHUD：进度图，加载效果提示</p>
+<h1 id="APP发布的上架流程"><a href="#APP发布的上架流程" class="headerlink" title="APP发布的上架流程"></a>APP发布的上架流程</h1><ul>
+<li>登录应用发布网站添加应用信息</li>
+<li>下载安装发布证书</li>
+<li>选择发布证书，使用Archive编译发布包，用Xcode将代码（发布包）上传到服务器</li>
+<li>等待审核通过</li>
+<li>生成IPA：菜单栏-&gt;Product-&gt;Archive</li>
 </ul>
 
           
@@ -1494,23 +1494,23 @@
           
             <h1 id="Move-Zeroes"><a href="#Move-Zeroes" class="headerlink" title="Move Zeroes"></a>Move Zeroes</h1><p>原题地址：<a href="https://leetcode.com/problems/move-zeroes/" target="_blank" rel="external">Move Zeroes</a></p>
 <p>问题描述：移除数组中的零，并且保持元素的顺序，且不能建立新的数组。</p>
-<h2 id="My-Solution"><a href="#My-Solution" class="headerlink" title="My Solution"></a>My Solution</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">func moveZeroes(inout nums: [Int]) &#123;</span><br><span class="line">   	var j = 0</span><br><span class="line">   	for k in 0 ..&lt; nums.count &#123;</span><br><span class="line">       	if nums[k] == 0 &#123;</span><br><span class="line">           	j = k</span><br><span class="line">           	while nums[j] == 0 &amp;&amp; j != nums.count - 1 &#123;</span><br><span class="line">               	j += 1</span><br><span class="line">           	&#125;</span><br><span class="line">           	nums[k] = nums[j]</span><br><span class="line">           	nums[j] = 0</span><br><span class="line">       	&#125;</span><br><span class="line">   	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="My-Solution"><a href="#My-Solution" class="headerlink" title="My Solution"></a>My Solution</h2><figure class="highlight cos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">func moveZeroes(inout nums: [Int]) &#123;</span><br><span class="line">   	var <span class="keyword">j</span> = <span class="number">0</span></span><br><span class="line">   	<span class="keyword">for</span> <span class="keyword">k</span> in <span class="number">0</span> ..&lt; nums.count &#123;</span><br><span class="line">       	<span class="keyword">if</span> nums[<span class="keyword">k</span>] == <span class="number">0</span> &#123;</span><br><span class="line">           	<span class="keyword">j</span> = <span class="keyword">k</span></span><br><span class="line">           	<span class="keyword">while</span> nums[<span class="keyword">j</span>] == <span class="number">0</span> &amp;&amp; <span class="keyword">j</span> != nums.count - <span class="number">1</span> &#123;</span><br><span class="line">               	<span class="keyword">j</span> += <span class="number">1</span></span><br><span class="line">           	&#125;</span><br><span class="line">           	nums[<span class="keyword">k</span>] = nums[<span class="keyword">j</span>]</span><br><span class="line">           	nums[<span class="keyword">j</span>] = <span class="number">0</span></span><br><span class="line">       	&#125;</span><br><span class="line">   	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>遍历数组，当元素为零时，查找下一个非零元素，交换元素并且更新指针。</p>
-<h2 id="Better-Solution"><a href="#Better-Solution" class="headerlink" title="Better Solution"></a>Better Solution</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">func moveZeroes(inout nums: [Int]) &#123;</span><br><span class="line">   	var p = 0</span><br><span class="line">   	for k in 0 ..&lt; nums.count &#123;</span><br><span class="line">       	if (nums[k] != 0) &#123;</span><br><span class="line">       		(nums[k], nums[p]) = (nums[p], nums[k])</span><br><span class="line">       		p += 1</span><br><span class="line">       	&#125;</span><br><span class="line">   	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Better-Solution"><a href="#Better-Solution" class="headerlink" title="Better Solution"></a>Better Solution</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">func moveZeroes(inout nums: [Int]) &#123;</span><br><span class="line">   	<span class="selector-tag">var</span> <span class="selector-tag">p</span> = <span class="number">0</span></span><br><span class="line">   	<span class="keyword">for</span> k <span class="keyword">in</span> <span class="number">0</span> ..&lt; nums<span class="selector-class">.count</span> &#123;</span><br><span class="line">       	<span class="keyword">if</span> (nums[k] != <span class="number">0</span>) &#123;</span><br><span class="line">       		(nums[k], nums[p]) = (nums[p], nums[k])</span><br><span class="line">       		<span class="selector-tag">p</span> += <span class="number">1</span></span><br><span class="line">       	&#125;</span><br><span class="line">   	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>遍历数组，如果元素不为零，与 p 所指元素交换。</p>
 <p>此法用索引 p 来标记数组的有效元素，如果有元素不为零，则赋值给有效位置。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我的思路还算可以接受，但是代码过于冗杂。而且内嵌了 while 循环，增加了计算量。Better Solution 中的方法虽然每次遍历非零元素都要与自己交换一次，但是省去了判断 0 的个数和内层循环，尤其是省去了判断末尾还有没有零这个操作。</p>
 <h1 id="Rotate-Array"><a href="#Rotate-Array" class="headerlink" title="Rotate Array"></a>Rotate Array</h1><p>原题地址：<a href="https://leetcode.com/problems/rotate-array/" target="_blank" rel="external">Rotate Array</a></p>
 <p>问题描述：给定数组和一个索引，将数组分成两份，交换位置。</p>
 <h2 id="My-Solution-1"><a href="#My-Solution-1" class="headerlink" title="My Solution"></a>My Solution</h2><p>不提也罢</p>
-<h2 id="Better-Solution-1"><a href="#Better-Solution-1" class="headerlink" title="Better Solution"></a>Better Solution</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    // 巧妙的方法，首先将整个数组调个儿，然后将前半段调个儿，再调后边。</span><br><span class="line">    func rotate(inout nums: [Int], _ k: Int) &#123;</span><br><span class="line">        let kk = k % nums.count</span><br><span class="line">        swap(&amp;nums, start: 0, end: nums.count)</span><br><span class="line">        swap(&amp;nums, start: 0, end: kk)</span><br><span class="line">        swap(&amp;nums, start: kk, end: nums.count)</span><br><span class="line">    &#125;</span><br><span class="line">    func swap(inout nums: [Int], start: Int,end: Int) &#123;</span><br><span class="line">        var t: Int</span><br><span class="line">        var s = start</span><br><span class="line">        var e = end</span><br><span class="line">        while s &lt; e &#123;</span><br><span class="line">            t = nums[s]</span><br><span class="line">            nums[s] = nums[e - 1]</span><br><span class="line">            nums[e - 1] = t</span><br><span class="line">            s += 1</span><br><span class="line">            e -= 1</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Better-Solution-1"><a href="#Better-Solution-1" class="headerlink" title="Better Solution"></a>Better Solution</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 巧妙的方法，首先将整个数组调个儿，然后将前半段调个儿，再调后边。</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">rotate</span><span class="params">(<span class="keyword">inout</span> nums: [Int], <span class="number">_</span> k: Int)</span></span> &#123;</span><br><span class="line">        <span class="keyword">let</span> kk = k % nums.<span class="built_in">count</span></span><br><span class="line">        <span class="built_in">swap</span>(&amp;nums, start: <span class="number">0</span>, end: nums.<span class="built_in">count</span>)</span><br><span class="line">        <span class="built_in">swap</span>(&amp;nums, start: <span class="number">0</span>, end: kk)</span><br><span class="line">        <span class="built_in">swap</span>(&amp;nums, start: kk, end: nums.<span class="built_in">count</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">swap</span><span class="params">(<span class="keyword">inout</span> nums: [Int], start: Int,end: Int)</span></span> &#123;</span><br><span class="line">        <span class="keyword">var</span> t: <span class="type">Int</span></span><br><span class="line">        <span class="keyword">var</span> s = start</span><br><span class="line">        <span class="keyword">var</span> e = end</span><br><span class="line">        <span class="keyword">while</span> s &lt; e &#123;</span><br><span class="line">            t = nums[s]</span><br><span class="line">            nums[s] = nums[e - <span class="number">1</span>]</span><br><span class="line">            nums[e - <span class="number">1</span>] = t</span><br><span class="line">            s += <span class="number">1</span></span><br><span class="line">            e -= <span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>先定义一个空间复杂度为 O(1) 的 swap 函数，用于水平翻转给定范围的数组。</p>
 <p>第一步先将整个数组水平翻转，然后再分别翻转前段儿和后端儿。</p>
 <h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2><p>看似复杂的问题，背后的规律可能很简单。遇到问题首先视图分析出问题背后的规律。</p>
 <h1 id="Remove-Element"><a href="#Remove-Element" class="headerlink" title="Remove Element"></a>Remove Element</h1><p>原题地址：<a href="https://leetcode.com/problems/remove-element/" target="_blank" rel="external">Rotate Array</a></p>
 <p>问题描述：给定一个数组和一个值，将数组中所有与该值相等的元素删去并且返回新数组的长度，可以乱序。</p>
 <h2 id="My-Solution-2"><a href="#My-Solution-2" class="headerlink" title="My Solution"></a>My Solution</h2><p>不提也罢</p>
-<h2 id="Better-Solution-2"><a href="#Better-Solution-2" class="headerlink" title="Better Solution"></a>Better Solution</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    func removeElement(inout nums: [Int], _ val: Int) -&gt; Int &#123;</span><br><span class="line">        var i = 0</span><br><span class="line">        var l = nums.count - 1</span><br><span class="line">        while i &lt;= l &#123;</span><br><span class="line">            if val == nums[i] &#123;</span><br><span class="line">                (nums[i], nums[l]) = (nums[l], nums[i])</span><br><span class="line">                l -= 1</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                i += 1</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return l + 1</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Better-Solution-2"><a href="#Better-Solution-2" class="headerlink" title="Better Solution"></a>Better Solution</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">removeElement</span><span class="params">(<span class="keyword">inout</span> nums: [Int], <span class="number">_</span> val: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> i = <span class="number">0</span></span><br><span class="line">        <span class="keyword">var</span> l = nums.<span class="built_in">count</span> - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> i &lt;= l &#123;</span><br><span class="line">            <span class="keyword">if</span> val == nums[i] &#123;</span><br><span class="line">                (nums[i], nums[l]) = (nums[l], nums[i])</span><br><span class="line">                l -= <span class="number">1</span></span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                i += <span class="number">1</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> l + <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>定义两个指针，从头开始遍历数组。如果与给定元素想等，则交换并且右指针左移。如果元素不等，左指针右移。</p>
 <h2 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h2><p>首先，在不明确执行次数的情况下，while 循环比 for 循环更简单。</p>
 <p>其次，要善于利用已知条件，题中明确可以乱序，所以首先考虑交换元素。</p>
