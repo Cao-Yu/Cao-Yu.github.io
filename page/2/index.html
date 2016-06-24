@@ -1260,125 +1260,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/04/09/iOS开发/UI/iOS开发-UINavigationController/" itemprop="url">
-                  iOS开发-UINavigationController
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-09T13:10:22+08:00" content="2016-04-09">
-              2016-04-09
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS开发</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>iOS 中的 UINavigationController 是十分常用的视图，几乎可以在每一个 App 中看到。<br>UINavigationController ，使用<strong>栈(Stack)</strong>的结构来实现，这样便于管理视图之间的层级关系。初始界面为栈底，之后每切换到一个新的界面，就将新的界面置于栈顶，也就是我们常说的<strong>压栈(Push)</strong>。每次返回之前的界面，就把当前界面从栈中取出，也就是<strong>出栈(Pop)</strong>。</p>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="第一种方式：在-Storyboard-中添加"><a href="#第一种方式：在-Storyboard-中添加" class="headerlink" title="第一种方式：在 Storyboard 中添加"></a>第一种方式：在 Storyboard 中添加</h2><p><strong>第一步：将 UINavigationController 拖拽进 Storyboard 中</strong></p>
-<p><img src="/img/5.png" alt=""></p>
-<p>可以看到，系统默认给出了 UINavigationController 以及一个 UITableView。左侧的 NavigationController 只是个控制器视图，并没有什么内容要显示；而右侧的 View 才是我们的栈底，是根视图(Root View)。</p>
-<p>如果 UITableView 不是你需要的，可以将它删除，自行拖拽添加一个 UIViewController， 然后右键单击左侧的 NavigationController， 拖拽到新建的 View 中，选择 Push。这样便建立了根视图与视图控制器的连接。之后再添加新的视图的话，只需要把新建的视图关联到位于栈顶的视图就可以了。</p>
-<p><strong>第二步：设置跳转和返回按钮</strong></p>
-<p>在 Storyboard 中选中 UINavigationBar ，也就是导航栏，在右侧的属性选择器中设置 <code>Tittle</code> 和 <code>Back Button</code> 属性。从而可以自动的为导航栏添加标题和按钮以及跳转关系。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/04/09/iOS开发/UI/iOS开发-UIScrollView/" itemprop="url">
                   iOS开发-UIScrollView
                 </a>
@@ -1456,6 +1337,125 @@
 <p>上面的语句不能放在 viewDidLoad() 方法当里，在 iOS 8 以上可以放在 viewDidAppear() 方法中。而在 iOS 7 ，可以参考<a href="http://www.cocoachina.com/bbs/read.php?tid-205386-page-1.html" target="_blank" rel="external">iOS7 下 UIScrollView 无法滑动</a> 中提到的方法，放在 viewDidLayoutSubviews() 方法中。</p>
 <p><strong>原理</strong></p>
 <p>iOS 的view加载过程会执行很多方法，当 view 加载完毕后，会先执行 <code>viewDidLoad()</code> 方法，然后在开启 Auto Layout 的情况下，会根据自动布局再一次计算 Constraint ，在计算完毕后会执行 <code>viewDidLayoutSubviews()</code> 方法。而最后才会执行 <code>viewDidAppear()</code> 方法。所以我们在 view 即将显示的时候设置 scrollView 的 <code>contentSize</code> 属性就可以啦。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/09/iOS开发/UI/iOS开发-UINavigationController/" itemprop="url">
+                  iOS开发-UINavigationController
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-09T13:10:22+08:00" content="2016-04-09">
+              2016-04-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>iOS 中的 UINavigationController 是十分常用的视图，几乎可以在每一个 App 中看到。<br>UINavigationController ，使用<strong>栈(Stack)</strong>的结构来实现，这样便于管理视图之间的层级关系。初始界面为栈底，之后每切换到一个新的界面，就将新的界面置于栈顶，也就是我们常说的<strong>压栈(Push)</strong>。每次返回之前的界面，就把当前界面从栈中取出，也就是<strong>出栈(Pop)</strong>。</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="第一种方式：在-Storyboard-中添加"><a href="#第一种方式：在-Storyboard-中添加" class="headerlink" title="第一种方式：在 Storyboard 中添加"></a>第一种方式：在 Storyboard 中添加</h2><p><strong>第一步：将 UINavigationController 拖拽进 Storyboard 中</strong></p>
+<p><img src="/img/5.png" alt=""></p>
+<p>可以看到，系统默认给出了 UINavigationController 以及一个 UITableView。左侧的 NavigationController 只是个控制器视图，并没有什么内容要显示；而右侧的 View 才是我们的栈底，是根视图(Root View)。</p>
+<p>如果 UITableView 不是你需要的，可以将它删除，自行拖拽添加一个 UIViewController， 然后右键单击左侧的 NavigationController， 拖拽到新建的 View 中，选择 Push。这样便建立了根视图与视图控制器的连接。之后再添加新的视图的话，只需要把新建的视图关联到位于栈顶的视图就可以了。</p>
+<p><strong>第二步：设置跳转和返回按钮</strong></p>
+<p>在 Storyboard 中选中 UINavigationBar ，也就是导航栏，在右侧的属性选择器中设置 <code>Tittle</code> 和 <code>Back Button</code> 属性。从而可以自动的为导航栏添加标题和按钮以及跳转关系。</p>
 
           
         
