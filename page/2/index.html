@@ -856,139 +856,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/04/18/iOS开发/UI/iOS开发-使用xcode视图调试工具/" itemprop="url">
-                  iOS开发-使用xcode视图调试工具
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-18T15:30:09+08:00" content="2016-04-18">
-              2016-04-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS开发</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在开发应用程序时，经常会面对复杂的视图层级结构。光凭借逻辑来分析不如使用工具来的直观、清晰。目前较为常用的调试工具有：</p>
-<ul>
-<li>在GitHub上开源的<a href="https://github.com/tapthaker/DebugView" target="_blank" rel="external">DebugView</a></li>
-<li><a href="http://revealapp.com" target="_blank" rel="external">Reveal</a>视图调试软件</li>
-<li>Xcode自带的视图调试工具</li>
-</ul>
-<p>Reveal相对来讲较为重量级，功能强大并且收费。而DebugView需要使用CocoaPod，比较注重尺寸的标注。下面我们来介绍Xcode中字带的视图调试工具：</p>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>首先运行项目，然后点击下面调试工具栏的按钮：</p>
-<p><img src="/img/3.png" alt=""></p>
-<p>或者在顶部菜单中点击Debug &gt; View Debugging &gt; Capture View Hierarchy 来启动视图调试。</p>
-<p>进入调试界面后，底部多了一个工具栏：</p>
-<p><img src="/img/4.png" alt=""></p>
-<p>1: 调整视图之间的间距</p>
-<p>2: 显示未被显示的内容</p>
-<p>3: 显示约束(Constraint)</p>
-<p>4: 筛选显示内容</p>
-<p>5: 重置视图</p>
-<p>6: 缩小</p>
-<p>7: 适应屏幕</p>
-<p>8: 放大</p>
-<p>9: 根据加载顺序调整显示的内容</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/04/18/iOS开发/UI/iOS开发-使用UIGestureRecognizer为控件添加触发事件/" itemprop="url">
                   iOS开发-使用UIGestureRecognizer为控件添加触发事件
                 </a>
@@ -1084,6 +951,139 @@
 <p>上图中蓝色的 <code>UIView2</code> 是红色的 <code>UIView1</code> 的子类，也就是说 <code>uiView1.addSubview(uiView2)</code> 。那么如果我们想要为 <code>UIView2</code> 添加手势识别的话, 就只有<code>UIView2</code> 在 <code>UIView1</code> 的内部的部分才会被探测到。如：</p>
 <p><img src="/img/2.png" alt=""></p>
 <p>只有图中绿色的交叉部分才会被探测到。iOS系统检测到手指触摸操作时会将其打包成一个 <code>UIEvent</code> 对象，并放入当前活动 <code>Application</code> 的事件队列，单例的UIApplication会从事件队列中取出触摸事件并传递给单例的 <code>UIWindow</code> 来处理，<code>UIWindow</code> 对象首先会使用<code>hitTest:withEvent:</code>方法寻找此次操作初始点所在的视图。该方法将由<code>UIWindow</code> 开始逐级向子视图遍历，直到有子视图返回非空对象或者全部遍历完毕，所以当判断到父视图的时候，并没有与触摸点契合，遍历所有的视图后仍然没有返回非空对象，所以并无任何响应。如果我们反过来，只为父视图 <code>UIView1</code> 添加手势识别器的话，那么点击绿色的交叉区域不会有任何效果。因为子视图视图在父视图的层级关系之上，用户点击的是 <code>UIView2</code> 而不是 <code>UIView1</code>。如果想要在点击交叉区域的时候触发 <code>UIView1</code> 的点击事件，则需要将子视图置于下方：<code>uiView1.sendSubviewToBack(uiView2)</code>。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/18/iOS开发/UI/iOS开发-使用xcode视图调试工具/" itemprop="url">
+                  iOS开发-使用xcode视图调试工具
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-18T15:30:09+08:00" content="2016-04-18">
+              2016-04-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在开发应用程序时，经常会面对复杂的视图层级结构。光凭借逻辑来分析不如使用工具来的直观、清晰。目前较为常用的调试工具有：</p>
+<ul>
+<li>在GitHub上开源的<a href="https://github.com/tapthaker/DebugView" target="_blank" rel="external">DebugView</a></li>
+<li><a href="http://revealapp.com" target="_blank" rel="external">Reveal</a>视图调试软件</li>
+<li>Xcode自带的视图调试工具</li>
+</ul>
+<p>Reveal相对来讲较为重量级，功能强大并且收费。而DebugView需要使用CocoaPod，比较注重尺寸的标注。下面我们来介绍Xcode中字带的视图调试工具：</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>首先运行项目，然后点击下面调试工具栏的按钮：</p>
+<p><img src="/img/3.png" alt=""></p>
+<p>或者在顶部菜单中点击Debug &gt; View Debugging &gt; Capture View Hierarchy 来启动视图调试。</p>
+<p>进入调试界面后，底部多了一个工具栏：</p>
+<p><img src="/img/4.png" alt=""></p>
+<p>1: 调整视图之间的间距</p>
+<p>2: 显示未被显示的内容</p>
+<p>3: 显示约束(Constraint)</p>
+<p>4: 筛选显示内容</p>
+<p>5: 重置视图</p>
+<p>6: 缩小</p>
+<p>7: 适应屏幕</p>
+<p>8: 放大</p>
+<p>9: 根据加载顺序调整显示的内容</p>
 
           
         

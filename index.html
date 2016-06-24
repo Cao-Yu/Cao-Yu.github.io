@@ -658,6 +658,383 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/07/iOS面试题/iOS面试题-内存管理/" itemprop="url">
+                  iOS面试题-内存管理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-07T12:49:25+08:00" content="2016-05-07">
+              2016-05-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS面试/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS面试</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h1><ul>
+<li>管理的对象是堆区产生的对象，而不是基本数据类型。</li>
+<li>内存管理的核心概念就是引用计数器，当引用计数为 0 的时候，就会被系统回收。</li>
+</ul>
+<h1 id="什么是ARC？"><a href="#什么是ARC？" class="headerlink" title="什么是ARC？"></a>什么是ARC？</h1><p>ARC 是 Auto Reference Counting的缩写，即自动引用计数，由编译器在代码合适的位置中自动添加retain/Release/Autorelease/dealloc方法从而进行内存管理。</p>
+<h1 id="循环引用的产生原因以及解决方法"><a href="#循环引用的产生原因以及解决方法" class="headerlink" title="循环引用的产生原因以及解决方法"></a>循环引用的产生原因以及解决方法</h1><p><img src="http://cc.cocimg.com/api/uploads/20160322/1458636240331049.png" alt=""></p>
+<p>A 对象引用 B 对象作为属性，而B属性又饮用 A对象作为属性。两个对象互相持有对象，所以引用计数一直都是1。</p>
+<p>多个对象间依然会存在循环引用问题，形成一个环，不容易察觉：</p>
+<p><img src="http://cc.cocimg.com/api/uploads/20160322/1458636212752528.png" alt=""></p>
+<p>A 对象引用 B 对象，B 对象引用 C 对象，C 对象引用 D 对象，D 对象引用 A 对象。</p>
+<p>解决办法就是在可能出现循环引用的地方，主动断开一个环节，回收对象。</p>
+<p>或者使用<strong>弱引用</strong>。</p>
+<h1 id="强引用和弱引用"><a href="#强引用和弱引用" class="headerlink" title="强引用和弱引用"></a>强引用和弱引用</h1><ul>
+<li><p>强引用：当前对象被其他对象引用时，会执行<code>retain</code>操作，引用计数器+1。当<code>retainCount=0</code>时，该对象才会被销毁。因为我们要进行对象的内存管理，所以这是默认的引用方式。（默认是强引用）</p>
+</li>
+<li><p>弱引用：当前对象的生命周期不被是否由其他对象引用限制，它本该什么时候销毁就什么时候被销毁。即使它的引用没断，但是当它的生存周期到了时就会被销毁。</p>
+</li>
+</ul>
+<p>在定义属性时，若声明为<code>retain</code>类型的，则就是强引用；若声明为<code>assign</code>类型的，则就是弱引用。后来内存管理都由ARC来完成后，若是强引用，则就声明为<code>strong</code>；若是弱引用，则就声明为<code>weak</code>。</p>
+<p><code>weak</code>严格的说应当叫“ 归零弱引用 ”，即当对象被销毁后，会自动的把它的指针置为<code>nil</code>，这样可以防止野指针错误。而<code>assign</code>销毁对象后不会把该对象的指针置<code>nil</code>，对象已经被销毁，但指针还在痴痴的指向它，这就成了野指针，这是比较危险的。</p>
+<h1 id="copy与引用的区别"><a href="#copy与引用的区别" class="headerlink" title="copy与引用的区别"></a>copy与引用的区别</h1><ul>
+<li>copy 是在堆中完全复制一个对象，并且创建一个新的指针。也就是<code>深拷贝</code></li>
+<li>引用就是用一个新的指针仍然指向同一个对象而已。也就是<code>浅拷贝</code></li>
+</ul>
+<h1 id="简述UITableView的复用机制"><a href="#简述UITableView的复用机制" class="headerlink" title="简述UITableView的复用机制"></a>简述UITableView的复用机制</h1><ul>
+<li>首先，加载占满整个屏幕高度的 cell (通常多一个或者两个)</li>
+<li>每当有 cell 滑出屏幕，便将该 cell 移到资源池(resource pool)当中</li>
+<li>有 cell 画出屏幕，就意味着有 cell 将要滑进屏幕。在 cell 将要滑进屏幕时，首先去资源池当中去寻找</li>
+<li>如果没有找到，返回nil，并且重新创建一个cell。</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/07/iOS面试题/iOS面试题-多线程/" itemprop="url">
+                  iOS面试题－多线程
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-07T12:49:25+08:00" content="2016-05-07">
+              2016-05-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS面试/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS面试</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="网络图片重复下载问题"><a href="#网络图片重复下载问题" class="headerlink" title="网络图片重复下载问题"></a>网络图片重复下载问题</h1><p>使用字典，以图片的 URL 作为 key，每次下载的时候判断有无相同key。</p>
+<h1 id="原子属性"><a href="#原子属性" class="headerlink" title="原子属性"></a>原子属性</h1><p>原子属性采用<strong>多读单写</strong>机制的多线程策略。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/07/iOS面试题/iOS面试题-应用程序/" itemprop="url">
+                  iOS面试题-应用程序
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-07T12:49:25+08:00" content="2016-05-07">
+              2016-05-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS面试/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS面试</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="AppDelegate-生命周期"><a href="#AppDelegate-生命周期" class="headerlink" title="AppDelegate 生命周期"></a>AppDelegate 生命周期</h1><p><a href="http://www.cocoachina.com/bbs/read.php?tid=209348" target="_blank" rel="external">参考</a></p>
+<h1 id="UIViewController-生命周期"><a href="#UIViewController-生命周期" class="headerlink" title="UIViewController 生命周期"></a>UIViewController 生命周期</h1><p><a href="http://blog.csdn.net/huifeidexin_1/article/details/7566226" target="_blank" rel="external">参考</a></p>
+<h1 id="APP发布的上架流程"><a href="#APP发布的上架流程" class="headerlink" title="APP发布的上架流程"></a>APP发布的上架流程</h1><ul>
+<li>登录应用发布网站添加应用信息</li>
+<li>下载安装发布证书</li>
+<li>选择发布证书，使用Archive编译发布包，用Xcode将代码（发布包）上传到服务器</li>
+<li>等待审核通过</li>
+<li>生成IPA：菜单栏-&gt;Product-&gt;Archive</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/07/iOS面试题/iOS面试题-第三方库/" itemprop="url">
                   iOS面试题-第三方库
                 </a>
@@ -916,269 +1293,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/05/07/iOS面试题/iOS面试题-应用程序/" itemprop="url">
-                  iOS面试题-应用程序
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-07T12:49:25+08:00" content="2016-05-07">
-              2016-05-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS面试/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS面试</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="AppDelegate-生命周期"><a href="#AppDelegate-生命周期" class="headerlink" title="AppDelegate 生命周期"></a>AppDelegate 生命周期</h1><p><a href="http://www.cocoachina.com/bbs/read.php?tid=209348" target="_blank" rel="external">参考</a></p>
-<h1 id="UIViewController-生命周期"><a href="#UIViewController-生命周期" class="headerlink" title="UIViewController 生命周期"></a>UIViewController 生命周期</h1><p><a href="http://blog.csdn.net/huifeidexin_1/article/details/7566226" target="_blank" rel="external">参考</a></p>
-<h1 id="APP发布的上架流程"><a href="#APP发布的上架流程" class="headerlink" title="APP发布的上架流程"></a>APP发布的上架流程</h1><ul>
-<li>登录应用发布网站添加应用信息</li>
-<li>下载安装发布证书</li>
-<li>选择发布证书，使用Archive编译发布包，用Xcode将代码（发布包）上传到服务器</li>
-<li>等待审核通过</li>
-<li>生成IPA：菜单栏-&gt;Product-&gt;Archive</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/07/iOS面试题/iOS面试题-内存管理/" itemprop="url">
-                  iOS面试题-内存管理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-07T12:49:25+08:00" content="2016-05-07">
-              2016-05-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS面试/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS面试</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h1><ul>
-<li>管理的对象是堆区产生的对象，而不是基本数据类型。</li>
-<li>内存管理的核心概念就是引用计数器，当引用计数为 0 的时候，就会被系统回收。</li>
-</ul>
-<h1 id="什么是ARC？"><a href="#什么是ARC？" class="headerlink" title="什么是ARC？"></a>什么是ARC？</h1><p>ARC 是 Auto Reference Counting的缩写，即自动引用计数，由编译器在代码合适的位置中自动添加retain/Release/Autorelease/dealloc方法从而进行内存管理。</p>
-<h1 id="循环引用的产生原因以及解决方法"><a href="#循环引用的产生原因以及解决方法" class="headerlink" title="循环引用的产生原因以及解决方法"></a>循环引用的产生原因以及解决方法</h1><p><img src="http://cc.cocimg.com/api/uploads/20160322/1458636240331049.png" alt=""></p>
-<p>A 对象引用 B 对象作为属性，而B属性又饮用 A对象作为属性。两个对象互相持有对象，所以引用计数一直都是1。</p>
-<p>多个对象间依然会存在循环引用问题，形成一个环，不容易察觉：</p>
-<p><img src="http://cc.cocimg.com/api/uploads/20160322/1458636212752528.png" alt=""></p>
-<p>A 对象引用 B 对象，B 对象引用 C 对象，C 对象引用 D 对象，D 对象引用 A 对象。</p>
-<p>解决办法就是在可能出现循环引用的地方，主动断开一个环节，回收对象。</p>
-<p>或者使用<strong>弱引用</strong>。</p>
-<h1 id="强引用和弱引用"><a href="#强引用和弱引用" class="headerlink" title="强引用和弱引用"></a>强引用和弱引用</h1><ul>
-<li><p>强引用：当前对象被其他对象引用时，会执行<code>retain</code>操作，引用计数器+1。当<code>retainCount=0</code>时，该对象才会被销毁。因为我们要进行对象的内存管理，所以这是默认的引用方式。（默认是强引用）</p>
-</li>
-<li><p>弱引用：当前对象的生命周期不被是否由其他对象引用限制，它本该什么时候销毁就什么时候被销毁。即使它的引用没断，但是当它的生存周期到了时就会被销毁。</p>
-</li>
-</ul>
-<p>在定义属性时，若声明为<code>retain</code>类型的，则就是强引用；若声明为<code>assign</code>类型的，则就是弱引用。后来内存管理都由ARC来完成后，若是强引用，则就声明为<code>strong</code>；若是弱引用，则就声明为<code>weak</code>。</p>
-<p><code>weak</code>严格的说应当叫“ 归零弱引用 ”，即当对象被销毁后，会自动的把它的指针置为<code>nil</code>，这样可以防止野指针错误。而<code>assign</code>销毁对象后不会把该对象的指针置<code>nil</code>，对象已经被销毁，但指针还在痴痴的指向它，这就成了野指针，这是比较危险的。</p>
-<h1 id="copy与引用的区别"><a href="#copy与引用的区别" class="headerlink" title="copy与引用的区别"></a>copy与引用的区别</h1><ul>
-<li>copy 是在堆中完全复制一个对象，并且创建一个新的指针。也就是<code>深拷贝</code></li>
-<li>引用就是用一个新的指针仍然指向同一个对象而已。也就是<code>浅拷贝</code></li>
-</ul>
-<h1 id="简述UITableView的复用机制"><a href="#简述UITableView的复用机制" class="headerlink" title="简述UITableView的复用机制"></a>简述UITableView的复用机制</h1><ul>
-<li>首先，加载占满整个屏幕高度的 cell (通常多一个或者两个)</li>
-<li>每当有 cell 滑出屏幕，便将该 cell 移到资源池(resource pool)当中</li>
-<li>有 cell 画出屏幕，就意味着有 cell 将要滑进屏幕。在 cell 将要滑进屏幕时，首先去资源池当中去寻找</li>
-<li>如果没有找到，返回nil，并且重新创建一个cell。</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/05/07/iOS面试题/iOS面试题-UI/" itemprop="url">
                   iOS面试题-UI
                 </a>
@@ -1266,120 +1380,6 @@
 <li>presentViewController提供的是一个模态视图控制器</li>
 <li>pushViewController提供一个栈控制器数组，push/pop</li>
 </ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/07/iOS面试题/iOS面试题-多线程/" itemprop="url">
-                  iOS面试题－多线程
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-07T12:49:25+08:00" content="2016-05-07">
-              2016-05-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS面试/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS面试</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="网络图片重复下载问题"><a href="#网络图片重复下载问题" class="headerlink" title="网络图片重复下载问题"></a>网络图片重复下载问题</h1><p>使用字典，以图片的 URL 作为 key，每次下载的时候判断有无相同key。</p>
-<h1 id="原子属性"><a href="#原子属性" class="headerlink" title="原子属性"></a>原子属性</h1><p>原子属性采用<strong>多读单写</strong>机制的多线程策略。</p>
 
           
         
