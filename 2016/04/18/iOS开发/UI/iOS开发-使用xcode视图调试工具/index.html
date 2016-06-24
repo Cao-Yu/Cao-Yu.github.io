@@ -27,7 +27,9 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -49,18 +51,14 @@
   
 
   
-    
-      
-    
-
-    
-  
 
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Menlo:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
+
+
 
 
 
@@ -79,7 +77,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/img/author.png?v=5.0.1" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
 
 
 
@@ -137,6 +135,11 @@ Reveal相对来讲较为重量级，功能强大并且收费。而DebugView需�
   };
 </script>
 
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/04/18/iOS开发/UI/iOS开发-使用xcode视图调试工具/"/>
+
   <title> iOS开发-使用xcode视图调试工具 | 曹宇的技术博客 </title>
 </head>
 
@@ -193,7 +196,7 @@ Reveal相对来讲较为重量级，功能强大并且收费。而DebugView需�
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -203,9 +206,19 @@ Reveal相对来讲较为重量级，功能强大并且收费。而DebugView需�
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
           </a>
         </li>
       
@@ -213,7 +226,7 @@ Reveal相对来讲较为重量级，功能强大并且收费。而DebugView需�
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -223,19 +236,9 @@ Reveal相对来讲较为重量级，功能强大并且收费。而DebugView需�
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
-            
-            关于
           </a>
         </li>
       
@@ -360,31 +363,21 @@ Reveal相对来讲较为重量级，功能强大并且收费。而DebugView需�
 
       
     </div>
-    
+
     <div>
       
         
+<div id="wechat_subscriber" style="display: block； padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/img/money.jpg" alt="曹宇 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>雷霆雨露，俱是天恩。</div>
+</div>
+
       
     </div>
 
     <div>
       
         
-<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
-  <div>雷霆雨露，俱是天恩。滴水浇灌，苗木林森。</div>
-  <button id="rewardButton", disable="enable", onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}", style="cursor: pointer; border: 0; outline: 0; border-radius: 100%; padding: 0; margin: 0; letter-spacing: normal; text-transform: none; text-indent: 0px; text-shadow: none">
-    <span onmouseover="this.style.color='rgb(236,96,0)';this.style.background='rgb(204,204,204)'" onMouseOut="this.style.color='#fff';this.style.background='rgb(236,96,0)'" style="display: inline-block; width: 70px; height: 70px; border-radius: 100%; line-height: 81px; color: #fff; font: 400 35px/75px 'microsofty'; background: rgb(236,96,0)">赏</span>
-  </button>
-  <div id="QR" style="display: none;">
-    
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/img/money.png" alt="曹宇 WeChat Pay" style="width: 200px; max-width: 100%; display: inline-block"/>
-        <p>微信打赏</p>
-      </div>
-    
-    
-  </div>
-</div>
 
       
     </div>
@@ -402,8 +395,8 @@ Reveal相对来讲较为重量级，功能强大并且收费。而DebugView需�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/09/iOS开发/UI/iOS开发-UINavigationController/" rel="next" title="iOS开发-UINavigationController">
-                <i class="fa fa-chevron-left"></i> iOS开发-UINavigationController
+              <a href="/2016/04/09/iOS开发/UI/iOS开发-UIScrollView/" rel="next" title="iOS开发-UIScrollView">
+                <i class="fa fa-chevron-left"></i> iOS开发-UIScrollView
               </a>
             
           </div>
@@ -472,7 +465,7 @@ Reveal相对来讲较为重量级，功能强大并且收费。而DebugView需�
       <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/default_avatar.jpg"
+               src="/images/avatar.gif"
                alt="曹宇" />
           <p class="site-author-name" itemprop="name">曹宇</p>
           <p class="site-description motion-element" itemprop="description"></p>
@@ -508,26 +501,6 @@ Reveal相对来讲较为重量级，功能强大并且收费。而DebugView需�
         
 
         <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/Cao-Yu" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://www.zhihu.com/people/universecao" target="_blank" title="知乎">
-                  
-                    <i class="fa fa-zhihu"></i>
-                  
-                  知乎
-                </a>
-              </span>
-            
           
         </div>
 
@@ -670,6 +643,7 @@ Reveal相对来讲较为重量级，功能强大并且收费。而DebugView需�
 
 
   
+
 
 
 
