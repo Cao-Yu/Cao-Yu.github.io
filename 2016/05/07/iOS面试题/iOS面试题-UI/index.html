@@ -86,32 +86,35 @@
 
 <meta name="description" content="UI 篇
 UIView 和 CALayer 的区别和联系
+UIView 可以响应事件，而 CALayer 不可以。
 UIView 都是 UIResponder 的子类，所以可以响应事件。而 CALayer 直接继承 NSObject，并没有处理事件的接口。
 
 UIView 是 CALayer 的CALayerDelegate。
 
-每个 UIView 内部都有一个 CALayer 在背后提供内容的绘制和显示，并且 UIView 的尺寸样式都由内部的 Lay">
+每个 UIView 内部都有一个 CALayer 在背后提供内容的绘">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS面试题-UI">
 <meta property="og:url" content="http://yoursite.com/2016/05/07/iOS面试题/iOS面试题-UI/index.html">
 <meta property="og:site_name" content="曹宇的技术博客">
 <meta property="og:description" content="UI 篇
 UIView 和 CALayer 的区别和联系
+UIView 可以响应事件，而 CALayer 不可以。
 UIView 都是 UIResponder 的子类，所以可以响应事件。而 CALayer 直接继承 NSObject，并没有处理事件的接口。
 
 UIView 是 CALayer 的CALayerDelegate。
 
-每个 UIView 内部都有一个 CALayer 在背后提供内容的绘制和显示，并且 UIView 的尺寸样式都由内部的 Lay">
-<meta property="og:updated_time" content="2016-05-21T11:27:35.000Z">
+每个 UIView 内部都有一个 CALayer 在背后提供内容的绘">
+<meta property="og:updated_time" content="2016-07-01T07:51:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS面试题-UI">
 <meta name="twitter:description" content="UI 篇
 UIView 和 CALayer 的区别和联系
+UIView 可以响应事件，而 CALayer 不可以。
 UIView 都是 UIResponder 的子类，所以可以响应事件。而 CALayer 直接继承 NSObject，并没有处理事件的接口。
 
 UIView 是 CALayer 的CALayerDelegate。
 
-每个 UIView 内部都有一个 CALayer 在背后提供内容的绘制和显示，并且 UIView 的尺寸样式都由内部的 Lay">
+每个 UIView 内部都有一个 CALayer 在背后提供内容的绘">
 
 
 
@@ -335,6 +338,7 @@ UIView 是 CALayer 的CALayerDelegate。
       
         <h1 id="UI-篇"><a href="#UI-篇" class="headerlink" title="UI 篇"></a>UI 篇</h1><hr>
 <h2 id="UIView-和-CALayer-的区别和联系"><a href="#UIView-和-CALayer-的区别和联系" class="headerlink" title="UIView 和 CALayer 的区别和联系"></a>UIView 和 CALayer 的区别和联系</h2><ul>
+<li>UIView 可以响应事件，而 CALayer 不可以。</li>
 <li><p>UIView 都是 UIResponder 的子类，所以可以响应事件。而 CALayer 直接继承 NSObject，并没有处理事件的接口。</p>
 </li>
 <li><p>UIView 是 CALayer 的CALayerDelegate。</p>
@@ -347,7 +351,11 @@ UIView 是 CALayer 的CALayerDelegate。
 <p><a href="http://www.cocoachina.com/ios/20150828/13244.html" target="_blank" rel="external">参考</a></p>
 <h2 id="UIView-事件传递响应链"><a href="#UIView-事件传递响应链" class="headerlink" title="UIView 事件传递响应链"></a>UIView 事件传递响应链</h2><p><a href="http://blog.csdn.net/chenruizhi/article/details/25319465" target="_blank" rel="external">参考</a></p>
 <p><a href="http://cao-yu.github.io/2016/04/23/iOS开发/UI/iOS开发-事件传递响应链/" target="_blank" rel="external">我的答案</a></p>
-<h2 id="UIImageView-的圆角设置"><a href="#UIImageView-的圆角设置" class="headerlink" title="UIImageView 的圆角设置"></a>UIImageView 的圆角设置</h2><p>一种是在layer 设置圆角弧度。<br>一种是UIBezierPath 曲线的方式。都是layer 上的解决方案<br>tableView的显示效率问题。</p>
+<h2 id="UIImageView-的圆角设置"><a href="#UIImageView-的圆角设置" class="headerlink" title="UIImageView 的圆角设置"></a>UIImageView 的圆角设置</h2><ul>
+<li>一种是在layer 设置圆角弧度。</li>
+<li>一种是UIBezierPath 曲线的方式。</li>
+</ul>
+<p>二者都是layer 上的解决 tableView 的显示效率问题。</p>
 <p>UIImageView 的圆角通过直接截取图片实现，其它视图的圆角可以通过 Core Graphics 画出圆角矩形实现。</p>
 <p>实现圆角cornerRadius要比mask高效很多。</p>
 <p>以下是用 UIBezierPath 曲线的方式来实现圆角：</p>
@@ -386,16 +394,16 @@ UIView 是 CALayer 的CALayerDelegate。
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/07/iOS面试题/iOS面试题-内存管理/" rel="next" title="iOS面试题-内存管理">
-                <i class="fa fa-chevron-left"></i> iOS面试题-内存管理
+              <a href="/2016/05/07/iOS面试题/iOS面试题-多线程/" rel="next" title="iOS面试题－多线程">
+                <i class="fa fa-chevron-left"></i> iOS面试题－多线程
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/05/07/iOS面试题/iOS面试题-应用程序/" rel="prev" title="iOS面试题-应用程序">
-                iOS面试题-应用程序 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/05/07/干货/iOS干货/" rel="prev" title="iOS干货">
+                iOS干货 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -456,7 +464,7 @@ UIView 是 CALayer 的CALayerDelegate。
       <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
+               src="/img/author.png"
                alt="曹宇" />
           <p class="site-author-name" itemprop="name">曹宇</p>
           <p class="site-description motion-element" itemprop="description"></p>
@@ -464,7 +472,7 @@ UIView 是 CALayer 的CALayerDelegate。
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
