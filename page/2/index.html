@@ -590,6 +590,131 @@
             
               
                 
+                <a class="post-title-link" href="/2016/04/23/iOS开发/UI/iOS开发-事件传递响应链/" itemprop="url">
+                  iOS开发-事件传递以及响应链
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-23T10:08:25+08:00" content="2016-04-23">
+              2016-04-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="什么是事件传递？"><a href="#什么是事件传递？" class="headerlink" title="什么是事件传递？"></a>什么是事件传递？</h1><p>事件传递说白了就是iOS应用程序对用户操作进行逐级、有序处理的过程，这个过程会由UIWindow开始逐级向子视图进行检查。</p>
+<p><strong>第一步：捕捉用户操作</strong></p>
+<p>当用户触摸屏幕触发一个触摸事件(Touch Event)时，UIKit 会创建一个包含事件信息的 UIEvent 对象。然后把这个UIEvent对象放到到事件队列当中等待处理。对于触摸事件来说，这个 UIEvent对象是一系列触摸操作的集合。</p>
+<p>单例的UIApplication对象会从事件队列(Event Queue)的顶部取出这个UIEvent对象。然后，这个对象会首先被送到当前应用的UIWindow对象，这个UIWindow对象会带着需要处理的UIEvent对象进行一个叫做hit-testing的过程。这个过程说白了就是寻找用户点击的位置到底是属于哪个View。</p>
+<p><strong>第二步：通过hit-testing寻找触摸目标</strong></p>
+<p>hitTest方法首先会掉用pointInside方法来判断触摸的位置是否在被检查的View中，如果是，那么pointInside方法返回True，然后继续使用hitTest方法检查该View的所有子视图。如果触摸位置不在被检查的View中，那么pointInside方法返回false，因而hitTest方法会返回nil。这样的话，不再检查该View的子类。这就意味着，<strong>如果要让某个View的事件被触发，必须保证该View在它的父视图当中</strong>。</p>
+<p>下面使用一个苹果文档中提供的例子来说明：</p>
+<p><img src="https://developer.apple.com/library/ios/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/hit_testing_2x.png" alt="Hit-testing"></p>
+<p>如果用户触摸View E，首先，检查View A，用户的操作处于View A，所以下一步检查View A的子类View B和View C。显然，触摸点不在View B中，所以开始检查View C中的两个View。最后，View E被判定为被用户点击的视图。</p>
+<h1 id="什么是响应链？"><a href="#什么是响应链？" class="headerlink" title="什么是响应链？"></a>什么是响应链？</h1><p>响应链是一系列连在一起的响应者对象，开始于第一响应者(First Respondor)，结束于当前应用程序对象(UIApplication)。响应者对象就是能处理事件的对象，响应者对象的基类是UIResponder，所有响应者都是这个类的子类：</p>
+<p><img src="/img/6.png" alt=""></p>
+<p>如果想要让某一View成为第一响应者，需要满足两个条件：重写继承自UIResponder的<code>canBecomeFirstResponder</code>方法并返回true，并且接收一个来自<code>becomeFirstResponder</code>方法的message。UIKit自动的将UITextfield和UITextView这两个控件设置为当用户点击时自动成为第一响应者，而其他的控件用户就需要自己设置<code>becomeFirstResponder</code>了。</p>
+<p>当我们经过上一步的hitTest方法检查出被点击的视图后，如果该视图不能处理该事件，那么就会使用<code>nextResponder</code>方法将事件传递给响应链的下一个响应者对象，直到被处理或者没有下一个响应者。如果连UIApplication都处理不了事件，那么该事件将会被销毁。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/23/数据结构学习笔记/数据结构学习笔记-算法的度量/" itemprop="url">
                   数据结构学习笔记-算法的度量
                 </a>
@@ -732,133 +857,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/04/23/iOS开发/UI/iOS开发-事件传递响应链/" itemprop="url">
-                  iOS开发-事件传递以及响应链
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-23T10:08:25+08:00" content="2016-04-23">
-              2016-04-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS开发</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="什么是事件传递？"><a href="#什么是事件传递？" class="headerlink" title="什么是事件传递？"></a>什么是事件传递？</h1><p>事件传递说白了就是iOS应用程序对用户操作进行逐级、有序处理的过程，这个过程会由UIWindow开始逐级向子视图进行检查。</p>
-<p><strong>第一步：捕捉用户操作</strong></p>
-<p>当用户触摸屏幕触发一个触摸事件(Touch Event)时，UIKit 会创建一个包含事件信息的 UIEvent 对象。然后把这个UIEvent对象放到到事件队列当中等待处理。对于触摸事件来说，这个 UIEvent对象是一系列触摸操作的集合。</p>
-<p>单例的UIApplication对象会从事件队列(Event Queue)的顶部取出这个UIEvent对象。然后，这个对象会首先被送到当前应用的UIWindow对象，这个UIWindow对象会带着需要处理的UIEvent对象进行一个叫做hit-testing的过程。这个过程说白了就是寻找用户点击的位置到底是属于哪个View。</p>
-<p><strong>第二步：通过hit-testing寻找触摸目标</strong></p>
-<p>hitTest方法首先会掉用pointInside方法来判断触摸的位置是否在被检查的View中，如果是，那么pointInside方法返回True，然后继续使用hitTest方法检查该View的所有子视图。如果触摸位置不在被检查的View中，那么pointInside方法返回false，因而hitTest方法会返回nil。这样的话，不再检查该View的子类。这就意味着，<strong>如果要让某个View的事件被触发，必须保证该View在它的父视图当中</strong>。</p>
-<p>下面使用一个苹果文档中提供的例子来说明：</p>
-<p><img src="https://developer.apple.com/library/ios/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/hit_testing_2x.png" alt="Hit-testing"></p>
-<p>如果用户触摸View E，首先，检查View A，用户的操作处于View A，所以下一步检查View A的子类View B和View C。显然，触摸点不在View B中，所以开始检查View C中的两个View。最后，View E被判定为被用户点击的视图。</p>
-<h1 id="什么是响应链？"><a href="#什么是响应链？" class="headerlink" title="什么是响应链？"></a>什么是响应链？</h1><p>响应链是一系列连在一起的响应者对象，开始于第一响应者(First Respondor)，结束于当前应用程序对象(UIApplication)。响应者对象就是能处理事件的对象，响应者对象的基类是UIResponder，所有响应者都是这个类的子类：</p>
-<p><img src="/img/6.png" alt=""></p>
-<p>如果想要让某一View成为第一响应者，需要满足两个条件：重写继承自UIResponder的<code>canBecomeFirstResponder</code>方法并返回true，并且接收一个来自<code>becomeFirstResponder</code>方法的message。UIKit自动的将UITextfield和UITextView这两个控件设置为当用户点击时自动成为第一响应者，而其他的控件用户就需要自己设置<code>becomeFirstResponder</code>了。</p>
-<p>当我们经过上一步的hitTest方法检查出被点击的视图后，如果该视图不能处理该事件，那么就会使用<code>nextResponder</code>方法将事件传递给响应链的下一个响应者对象，直到被处理或者没有下一个响应者。如果连UIApplication都处理不了事件，那么该事件将会被销毁。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/18/iOS开发/UI/iOS开发-使用xcode视图调试工具/" itemprop="url">
-                  iOS开发-使用xcode视图调试工具
+                <a class="post-title-link" href="/2016/04/18/iOS面试题/iOS面试题-流程/" itemprop="url">
+                  未命名
                 </a>
               
             
@@ -877,25 +877,6 @@
           </span>
 
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS开发</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
 
           
             
@@ -920,28 +901,7 @@
       
         
           
-            <p>在开发应用程序时，经常会面对复杂的视图层级结构。光凭借逻辑来分析不如使用工具来的直观、清晰。目前较为常用的调试工具有：</p>
-<ul>
-<li>在GitHub上开源的<a href="https://github.com/tapthaker/DebugView" target="_blank" rel="external">DebugView</a></li>
-<li><a href="http://revealapp.com" target="_blank" rel="external">Reveal</a>视图调试软件</li>
-<li>Xcode自带的视图调试工具</li>
-</ul>
-<p>Reveal相对来讲较为重量级，功能强大并且收费。而DebugView需要使用CocoaPod，比较注重尺寸的标注。下面我们来介绍Xcode中字带的视图调试工具：</p>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>首先运行项目，然后点击下面调试工具栏的按钮：</p>
-<p><img src="/img/3.png" alt=""></p>
-<p>或者在顶部菜单中点击Debug &gt; View Debugging &gt; Capture View Hierarchy 来启动视图调试。</p>
-<p>进入调试界面后，底部多了一个工具栏：</p>
-<p><img src="/img/4.png" alt=""></p>
-<p>1: 调整视图之间的间距</p>
-<p>2: 显示未被显示的内容</p>
-<p>3: 显示约束(Constraint)</p>
-<p>4: 筛选显示内容</p>
-<p>5: 重置视图</p>
-<p>6: 缩小</p>
-<p>7: 适应屏幕</p>
-<p>8: 放大</p>
-<p>9: 根据加载顺序调整显示的内容</p>
-
+            <h1 id="开场白"><a href="#开场白" class="headerlink" title="开场白"></a>开场白</h1><h4 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h4><h4 id="在做过的项目中担任的角色"><a href="#在做过的项目中担任的角色" class="headerlink" title="在做过的项目中担任的角色"></a>在做过的项目中担任的角色</h4><h4 id="在做过的项目中有价值的地方（亮点）"><a href="#在做过的项目中有价值的地方（亮点）" class="headerlink" title="在做过的项目中有价值的地方（亮点）"></a>在做过的项目中有价值的地方（亮点）</h4>
           
         
       
@@ -1134,8 +1094,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/04/18/iOS面试题/iOS面试题-流程/" itemprop="url">
-                  未命名
+                <a class="post-title-link" href="/2016/04/18/iOS开发/UI/iOS开发-使用xcode视图调试工具/" itemprop="url">
+                  iOS开发-使用xcode视图调试工具
                 </a>
               
             
@@ -1153,6 +1113,25 @@
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -1178,7 +1157,28 @@
       
         
           
-            <h1 id="开场白"><a href="#开场白" class="headerlink" title="开场白"></a>开场白</h1><h4 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h4><h4 id="在做过的项目中担任的角色"><a href="#在做过的项目中担任的角色" class="headerlink" title="在做过的项目中担任的角色"></a>在做过的项目中担任的角色</h4><h4 id="在做过的项目中有价值的地方（亮点）"><a href="#在做过的项目中有价值的地方（亮点）" class="headerlink" title="在做过的项目中有价值的地方（亮点）"></a>在做过的项目中有价值的地方（亮点）</h4>
+            <p>在开发应用程序时，经常会面对复杂的视图层级结构。光凭借逻辑来分析不如使用工具来的直观、清晰。目前较为常用的调试工具有：</p>
+<ul>
+<li>在GitHub上开源的<a href="https://github.com/tapthaker/DebugView" target="_blank" rel="external">DebugView</a></li>
+<li><a href="http://revealapp.com" target="_blank" rel="external">Reveal</a>视图调试软件</li>
+<li>Xcode自带的视图调试工具</li>
+</ul>
+<p>Reveal相对来讲较为重量级，功能强大并且收费。而DebugView需要使用CocoaPod，比较注重尺寸的标注。下面我们来介绍Xcode中字带的视图调试工具：</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>首先运行项目，然后点击下面调试工具栏的按钮：</p>
+<p><img src="/img/3.png" alt=""></p>
+<p>或者在顶部菜单中点击Debug &gt; View Debugging &gt; Capture View Hierarchy 来启动视图调试。</p>
+<p>进入调试界面后，底部多了一个工具栏：</p>
+<p><img src="/img/4.png" alt=""></p>
+<p>1: 调整视图之间的间距</p>
+<p>2: 显示未被显示的内容</p>
+<p>3: 显示约束(Constraint)</p>
+<p>4: 筛选显示内容</p>
+<p>5: 重置视图</p>
+<p>6: 缩小</p>
+<p>7: 适应屏幕</p>
+<p>8: 放大</p>
+<p>9: 根据加载顺序调整显示的内容</p>
+
           
         
       
@@ -1227,8 +1227,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/04/09/iOS开发/UI/iOS开发-UIScrollView/" itemprop="url">
-                  iOS开发-UIScrollView
+                <a class="post-title-link" href="/2016/04/09/iOS开发/UI/iOS开发-UINavigationController/" itemprop="url">
+                  iOS开发-UINavigationController
                 </a>
               
             
@@ -1290,20 +1290,13 @@
       
         
           
-            <h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let scrollView = UIScrollView(<span class="name">frame</span>: CGRect)</span><br></pre></td></tr></table></figure>
-<p>通常使用当前视图的 <code>view.bounds</code> 属性作为参数传递给 <code>init()</code> 方法。也可以指定一个矩形，指定坐标和长宽：</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let scrollView = UIScrollView(<span class="string">frame:</span> CGRect(<span class="string">x:</span> CGFloat, <span class="string">y:</span> TCGFloat, <span class="string">width:</span> 		CGFloat, <span class="string">height:</span> CGFloat))</span><br></pre></td></tr></table></figure>
-<h1 id="常用属性"><a href="#常用属性" class="headerlink" title="常用属性"></a>常用属性</h1><p><code>scrollEnabled</code>: 控制是否可以滚动。</p>
-<p><code>tracking</code> and <code>dragging</code>： 响应用户的触摸和滑动。</p>
-<p><code>contentSize</code>： 设置内容的长和宽，传入 CGSize 作为参数。</p>
-<h1 id="故障排除"><a href="#故障排除" class="headerlink" title="故障排除"></a>故障排除</h1><h2 id="故障：无法滚动"><a href="#故障：无法滚动" class="headerlink" title="故障：无法滚动"></a>故障：无法滚动</h2><p>当我们使用 UIScrollView 控件时，会出现有显示内容，但是无法滚动的情况。</p>
-<p><strong>解决方法</strong></p>
-<p>第一步：确定 UIScrollView 对象的 contentSize 属性是否大于父视图</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置 contentSize 属性为指定宽高</span></span><br><span class="line">scrollView<span class="selector-class">.contentSize</span> = CGSizeMake(<span class="attribute">width</span>, height)</span><br></pre></td></tr></table></figure>
-<p>第二步：检查设置 contentSize 的语句在哪个方法中</p>
-<p>上面的语句不能放在 viewDidLoad() 方法当里，在 iOS 8 以上可以放在 viewDidAppear() 方法中。而在 iOS 7 ，可以参考<a href="http://www.cocoachina.com/bbs/read.php?tid-205386-page-1.html" target="_blank" rel="external">iOS7 下 UIScrollView 无法滑动</a> 中提到的方法，放在 viewDidLayoutSubviews() 方法中。</p>
-<p><strong>原理</strong></p>
-<p>iOS 的view加载过程会执行很多方法，当 view 加载完毕后，会先执行 <code>viewDidLoad()</code> 方法，然后在开启 Auto Layout 的情况下，会根据自动布局再一次计算 Constraint ，在计算完毕后会执行 <code>viewDidLayoutSubviews()</code> 方法。而最后才会执行 <code>viewDidAppear()</code> 方法。所以我们在 view 即将显示的时候设置 scrollView 的 <code>contentSize</code> 属性就可以啦。</p>
+            <p>iOS 中的 UINavigationController 是十分常用的视图，几乎可以在每一个 App 中看到。<br>UINavigationController ，使用<strong>栈(Stack)</strong>的结构来实现，这样便于管理视图之间的层级关系。初始界面为栈底，之后每切换到一个新的界面，就将新的界面置于栈顶，也就是我们常说的<strong>压栈(Push)</strong>。每次返回之前的界面，就把当前界面从栈中取出，也就是<strong>出栈(Pop)</strong>。</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="第一种方式：在-Storyboard-中添加"><a href="#第一种方式：在-Storyboard-中添加" class="headerlink" title="第一种方式：在 Storyboard 中添加"></a>第一种方式：在 Storyboard 中添加</h2><p><strong>第一步：将 UINavigationController 拖拽进 Storyboard 中</strong></p>
+<p><img src="/img/5.png" alt=""></p>
+<p>可以看到，系统默认给出了 UINavigationController 以及一个 UITableView。左侧的 NavigationController 只是个控制器视图，并没有什么内容要显示；而右侧的 View 才是我们的栈底，是根视图(Root View)。</p>
+<p>如果 UITableView 不是你需要的，可以将它删除，自行拖拽添加一个 UIViewController， 然后右键单击左侧的 NavigationController， 拖拽到新建的 View 中，选择 Push。这样便建立了根视图与视图控制器的连接。之后再添加新的视图的话，只需要把新建的视图关联到位于栈顶的视图就可以了。</p>
+<p><strong>第二步：设置跳转和返回按钮</strong></p>
+<p>在 Storyboard 中选中 UINavigationBar ，也就是导航栏，在右侧的属性选择器中设置 <code>Tittle</code> 和 <code>Back Button</code> 属性。从而可以自动的为导航栏添加标题和按钮以及跳转关系。</p>
 
           
         
@@ -1480,8 +1473,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/04/09/iOS开发/UI/iOS开发-UINavigationController/" itemprop="url">
-                  iOS开发-UINavigationController
+                <a class="post-title-link" href="/2016/04/09/iOS开发/UI/iOS开发-UIScrollView/" itemprop="url">
+                  iOS开发-UIScrollView
                 </a>
               
             
@@ -1543,13 +1536,20 @@
       
         
           
-            <p>iOS 中的 UINavigationController 是十分常用的视图，几乎可以在每一个 App 中看到。<br>UINavigationController ，使用<strong>栈(Stack)</strong>的结构来实现，这样便于管理视图之间的层级关系。初始界面为栈底，之后每切换到一个新的界面，就将新的界面置于栈顶，也就是我们常说的<strong>压栈(Push)</strong>。每次返回之前的界面，就把当前界面从栈中取出，也就是<strong>出栈(Pop)</strong>。</p>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="第一种方式：在-Storyboard-中添加"><a href="#第一种方式：在-Storyboard-中添加" class="headerlink" title="第一种方式：在 Storyboard 中添加"></a>第一种方式：在 Storyboard 中添加</h2><p><strong>第一步：将 UINavigationController 拖拽进 Storyboard 中</strong></p>
-<p><img src="/img/5.png" alt=""></p>
-<p>可以看到，系统默认给出了 UINavigationController 以及一个 UITableView。左侧的 NavigationController 只是个控制器视图，并没有什么内容要显示；而右侧的 View 才是我们的栈底，是根视图(Root View)。</p>
-<p>如果 UITableView 不是你需要的，可以将它删除，自行拖拽添加一个 UIViewController， 然后右键单击左侧的 NavigationController， 拖拽到新建的 View 中，选择 Push。这样便建立了根视图与视图控制器的连接。之后再添加新的视图的话，只需要把新建的视图关联到位于栈顶的视图就可以了。</p>
-<p><strong>第二步：设置跳转和返回按钮</strong></p>
-<p>在 Storyboard 中选中 UINavigationBar ，也就是导航栏，在右侧的属性选择器中设置 <code>Tittle</code> 和 <code>Back Button</code> 属性。从而可以自动的为导航栏添加标题和按钮以及跳转关系。</p>
+            <h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let scrollView = UIScrollView(<span class="name">frame</span>: CGRect)</span><br></pre></td></tr></table></figure>
+<p>通常使用当前视图的 <code>view.bounds</code> 属性作为参数传递给 <code>init()</code> 方法。也可以指定一个矩形，指定坐标和长宽：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let scrollView = UIScrollView(<span class="string">frame:</span> CGRect(<span class="string">x:</span> CGFloat, <span class="string">y:</span> TCGFloat, <span class="string">width:</span> 		CGFloat, <span class="string">height:</span> CGFloat))</span><br></pre></td></tr></table></figure>
+<h1 id="常用属性"><a href="#常用属性" class="headerlink" title="常用属性"></a>常用属性</h1><p><code>scrollEnabled</code>: 控制是否可以滚动。</p>
+<p><code>tracking</code> and <code>dragging</code>： 响应用户的触摸和滑动。</p>
+<p><code>contentSize</code>： 设置内容的长和宽，传入 CGSize 作为参数。</p>
+<h1 id="故障排除"><a href="#故障排除" class="headerlink" title="故障排除"></a>故障排除</h1><h2 id="故障：无法滚动"><a href="#故障：无法滚动" class="headerlink" title="故障：无法滚动"></a>故障：无法滚动</h2><p>当我们使用 UIScrollView 控件时，会出现有显示内容，但是无法滚动的情况。</p>
+<p><strong>解决方法</strong></p>
+<p>第一步：确定 UIScrollView 对象的 contentSize 属性是否大于父视图</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置 contentSize 属性为指定宽高</span></span><br><span class="line">scrollView<span class="selector-class">.contentSize</span> = CGSizeMake(<span class="attribute">width</span>, height)</span><br></pre></td></tr></table></figure>
+<p>第二步：检查设置 contentSize 的语句在哪个方法中</p>
+<p>上面的语句不能放在 viewDidLoad() 方法当里，在 iOS 8 以上可以放在 viewDidAppear() 方法中。而在 iOS 7 ，可以参考<a href="http://www.cocoachina.com/bbs/read.php?tid-205386-page-1.html" target="_blank" rel="external">iOS7 下 UIScrollView 无法滑动</a> 中提到的方法，放在 viewDidLayoutSubviews() 方法中。</p>
+<p><strong>原理</strong></p>
+<p>iOS 的view加载过程会执行很多方法，当 view 加载完毕后，会先执行 <code>viewDidLoad()</code> 方法，然后在开启 Auto Layout 的情况下，会根据自动布局再一次计算 Constraint ，在计算完毕后会执行 <code>viewDidLayoutSubviews()</code> 方法。而最后才会执行 <code>viewDidAppear()</code> 方法。所以我们在 view 即将显示的时候设置 scrollView 的 <code>contentSize</code> 属性就可以啦。</p>
 
           
         
@@ -1652,6 +1652,35 @@
 
         <div class="links-of-author motion-element">
           
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Cao-Yu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/88b4a7829faf/" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/universecao" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
         </div>
 
         
@@ -1676,7 +1705,7 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
+  &copy;  2015 - 
   <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>

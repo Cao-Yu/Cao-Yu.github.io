@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/06/04/iOS开发/UI/iOS开发-UICollectionView/index.html">
 <meta property="og:site_name" content="曹宇的技术博客">
 <meta property="og:description" content="UICollectionView 是强力版的 UITableView，它的亮点在于可以将数据元素按照我们自定义的方式来呈现出来，甚至连布局都可以是动态的。">
-<meta property="og:updated_time" content="2016-06-24T15:49:28.000Z">
+<meta property="og:updated_time" content="2016-07-01T12:06:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发-UICollectionView">
 <meta name="twitter:description" content="UICollectionView 是强力版的 UITableView，它的亮点在于可以将数据元素按照我们自定义的方式来呈现出来，甚至连布局都可以是动态的。">
@@ -338,7 +338,7 @@
 <h1 id="设置单元格大小"><a href="#设置单元格大小" class="headerlink" title="设置单元格大小"></a>设置单元格大小</h1><p>CollectionView 的功能基本都要靠实现协议来实现，首先要实现 UICollectionViewDelegateFlowLayout 协议中的方法：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyViewController</span>: <span class="type">UIViewController</span>, <span class="type">UICollectionViewDataSource</span>, </span><br><span class="line">	<span class="type">UICollectionViewDelegateFlowLayout &#123; </span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>然后实现一个设置单元格大小的方法：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">collectionView</span><span class="params">(collectionView: UICollectionView, </span><br><span class="line">	layout collectionViewLayout: UICollectionViewLayout, </span><br><span class="line">	sizeForItemAtIndexPath indexPath: NSIndexPath)</span></span> -&gt; <span class="type">CGSize</span> &#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="type">CGSizeMake</span>(<span class="number">80</span>, <span class="number">80</span>)</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">collectionView</span><span class="params">(collectionView: UICollectionView, </span><br><span class="line">	layout collectionViewLayout: UICollectionViewLayout, </span><br><span class="line">	sizeForItemAtIndexPath indexPath: NSIndexPath)</span></span> -&gt; <span class="type">CGSize</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="type">CGSizeMake</span>(<span class="number">80</span>, <span class="number">80</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这样，一个简单的 CollectionView 就完成啦。</p>
 
       
@@ -478,6 +478,35 @@
 
         <div class="links-of-author motion-element">
           
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Cao-Yu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/88b4a7829faf/" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/universecao" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
         </div>
 
         
@@ -513,7 +542,7 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
+  &copy;  2015 - 
   <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
