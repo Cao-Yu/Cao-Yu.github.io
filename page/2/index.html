@@ -321,7 +321,8 @@
       
         
           
-            <h1 id="线性表的定义"><a href="#线性表的定义" class="headerlink" title="线性表的定义"></a>线性表的定义</h1><p><strong>线性表是零个或多个数据元素的有限序列</strong>。</p>
+            <a id="more"></a>
+<h1 id="线性表的定义"><a href="#线性表的定义" class="headerlink" title="线性表的定义"></a>线性表的定义</h1><p><strong>线性表是零个或多个数据元素的有限序列</strong>。</p>
 <p>从定义中可以发现以下两个特点：</p>
 <ul>
 <li>有序性：元素之间有顺序，第一个元素没有前驱，第二个元素没有后继。</li>
@@ -704,7 +705,8 @@
       
         
           
-            <h1 id="时间复杂度的定义"><a href="#时间复杂度的定义" class="headerlink" title="时间复杂度的定义"></a>时间复杂度的定义</h1><p>在进行算法的分析时，算法的总执行时间 T(n) 是关于问题规模 n 的函数。记作 T(n) = O(f(n))。也就是我们常说的大 O 表示法。</p>
+            <a id="more"></a>
+<h1 id="时间复杂度的定义"><a href="#时间复杂度的定义" class="headerlink" title="时间复杂度的定义"></a>时间复杂度的定义</h1><p>在进行算法的分析时，算法的总执行时间 T(n) 是关于问题规模 n 的函数。记作 T(n) = O(f(n))。也就是我们常说的大 O 表示法。</p>
 <p><strong>在这里我们计算的时间复杂度，是对于最坏情况的考察</strong>，因为这代表着系统的鲁棒性有保证。平均情况的时间复杂度是对运算时间的一个期望，并不能表示最坏情况。</p>
 <h1 id="时间复杂度的计算"><a href="#时间复杂度的计算" class="headerlink" title="时间复杂度的计算"></a>时间复杂度的计算</h1><p>时间复杂度的计算，大体上遵从以下规律，实际分析当中需要具体分析。</p>
 <blockquote>
@@ -827,7 +829,8 @@
       
         
           
-            <h1 id="开场白"><a href="#开场白" class="headerlink" title="开场白"></a>开场白</h1><h4 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h4><h4 id="在做过的项目中担任的角色"><a href="#在做过的项目中担任的角色" class="headerlink" title="在做过的项目中担任的角色"></a>在做过的项目中担任的角色</h4><h4 id="在做过的项目中有价值的地方（亮点）"><a href="#在做过的项目中有价值的地方（亮点）" class="headerlink" title="在做过的项目中有价值的地方（亮点）"></a>在做过的项目中有价值的地方（亮点）</h4>
+            <a id="more"></a>
+<h1 id="开场白"><a href="#开场白" class="headerlink" title="开场白"></a>开场白</h1><h4 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h4><h4 id="在做过的项目中担任的角色"><a href="#在做过的项目中担任的角色" class="headerlink" title="在做过的项目中担任的角色"></a>在做过的项目中担任的角色</h4><h4 id="在做过的项目中有价值的地方（亮点）"><a href="#在做过的项目中有价值的地方（亮点）" class="headerlink" title="在做过的项目中有价值的地方（亮点）"></a>在做过的项目中有价值的地方（亮点）</h4>
           
         
       
@@ -1111,6 +1114,121 @@
             
               
                 
+                <a class="post-title-link" href="/2016/04/09/iOS开发/UI/iOS开发-UINavigationController/" itemprop="url">
+                  iOS开发-UINavigationController
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-09T13:10:22+08:00" content="2016-04-09">
+              2016-04-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>iOS 中的 UINavigationController 是十分常用的视图，几乎可以在每一个 App 中看到。<br>UINavigationController ，使用<strong>栈(Stack)</strong>的结构来实现，这样便于管理视图之间的层级关系。初始界面为栈底，之后每切换到一个新的界面，就将新的界面置于栈顶，也就是我们常说的<strong>压栈(Push)</strong>。每次返回之前的界面，就把当前界面从栈中取出，也就是<strong>出栈(Pop)</strong>。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/09/iOS开发/UI/iOS开发-UINavigationController/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/09/iOS开发/UI/iOS开发-UILabel/" itemprop="url">
                   iOS开发-UILabel
                 </a>
@@ -1192,121 +1310,6 @@
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第 0 到第 6 个字符设置特定字体</span></span><br><span class="line">label<span class="selector-class">.addAttribute</span>(NSFontAttributeName, <span class="attribute">value</span>: UIFont(<span class="attribute">name</span>: <span class="string">"HelveticaNeue-		Bold"</span>, <span class="attribute">size</span>: <span class="number">16</span>)!, <span class="attribute">range</span>: NSMakeRange(<span class="number">0</span>, <span class="number">6</span>))</span><br></pre></td></tr></table></figure>
 
           
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/09/iOS开发/UI/iOS开发-UINavigationController/" itemprop="url">
-                  iOS开发-UINavigationController
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-09T13:10:22+08:00" content="2016-04-09">
-              2016-04-09
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS开发</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>iOS 中的 UINavigationController 是十分常用的视图，几乎可以在每一个 App 中看到。<br>UINavigationController ，使用<strong>栈(Stack)</strong>的结构来实现，这样便于管理视图之间的层级关系。初始界面为栈底，之后每切换到一个新的界面，就将新的界面置于栈顶，也就是我们常说的<strong>压栈(Push)</strong>。每次返回之前的界面，就把当前界面从栈中取出，也就是<strong>出栈(Pop)</strong>。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/09/iOS开发/UI/iOS开发-UINavigationController/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
         
       
     </div>

@@ -86,20 +86,20 @@
 
 <meta name="description" content="Move Zeroes原题地址：Move Zeroes
 问题描述：移除数组中的零，并且保持元素的顺序，且不能建立新的数组。
-My Solution12345678910111213func moveZeroes(inout nums: [Int]) &amp;#123;   	var j = 0   	for k in 0 ..&amp;lt; nums.count &amp;#123;       	if nums[k">
+My Solution12345678910111213func moveZeroes(inout nums: [Int]) &amp;#123;   	var j = 0   	for k in 0 ..&amp;lt; nums.count &amp;#123;       	if nums[">
 <meta property="og:type" content="article">
 <meta property="og:title" content="算法-数组">
 <meta property="og:url" content="http://yoursite.com/2016/05/01/算法/算法 - 数组/index.html">
 <meta property="og:site_name" content="曹宇的技术博客">
 <meta property="og:description" content="Move Zeroes原题地址：Move Zeroes
 问题描述：移除数组中的零，并且保持元素的顺序，且不能建立新的数组。
-My Solution12345678910111213func moveZeroes(inout nums: [Int]) &amp;#123;   	var j = 0   	for k in 0 ..&amp;lt; nums.count &amp;#123;       	if nums[k">
-<meta property="og:updated_time" content="2016-05-21T01:50:30.000Z">
+My Solution12345678910111213func moveZeroes(inout nums: [Int]) &amp;#123;   	var j = 0   	for k in 0 ..&amp;lt; nums.count &amp;#123;       	if nums[">
+<meta property="og:updated_time" content="2016-07-03T03:55:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法-数组">
 <meta name="twitter:description" content="Move Zeroes原题地址：Move Zeroes
 问题描述：移除数组中的零，并且保持元素的顺序，且不能建立新的数组。
-My Solution12345678910111213func moveZeroes(inout nums: [Int]) &amp;#123;   	var j = 0   	for k in 0 ..&amp;lt; nums.count &amp;#123;       	if nums[k">
+My Solution12345678910111213func moveZeroes(inout nums: [Int]) &amp;#123;   	var j = 0   	for k in 0 ..&amp;lt; nums.count &amp;#123;       	if nums[">
 
 
 
@@ -321,7 +321,8 @@ My Solution12345678910111213func moveZeroes(inout nums: [Int]) &amp;#123;   	var
       
 
       
-        <h1 id="Move-Zeroes"><a href="#Move-Zeroes" class="headerlink" title="Move Zeroes"></a>Move Zeroes</h1><p>原题地址：<a href="https://leetcode.com/problems/move-zeroes/" target="_blank" rel="external">Move Zeroes</a></p>
+        <a id="more"></a>
+<h1 id="Move-Zeroes"><a href="#Move-Zeroes" class="headerlink" title="Move Zeroes"></a>Move Zeroes</h1><p>原题地址：<a href="https://leetcode.com/problems/move-zeroes/" target="_blank" rel="external">Move Zeroes</a></p>
 <p>问题描述：移除数组中的零，并且保持元素的顺序，且不能建立新的数组。</p>
 <h2 id="My-Solution"><a href="#My-Solution" class="headerlink" title="My Solution"></a>My Solution</h2><figure class="highlight cos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">func moveZeroes(inout nums: [Int]) &#123;</span><br><span class="line">   	var <span class="keyword">j</span> = <span class="number">0</span></span><br><span class="line">   	<span class="keyword">for</span> <span class="keyword">k</span> in <span class="number">0</span> ..&lt; nums.count &#123;</span><br><span class="line">       	<span class="keyword">if</span> nums[<span class="keyword">k</span>] == <span class="number">0</span> &#123;</span><br><span class="line">           	<span class="keyword">j</span> = <span class="keyword">k</span></span><br><span class="line">           	<span class="keyword">while</span> nums[<span class="keyword">j</span>] == <span class="number">0</span> &amp;&amp; <span class="keyword">j</span> != nums.count - <span class="number">1</span> &#123;</span><br><span class="line">               	<span class="keyword">j</span> += <span class="number">1</span></span><br><span class="line">           	&#125;</span><br><span class="line">           	nums[<span class="keyword">k</span>] = nums[<span class="keyword">j</span>]</span><br><span class="line">           	nums[<span class="keyword">j</span>] = <span class="number">0</span></span><br><span class="line">       	&#125;</span><br><span class="line">   	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>遍历数组，当元素为零时，查找下一个非零元素，交换元素并且更新指针。</p>
@@ -380,8 +381,8 @@ My Solution12345678910111213func moveZeroes(inout nums: [Int]) &amp;#123;   	var
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/05/07/iOS面试题/iOS面试题-内存管理/" rel="prev" title="iOS面试题-内存管理">
-                iOS面试题-内存管理 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/05/07/iOS面试题/iOS面试题-UI/" rel="prev" title="iOS面试题-UI">
+                iOS面试题-UI <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
