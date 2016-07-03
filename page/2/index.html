@@ -1229,6 +1229,133 @@
             
               
                 
+                <a class="post-title-link" href="/2016/04/09/iOS开发/UI/iOS开发-UIScrollView/" itemprop="url">
+                  iOS开发-UIScrollView
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-09T13:10:22+08:00" content="2016-04-09">
+              2016-04-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let scrollView = UIScrollView(<span class="name">frame</span>: CGRect)</span><br></pre></td></tr></table></figure>
+<p>通常使用当前视图的 <code>view.bounds</code> 属性作为参数传递给 <code>init()</code> 方法。也可以指定一个矩形，指定坐标和长宽：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let scrollView = UIScrollView(<span class="string">frame:</span> CGRect(<span class="string">x:</span> CGFloat, <span class="string">y:</span> TCGFloat, <span class="string">width:</span> 		CGFloat, <span class="string">height:</span> CGFloat))</span><br></pre></td></tr></table></figure>
+<h1 id="常用属性"><a href="#常用属性" class="headerlink" title="常用属性"></a>常用属性</h1><p><code>scrollEnabled</code>: 控制是否可以滚动。</p>
+<p><code>tracking</code> and <code>dragging</code>： 响应用户的触摸和滑动。</p>
+<p><code>contentSize</code>： 设置内容的长和宽，传入 CGSize 作为参数。</p>
+<h1 id="故障排除"><a href="#故障排除" class="headerlink" title="故障排除"></a>故障排除</h1><h2 id="故障：无法滚动"><a href="#故障：无法滚动" class="headerlink" title="故障：无法滚动"></a>故障：无法滚动</h2><p>当我们使用 UIScrollView 控件时，会出现有显示内容，但是无法滚动的情况。</p>
+<p><strong>解决方法</strong></p>
+<p>第一步：确定 UIScrollView 对象的 contentSize 属性是否大于父视图</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置 contentSize 属性为指定宽高</span></span><br><span class="line">scrollView<span class="selector-class">.contentSize</span> = CGSizeMake(<span class="attribute">width</span>, height)</span><br></pre></td></tr></table></figure>
+<p>第二步：检查设置 contentSize 的语句在哪个方法中</p>
+<p>上面的语句不能放在 viewDidLoad() 方法当里，在 iOS 8 以上可以放在 viewDidAppear() 方法中。而在 iOS 7 ，可以参考<a href="http://www.cocoachina.com/bbs/read.php?tid-205386-page-1.html" target="_blank" rel="external">iOS7 下 UIScrollView 无法滑动</a> 中提到的方法，放在 viewDidLayoutSubviews() 方法中。</p>
+<p><strong>原理</strong></p>
+<p>iOS 的view加载过程会执行很多方法，当 view 加载完毕后，会先执行 <code>viewDidLoad()</code> 方法，然后在开启 Auto Layout 的情况下，会根据自动布局再一次计算 Constraint ，在计算完毕后会执行 <code>viewDidLayoutSubviews()</code> 方法。而最后才会执行 <code>viewDidAppear()</code> 方法。所以我们在 view 即将显示的时候设置 scrollView 的 <code>contentSize</code> 属性就可以啦。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/09/iOS开发/UI/iOS开发-UILabel/" itemprop="url">
                   iOS开发-UILabel
                 </a>
@@ -1308,133 +1435,6 @@
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置可以显示3行</span></span><br><span class="line"><span class="selector-tag">label</span><span class="selector-class">.numberOfLines</span> = <span class="number">3</span></span><br></pre></td></tr></table></figure>
 <p><strong>富文本</strong>：</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第 0 到第 6 个字符设置特定字体</span></span><br><span class="line">label<span class="selector-class">.addAttribute</span>(NSFontAttributeName, <span class="attribute">value</span>: UIFont(<span class="attribute">name</span>: <span class="string">"HelveticaNeue-		Bold"</span>, <span class="attribute">size</span>: <span class="number">16</span>)!, <span class="attribute">range</span>: NSMakeRange(<span class="number">0</span>, <span class="number">6</span>))</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/09/iOS开发/UI/iOS开发-UIScrollView/" itemprop="url">
-                  iOS开发-UIScrollView
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-09T13:10:22+08:00" content="2016-04-09">
-              2016-04-09
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS开发</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <a id="more"></a>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let scrollView = UIScrollView(<span class="name">frame</span>: CGRect)</span><br></pre></td></tr></table></figure>
-<p>通常使用当前视图的 <code>view.bounds</code> 属性作为参数传递给 <code>init()</code> 方法。也可以指定一个矩形，指定坐标和长宽：</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let scrollView = UIScrollView(<span class="string">frame:</span> CGRect(<span class="string">x:</span> CGFloat, <span class="string">y:</span> TCGFloat, <span class="string">width:</span> 		CGFloat, <span class="string">height:</span> CGFloat))</span><br></pre></td></tr></table></figure>
-<h1 id="常用属性"><a href="#常用属性" class="headerlink" title="常用属性"></a>常用属性</h1><p><code>scrollEnabled</code>: 控制是否可以滚动。</p>
-<p><code>tracking</code> and <code>dragging</code>： 响应用户的触摸和滑动。</p>
-<p><code>contentSize</code>： 设置内容的长和宽，传入 CGSize 作为参数。</p>
-<h1 id="故障排除"><a href="#故障排除" class="headerlink" title="故障排除"></a>故障排除</h1><h2 id="故障：无法滚动"><a href="#故障：无法滚动" class="headerlink" title="故障：无法滚动"></a>故障：无法滚动</h2><p>当我们使用 UIScrollView 控件时，会出现有显示内容，但是无法滚动的情况。</p>
-<p><strong>解决方法</strong></p>
-<p>第一步：确定 UIScrollView 对象的 contentSize 属性是否大于父视图</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置 contentSize 属性为指定宽高</span></span><br><span class="line">scrollView<span class="selector-class">.contentSize</span> = CGSizeMake(<span class="attribute">width</span>, height)</span><br></pre></td></tr></table></figure>
-<p>第二步：检查设置 contentSize 的语句在哪个方法中</p>
-<p>上面的语句不能放在 viewDidLoad() 方法当里，在 iOS 8 以上可以放在 viewDidAppear() 方法中。而在 iOS 7 ，可以参考<a href="http://www.cocoachina.com/bbs/read.php?tid-205386-page-1.html" target="_blank" rel="external">iOS7 下 UIScrollView 无法滑动</a> 中提到的方法，放在 viewDidLayoutSubviews() 方法中。</p>
-<p><strong>原理</strong></p>
-<p>iOS 的view加载过程会执行很多方法，当 view 加载完毕后，会先执行 <code>viewDidLoad()</code> 方法，然后在开启 Auto Layout 的情况下，会根据自动布局再一次计算 Constraint ，在计算完毕后会执行 <code>viewDidLayoutSubviews()</code> 方法。而最后才会执行 <code>viewDidAppear()</code> 方法。所以我们在 view 即将显示的时候设置 scrollView 的 <code>contentSize</code> 属性就可以啦。</p>
 
           
         
