@@ -84,20 +84,17 @@
 
 
 
-<meta name="description" content="iOS 中的 UINavigationController 是十分常用的视图，几乎可以在每一个 App 中看到。UINavigationController ，使用栈(Stack)的结构来实现，这样便于管理视图之间的层级关系。初始界面为栈底，之后每切换到一个新的界面，就将新的界面置于栈顶，也就是我们常说的压栈(Push)。每次返回之前的界面，就把当前界面从栈中取出，也就是出栈(Pop)。
-使用第一">
+<meta name="description" content="iOS 中的 UINavigationController 是十分常用的视图，几乎可以在每一个 App 中看到。UINavigationController ，使用栈(Stack)的结构来实现，这样便于管理视图之间的层级关系。初始界面为栈底，之后每切换到一个新的界面，就将新的界面置于栈顶，也就是我们常说的压栈(Push)。每次返回之前的界面，就把当前界面从栈中取出，也就是出栈(Pop)。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS开发-UINavigationController">
 <meta property="og:url" content="http://yoursite.com/2016/04/09/iOS开发/UI/iOS开发-UINavigationController/index.html">
 <meta property="og:site_name" content="曹宇的技术博客">
-<meta property="og:description" content="iOS 中的 UINavigationController 是十分常用的视图，几乎可以在每一个 App 中看到。UINavigationController ，使用栈(Stack)的结构来实现，这样便于管理视图之间的层级关系。初始界面为栈底，之后每切换到一个新的界面，就将新的界面置于栈顶，也就是我们常说的压栈(Push)。每次返回之前的界面，就把当前界面从栈中取出，也就是出栈(Pop)。
-使用第一">
+<meta property="og:description" content="iOS 中的 UINavigationController 是十分常用的视图，几乎可以在每一个 App 中看到。UINavigationController ，使用栈(Stack)的结构来实现，这样便于管理视图之间的层级关系。初始界面为栈底，之后每切换到一个新的界面，就将新的界面置于栈顶，也就是我们常说的压栈(Push)。每次返回之前的界面，就把当前界面从栈中取出，也就是出栈(Pop)。">
 <meta property="og:image" content="http://yoursite.com/img/5.png">
-<meta property="og:updated_time" content="2016-04-24T08:33:05.000Z">
+<meta property="og:updated_time" content="2016-07-03T03:52:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发-UINavigationController">
-<meta name="twitter:description" content="iOS 中的 UINavigationController 是十分常用的视图，几乎可以在每一个 App 中看到。UINavigationController ，使用栈(Stack)的结构来实现，这样便于管理视图之间的层级关系。初始界面为栈底，之后每切换到一个新的界面，就将新的界面置于栈顶，也就是我们常说的压栈(Push)。每次返回之前的界面，就把当前界面从栈中取出，也就是出栈(Pop)。
-使用第一">
+<meta name="twitter:description" content="iOS 中的 UINavigationController 是十分常用的视图，几乎可以在每一个 App 中看到。UINavigationController ，使用栈(Stack)的结构来实现，这样便于管理视图之间的层级关系。初始界面为栈底，之后每切换到一个新的界面，就将新的界面置于栈顶，也就是我们常说的压栈(Push)。每次返回之前的界面，就把当前界面从栈中取出，也就是出栈(Pop)。">
 <meta name="twitter:image" content="http://yoursite.com/img/5.png">
 
 
@@ -321,6 +318,7 @@
 
       
         <p>iOS 中的 UINavigationController 是十分常用的视图，几乎可以在每一个 App 中看到。<br>UINavigationController ，使用<strong>栈(Stack)</strong>的结构来实现，这样便于管理视图之间的层级关系。初始界面为栈底，之后每切换到一个新的界面，就将新的界面置于栈顶，也就是我们常说的<strong>压栈(Push)</strong>。每次返回之前的界面，就把当前界面从栈中取出，也就是<strong>出栈(Pop)</strong>。</p>
+<a id="more"></a>
 <h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="第一种方式：在-Storyboard-中添加"><a href="#第一种方式：在-Storyboard-中添加" class="headerlink" title="第一种方式：在 Storyboard 中添加"></a>第一种方式：在 Storyboard 中添加</h2><p><strong>第一步：将 UINavigationController 拖拽进 Storyboard 中</strong></p>
 <p><img src="/img/5.png" alt=""></p>
 <p>可以看到，系统默认给出了 UINavigationController 以及一个 UITableView。左侧的 NavigationController 只是个控制器视图，并没有什么内容要显示；而右侧的 View 才是我们的栈底，是根视图(Root View)。</p>

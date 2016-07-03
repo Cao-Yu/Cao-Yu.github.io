@@ -84,24 +84,18 @@
 
 
 
-<meta name="description" content="什么是事件传递？事件传递说白了就是iOS应用程序对用户操作进行逐级、有序处理的过程，这个过程会由UIWindow开始逐级向子视图进行检查。
-第一步：捕捉用户操作
-当用户触摸屏幕触发一个触摸事件(Touch Event)时，UIKit 会创建一个包含事件信息的 UIEvent 对象。然后把这个UIEvent对象放到到事件队列当中等待处理。对于触摸事件来说，这个 UIEvent对象是一系列触摸操作的集">
+<meta name="description" content="什么是事件传递？事件传递说白了就是iOS应用程序对用户操作进行逐级、有序处理的过程，这个过程会由UIWindow开始逐级向子视图进行检查。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS开发-事件传递以及响应链">
 <meta property="og:url" content="http://yoursite.com/2016/04/23/iOS开发/UI/iOS开发-事件传递响应链/index.html">
 <meta property="og:site_name" content="曹宇的技术博客">
-<meta property="og:description" content="什么是事件传递？事件传递说白了就是iOS应用程序对用户操作进行逐级、有序处理的过程，这个过程会由UIWindow开始逐级向子视图进行检查。
-第一步：捕捉用户操作
-当用户触摸屏幕触发一个触摸事件(Touch Event)时，UIKit 会创建一个包含事件信息的 UIEvent 对象。然后把这个UIEvent对象放到到事件队列当中等待处理。对于触摸事件来说，这个 UIEvent对象是一系列触摸操作的集">
+<meta property="og:description" content="什么是事件传递？事件传递说白了就是iOS应用程序对用户操作进行逐级、有序处理的过程，这个过程会由UIWindow开始逐级向子视图进行检查。">
 <meta property="og:image" content="https://developer.apple.com/library/ios/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/hit_testing_2x.png">
 <meta property="og:image" content="http://yoursite.com/img/6.png">
-<meta property="og:updated_time" content="2016-04-24T07:29:32.000Z">
+<meta property="og:updated_time" content="2016-07-03T03:52:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发-事件传递以及响应链">
-<meta name="twitter:description" content="什么是事件传递？事件传递说白了就是iOS应用程序对用户操作进行逐级、有序处理的过程，这个过程会由UIWindow开始逐级向子视图进行检查。
-第一步：捕捉用户操作
-当用户触摸屏幕触发一个触摸事件(Touch Event)时，UIKit 会创建一个包含事件信息的 UIEvent 对象。然后把这个UIEvent对象放到到事件队列当中等待处理。对于触摸事件来说，这个 UIEvent对象是一系列触摸操作的集">
+<meta name="twitter:description" content="什么是事件传递？事件传递说白了就是iOS应用程序对用户操作进行逐级、有序处理的过程，这个过程会由UIWindow开始逐级向子视图进行检查。">
 <meta name="twitter:image" content="https://developer.apple.com/library/ios/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Art/hit_testing_2x.png">
 
 
@@ -325,6 +319,7 @@
 
       
         <h1 id="什么是事件传递？"><a href="#什么是事件传递？" class="headerlink" title="什么是事件传递？"></a>什么是事件传递？</h1><p>事件传递说白了就是iOS应用程序对用户操作进行逐级、有序处理的过程，这个过程会由UIWindow开始逐级向子视图进行检查。</p>
+<a id="more"></a>
 <p><strong>第一步：捕捉用户操作</strong></p>
 <p>当用户触摸屏幕触发一个触摸事件(Touch Event)时，UIKit 会创建一个包含事件信息的 UIEvent 对象。然后把这个UIEvent对象放到到事件队列当中等待处理。对于触摸事件来说，这个 UIEvent对象是一系列触摸操作的集合。</p>
 <p>单例的UIApplication对象会从事件队列(Event Queue)的顶部取出这个UIEvent对象。然后，这个对象会首先被送到当前应用的UIWindow对象，这个UIWindow对象会带着需要处理的UIEvent对象进行一个叫做hit-testing的过程。这个过程说白了就是寻找用户点击的位置到底是属于哪个View。</p>
